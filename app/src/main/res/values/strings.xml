@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MPAS</string>
+    <string name="title"> MPAS PAY </string>
+    <string name="bt_cpm">QR Make(CPM)</string>
+    <string name="bt_mpm">QR Read(MPM)</string>
+    <string name="merchant">가맹점</string>
+    <string name="menu">메뉴</string>
+    <string name="price">금액</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="authNum">승인번호</string>
+    <string name="authUniq">고유번호</string>
+    <string name="tvReady">결제를 진행 하실래요?</string>
+    <string name="authResultOK">결제가 완료 되었습니다</string>
+    <string name="cancel">취소</string>
+    <string name="authConfirm">결제</string>
+    <string name="alreadyAuth">이미 승인된 거래 입니다</string>
+    <string name="back">뒤로</string>
+    <string name="merchantName">클린토피아 제이티넷</string>
+    <string name="authDate">승인 일시</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
