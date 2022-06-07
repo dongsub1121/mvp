@@ -1,4 +1,4 @@
-package com.mpas.mvp;
+package com.mpas.mvp.model;
 
 public class GetItem {
 

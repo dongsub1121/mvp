@@ -18,7 +18,22 @@
     <string name="back">뒤로</string>
     <string name="merchantName">클린토피아 제이티넷</string>
     <string name="authDate">승인 일시</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_manage_ment">ManageMentActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="business_id">Business num</string>
+    <string name="business_id_default_value">1078155843</string>
+    <string name="tid">TID</string>
+    <string name="tid_default_value">1802100001</string>
+    <string name="ficode">FICode</string>
+    <string name="ficode_value">0100</string>
+    <string name="bt_merchantinfo">정보조회</string>
+    <string name="bt_merchant_ficode_query">가맹번호</string>
+    <string name="bt_merchant_sales">매출</string>
+    <string name="bt_merchant_sales_purchase">매입사별</string>
+    <string name="bt_merchant_sales_purchase_detail">매입상세</string>
+
 
 </resources>

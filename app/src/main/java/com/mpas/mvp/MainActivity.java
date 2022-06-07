@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.google.zxing.client.android.Intents;
 import com.mpas.mvp.ui.main.CpmFragment;
 import com.mpas.mvp.ui.main.MainFragment;
+import com.mpas.mvp.ui.main.ManagementFragment;
 import com.mpas.mvp.ui.main.PaymentFragment;
 
 import java.util.Objects;
@@ -86,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 fragment = MainFragment.newInstance(); // common Test
                 //fragment = BlankFragment.newInstance(); // seoulPay
                 //fragment = bipleFragment.newInstance(); // zeroPay
-                Log.e("1001","3444");
                 break;
             case 2:
                 fragment = PaymentFragment.newInstance();
@@ -94,12 +94,16 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 fragment = CpmFragment.newInstance();
                 break;
+            case 4:
+            case 5:
+                fragment = ManagementFragment.newInstance();
             default:
                 break;
         }
 
         Objects.requireNonNull(fragment).setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null)
                 .replace(R.id.container, fragment).commit();
     }
 

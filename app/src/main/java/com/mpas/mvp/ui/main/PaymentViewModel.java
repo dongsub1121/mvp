@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mpas.mvp.GetItem;
+import com.mpas.mvp.model.GetItem;
 import com.mpas.mvp.PayUtil;
 import com.mpas.mvp.PaydaPostMPMCommit;
 import com.mpas.mvp.RetrofitAPI;

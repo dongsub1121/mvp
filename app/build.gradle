@@ -36,14 +36,22 @@ android {
         viewBinding true
     }
 }
-
+def retrofitVersion = '2.3.0'
+def rxJavaVersion ='2.1.1'
 dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
+    //RxJava
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.7'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.rerofit2:adapter-rxjava2:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
+    //zxing
     implementation 'com.google.zxing:core:3.3.2'
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     implementation 'androidx.cardview:cardview:1.0.0'

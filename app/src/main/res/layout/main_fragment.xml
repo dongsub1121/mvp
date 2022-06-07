@@ -31,18 +31,21 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/biLSymbol"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/mpas_symbol02" />
+                android:src="@drawable/mpas_symbol02"
+                android:contentDescription=""
+                tools:ignore="ContentDescription" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/biWord"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/mpas_horizontal" />
+                android:src="@drawable/mpas_horizontal"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,7 +66,8 @@
                 android:textSize="20sp"
                 android:gravity="center"
 
-                android:text="@string/bt_cpm" />
+                android:text="@string/bt_cpm"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/bt_mpm"
@@ -74,7 +78,8 @@
                 android:gravity="center"
                 android:textSize="20sp"
 
-                android:text="@string/bt_mpm" />
+                android:text="@string/bt_mpm"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 

@@ -61,9 +61,8 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
             qrScan.initiateScan();
         });
 
+        binding.biLSymbol.setOnClickListener(view-> mainActivity.fragmentChange(5,new Bundle()));
         return binding.getRoot();
-
-
     }
 
     @Override
@@ -79,7 +78,6 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
     public void onDestroyView() {
         binding = null;
         super.onDestroyView();
-
     }
 
 
