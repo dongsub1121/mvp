@@ -1,13 +1,11 @@
-package com.mpas.mvp;
+package com.mpas.mvp.merchant.api;
 
-import com.mpas.mvp.model.MerchantInfo;
+import com.google.gson.JsonObject;
+import com.mpas.mvp.merchant.model.MerchantInfoModel;
 
 import io.reactivex.Single;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface BoHttpsAPI {
@@ -18,21 +16,23 @@ public interface BoHttpsAPI {
 
 
     @GET("payda/v1/site/info") // Merchant Download
-    Single<MerchantInfo> getMerchantInfo(
+    Single<MerchantInfoModel> getMerchantInfo(
             @Query("servicetype") String servicetype,
             @Query("businessnumber") String businessnumber,
             @Query("siteid") String siteid,
             @Query("token") String token
     );
 
+/*
 
-/*    @GET("payda/v1/site/info") // Merchant Download
-    Call<Object> getMerchantInfo(
+    @GET("payda/v1/site/info") // Merchant Download
+    Call<MerchantInfoModel> getMerchantInfo(
             @Query("servicetype") String servicetype,
             @Query("businessnumber") String businessnumber,
             @Query("siteid") String siteid,
             @Query("token") String token
-    );*/
+    );
+*/
 
     @GET("payda/v1/bank/info") // Merchant IssuerNumber Query
     Call<Object> getBankInfo(

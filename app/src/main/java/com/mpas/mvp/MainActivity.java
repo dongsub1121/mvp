@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import com.google.zxing.client.android.Intents;
 import com.mpas.mvp.ui.main.CpmFragment;
 import com.mpas.mvp.ui.main.MainFragment;
-import com.mpas.mvp.ui.main.ManagementFragment;
 import com.mpas.mvp.ui.main.PaymentFragment;
 
 import java.util.Objects;
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 4:
             case 5:
-                fragment = ManagementFragment.newInstance();
+                //fragment = ManagementActivity.newInstance();
             default:
                 break;
         }

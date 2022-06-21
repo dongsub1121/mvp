@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import com.mpas.mvp.OnBackPressedListener;
 import com.mpas.mvp.R;
 import com.mpas.mvp.barcode;
 import com.mpas.mvp.databinding.MainFragmentBinding;
+import com.mpas.mvp.merchant.ManageActivity;
+import com.mpas.mvp.merchant.ManagementViewModel;
 
 public class MainFragment extends Fragment implements OnBackPressedListener {
 
@@ -61,7 +64,12 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
             qrScan.initiateScan();
         });
 
-        binding.biLSymbol.setOnClickListener(view-> mainActivity.fragmentChange(5,new Bundle()));
+
+        binding.biLSymbol.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), ManageActivity.class);
+            startActivity(intent);
+        });
+
         return binding.getRoot();
     }
 

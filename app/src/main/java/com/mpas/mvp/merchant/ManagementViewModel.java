@@ -1,78 +1,116 @@
-package com.mpas.mvp.ui.main;
+package com.mpas.mvp.merchant;
 
+import static com.mpas.mvp.merchant.model.MerchantInfoModel.*;
+import static com.mpas.mvp.merchant.repository.ApiRepository.*;
+
+import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.mpas.mvp.BoHttpsAPI;
-import com.mpas.mvp.model.MerchantInfo;
+import com.mpas.mvp.merchant.model.MerchantInfoModel;
+import com.mpas.mvp.merchant.repository.ApiRepository;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 
-public class ManagementViewModel extends ViewModel {
+public class ManagementViewModel extends AndroidViewModel {
 
-    public static String businessID = "";
-    public static String merchantID = "";
-    public static String fiCode = "";
-    public static String startDate = "";
-    public static String endDate = "";
+    private final ApiRepository apiRepository = getInstance();
+    private final MutableLiveData<Result> merchantInfoMutableLiveData = new MutableLiveData<>();
+    public final MutableLiveData<List<Result.Banks>> banksMutableLiveData = new MutableLiveData<List<Result.Banks>>();
 
-    public static String getFiCode() {
-        return fiCode;
-    }
-
-    public static String getStartDate() {
-        return startDate;
-    }
-
-    public static void setStartDate(String startDate) {
-        ManagementViewModel.startDate = startDate;
-    }
-
-    public static String getEndDate() {
-        return endDate;
-    }
-
-    public static void setEndDate(String endDate) {
-        ManagementViewModel.endDate = endDate;
-    }
-
-    public static void setFiCode(String fiCode) {
-        ManagementViewModel.fiCode = fiCode;
-    }
-
-    public static String getBusinessID() {
-        return businessID;
-    }
-
-    public static void setBusinessID(String businessID) {
-        ManagementViewModel.businessID = businessID;
-    }
-
-    public static String getMerchantID() {
-        return merchantID;
-    }
-
-    public static void setMerchantID(String merchantID) {
-        ManagementViewModel.merchantID = merchantID;
-    }
-
-    private final MutableLiveData<String> merchantInfoMutableLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> merchantIssuerMutableLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> merchantSalesMutableLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> merchantPurchaseSalesMutableLiveData = new MutableLiveData<>();
+
+    public MutableLiveData<Result> getMerchantInfoMutableLiveData() {
+        return merchantInfoMutableLiveData;
+    }
+
+    public MutableLiveData<List<Result.Banks>> getBanksMutableLiveData() {
+        return banksMutableLiveData;
+    }
+
+    public MutableLiveData<Boolean> loadError = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
+
+    private final CompositeDisposable disposable = new CompositeDisposable();
+
+    public ManagementViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+    public void refresh() {
+        // 서버로부터 데이터를 받아오는 동안 로딩 상태를 보여주기 위해 true 설정
+        Log.e("viewModel","refresh");
+        loading.setValue(true);
+        // CompositeDisposable에 Observable(여기선 Single) 추가
+        disposable.add(apiRepository.getMerchantInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<MerchantInfoModel>() {
+
+
+                    @Override
+                    public void onSuccess(MerchantInfoModel merchantInfoModel) {
+                        // 데이터가 있다면 MutableLiveData<List>에 데이터를 넣고
+                        Log.e("refresh",merchantInfoModel.getResult().getBusinessnumber());
+                        Log.e("onSuccess",merchantInfoModel.toString());
+                        merchantInfoMutableLiveData.setValue(merchantInfoModel.getResult());
+                        banksMutableLiveData.setValue(merchantInfoModel.getResult().getBanks());
+
+                        // 로딩, 에러 관련 뷰들을 가리기 위해 false 값을 넣는다
+                        loadError.setValue(false);
+                        loading.setValue(false);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e("refresh","onError");
+                        // 실패한 경우는 성공했을 때와 반대로 한다
+                        loadError.setValue(true);
+                        loading.setValue(false);
+                        Log.e("refresh", String.valueOf(e));
+
+                    }
+                }));
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+
+        // 앱이 통신 중에 프로세스가 종료될 경우(앱이 destory됨)
+        // 메모리 손실을 최소화 하기 위해 백그라운드 스레드에서 통신 작업을 중단한다
+        disposable.clear();
+    }
+
+    public void setMerchant(String biz, String mid) {
+        setMerchantData(biz,mid);
+    }
+
+    public void getMerchantInfo(){
+
+    }
+}
+/*
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+
+        // 앱이 통신 중에 프로세스가 종료될 경우(앱이 destory됨)
+        // 메모리 손실을 최소화 하기 위해 백그라운드 스레드에서 통신 작업을 중단한다
+        disposable.clear();
+    }
+
+}
 
     public MutableLiveData<String> getMerchantInfoMutableLiveData() {
         return merchantInfoMutableLiveData;
@@ -102,8 +140,8 @@ public class ManagementViewModel extends ViewModel {
                 String body = gson.toJson(response.body());
                 Log.e("response.body()",body);
                 merchantInfoMutableLiveData.postValue(body);
-                MerchantInfo merchantInfo = gson.fromJson(body,MerchantInfo.class);
-                JsonObject jsonObject = merchantInfo.getResult();
+                MerchantInfoModel merchantInfoModel = gson.fromJson(body, MerchantInfoModel.class);
+                JsonObject jsonObject = merchantInfoModel.getResult();
                 Log.e("getResult()",jsonObject.toString());
 
             }
@@ -139,8 +177,8 @@ public class ManagementViewModel extends ViewModel {
                 String body = gson.toJson(response.body());
                 Log.e("response.body()",body);
                 merchantInfoMutableLiveData.postValue(body);
-                MerchantInfo merchantInfo = gson.fromJson(body,MerchantInfo.class);
-                JsonObject jsonObject = merchantInfo.getResult();
+                MerchantInfoModel merchantInfoModel = gson.fromJson(body, MerchantInfoModel.class);
+                JsonObject jsonObject = merchantInfoModel.getResult();
                 Log.e("getResult()",jsonObject.toString());
 
             }
@@ -275,4 +313,4 @@ public class ManagementViewModel extends ViewModel {
 
         return SHA;
     }
-}
+}*/
