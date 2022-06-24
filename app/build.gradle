@@ -42,6 +42,7 @@ android {
 dependencies {
 
 
+    implementation 'androidx.preference:preference:1.1.1'
     def lifecycleExtentionVersion = '1.1.1'
     def retrofitVersion = '2.3.0'
     def rxJavaVersion ='2.1.1'

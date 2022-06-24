@@ -61,6 +61,13 @@ public class ApiRepository {
         return api.getMerchantInfo(SERVICE_TYPE, biz, mid, sha);
     }
 
+    public Single<MerchantInfoModel> getMerchantInfo(String biz, String mid) {
+        String value = SERVICE_TYPE+ biz + mid;
+        String sha = sha256(sha256(value)+ TOKEN);
+
+        return api.getMerchantInfo(SERVICE_TYPE, biz, mid, sha);
+    }
+
     public String sha256(String value) {
 
         String SHA = "";

@@ -30,6 +30,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".merchant1.view.MerchantActivity"
+            android:exported="false" />
+        <activity
             android:name=".merchant.ManageActivity"
             android:exported="false" />
         <activity

@@ -2,7 +2,6 @@ package com.mpas.mvp.merchant.model;
 
 import androidx.annotation.NonNull;
 
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -66,8 +65,8 @@ public class MerchantInfoModel {
         @SerializedName("agentphone")
         @Expose
         String agentphone;
-        @SerializedName("banks")
-        List<Banks> banks;
+
+        List<BanksModel> banks;
 
         public String getBusinessnumber() {
             return businessnumber;
@@ -117,7 +116,7 @@ public class MerchantInfoModel {
             return agentphone;
         }
 
-        public List<Banks> getBanks() {
+        public List<BanksModel> getBanks() {
             return banks;
         }
 
@@ -131,41 +130,6 @@ public class MerchantInfoModel {
                     ;
         }
 
-        public static class Banks{
-            @SerializedName("ficode")
-            @Expose
-            String ficode;
-            @SerializedName("bankname")
-            @Expose
-            String bankname;
-            @SerializedName("merchantnumber")
-            @Expose
-            String merchantnumber;
-
-            public void setFicode(String ficode) {
-                this.ficode = ficode;
-            }
-
-            public void setBankname(String bankname) {
-                this.bankname = bankname;
-            }
-
-            public void setMerchantnumber(String merchantnumber) {
-                this.merchantnumber = merchantnumber;
-            }
-
-            public String getFicode() {
-                return ficode;
-            }
-
-            public String getBankname() {
-                return bankname;
-            }
-
-            public String getMerchantnumber() {
-                return merchantnumber;
-            }
-        }
     }
 
 

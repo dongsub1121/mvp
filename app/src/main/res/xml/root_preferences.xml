@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/Merchant">
+
+        <EditTextPreference
+            android:defaultValue="1078155843"
+            android:key="merchant_business_number"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            app:useSimpleSummaryProvider="true"
+            android:title="Business IDr" />
+        <EditTextPreference
+            android:defaultValue="1802100001"
+            android:key="merchant_mid_number"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            app:useSimpleSummaryProvider="true"
+            android:title="Merchant ID" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
