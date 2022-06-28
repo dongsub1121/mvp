@@ -1,73 +1,85 @@
 package com.mpas.mvp.merchant1.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ActivityMerchantBinding;
+import com.mpas.mvp.merchant1.db.MerchantInfoData;
+import com.mpas.mvp.merchant1.db.MerchantInfoDataBase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MerchantActivity extends AppCompatActivity {
 
+    private static final String TAG = MerchantActivity.class.getSimpleName();
     private static ActivityMerchantBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG,"onCreate");
 
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_merchant);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_merchant);
 
         setupViewPager(binding.viewPager);
-        binding.tabLayout.setupWithViewPager(binding.viewPager);
-
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(SettingsFragment.newInstance(),"Setting");
-        adapter.addFragment(SalesFragment.newInstance(),"Merchant");
+    private void setupViewPager(ViewPager2 viewPager) {
+
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
+        adapter.addFragment(MerchantFragment.newInstance(),"Setting");
+        adapter.addFragment(SalesFragment.newInstance(),"Sales");
         viewPager.setAdapter(adapter);
+        viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+
+        new TabLayoutMediator(binding.tabLayout, binding.viewPager, (tab, position) -> {
+            tab.setText(adapter.getTag(position));
+        }).attach();
     }
 
 
-
-    private static class ViewPagerAdapter  extends FragmentPagerAdapter {
+    private static class ViewPagerAdapter  extends FragmentStateAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+        private final List<String> mFragmentTagList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+        public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+            super(fragmentActivity);
         }
 
+        @NonNull
         @Override
-        public Fragment getItem(int position) {
+        public Fragment createFragment(int position) {
             return mFragmentList.get(position);
         }
 
         @Override
-        public int getCount() {
+        public int getItemCount() {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        public void addFragment( Fragment fragment , String tag){
             mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+            mFragmentTagList.add(tag);
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+        public String getTag(int position) {
+            return mFragmentTagList.get(position);
         }
+
     }
+
+
+
 }

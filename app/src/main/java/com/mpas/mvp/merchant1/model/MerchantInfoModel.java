@@ -1,9 +1,10 @@
-package com.mpas.mvp.merchant.model;
+package com.mpas.mvp.merchant1.model;
 
 import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.mpas.mvp.merchant.model.BanksModel;
 
 import java.util.List;
 

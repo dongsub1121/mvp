@@ -13,6 +13,10 @@ public class BankInfo {
     @SerializedName("result")
     Result result;
 
+    public BankInfo() {
+        super();
+    }
+
     public BankInfo(String status, String message, String detail, Result result){
         this.status = status;
         this.message = message;

@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant.db;
+package com.mpas.mvp.merchant1.db;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -13,6 +13,7 @@ import java.util.List;
 public interface MerchantInfoDao {
 
     @Insert
+    //void insert(MerchantInfoData merchantInfoData);
     void insert(MerchantInfoData merchantInfoData);
 
     @Update
@@ -23,5 +24,6 @@ public interface MerchantInfoDao {
 
     @Query("SELECT * FROM MerchantInfoTable")
     LiveData<List<MerchantInfoData>> getAll();
+
 
 }

@@ -1,15 +1,18 @@
-package com.mpas.mvp.merchant.db;
+package com.mpas.mvp.merchant1.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.mpas.mvp.merchant.model.BanksModel;
+
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(tableName = "MerchantInfoTable")
-public class MerchantInfoData implements Serializable {
-    public MerchantInfoData() {
-        super();
-    }
+public class MerchantInfoData  {
+
 
     @PrimaryKey(autoGenerate = true)
     private int id = 0;
@@ -37,7 +40,17 @@ public class MerchantInfoData implements Serializable {
     protected String agentname;
     @ColumnInfo(name = "agentphone")
     protected String agentphone;
+    @ColumnInfo(name = "banks")
+    @Ignore
+    protected List<BanksModel> banks;
 
+    public List<BanksModel> getBanks() {
+        return banks;
+    }
+
+    public void setBanks(List<BanksModel> banks) {
+        this.banks = banks;
+    }
 
     public int getId() {
         return id;

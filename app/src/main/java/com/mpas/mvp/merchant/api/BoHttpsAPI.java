@@ -1,7 +1,6 @@
 package com.mpas.mvp.merchant.api;
 
-import com.google.gson.JsonObject;
-import com.mpas.mvp.merchant.model.MerchantInfoModel;
+import com.mpas.mvp.merchant1.model.MerchantInfoModel;
 
 import io.reactivex.Single;
 import retrofit2.Call;

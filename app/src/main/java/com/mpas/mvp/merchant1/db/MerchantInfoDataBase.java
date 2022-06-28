@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant.db;
+package com.mpas.mvp.merchant1.db;
 
 import android.content.Context;
 import androidx.room.Database;

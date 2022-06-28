@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardUseCompatPadding="true"
+    android:padding="20dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/ci"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            android:src="@drawable/mpas_symbol02" />
+
+        <TextView
+            android:id="@+id/issuer_brand"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/ci"
+            android:text="Brand Name"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/issuer_code"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@+id/issuer_brand"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text="Brand Code"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/issuer_id"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/issuer_code"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+
+            android:layout_toRightOf="@+id/ci"
+            android:text="Brand ID"
+            android:textColor="@color/black" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

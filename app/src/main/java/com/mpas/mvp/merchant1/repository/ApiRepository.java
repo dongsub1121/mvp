@@ -1,15 +1,10 @@
-package com.mpas.mvp.merchant.repository;
+package com.mpas.mvp.merchant1.repository;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
-import android.os.Build.VERSION;
 
-import androidx.annotation.RequiresApi;
-
-import com.google.gson.JsonObject;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.mpas.mvp.merchant.api.BoHttpsAPI;
-import com.mpas.mvp.merchant.model.MerchantInfoModel;
+import com.mpas.mvp.merchant1.model.MerchantInfoModel;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -18,7 +13,6 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import io.reactivex.Single;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

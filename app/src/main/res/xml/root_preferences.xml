@@ -8,8 +8,8 @@
             android:key="merchant_business_number"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            app:useSimpleSummaryProvider="true"
-            android:title="Business IDr" />
+            android:title="Business ID"
+            app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             android:defaultValue="1802100001"
             android:key="merchant_mid_number"
