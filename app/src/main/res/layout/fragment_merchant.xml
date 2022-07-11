@@ -12,13 +12,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:theme="@style/MyApplication.Main"
+            android:theme="@style/MyApplication.payment"
             tools:context=".merchant1.view.MerchantFragment">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/businessId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColorHint="#000063"
                 android:layout_margin="20dp"
                 app:counterMaxLength="10"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -30,6 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Business Number"
+                    android:textColor="@color/black"
                     android:inputType="number"
                     android:text="1078155843" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -38,6 +40,7 @@
                 android:id="@+id/merchantId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColorHint="#000063"
                 app:layout_constraintTop_toBottomOf="@+id/businessId"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/downButton"
@@ -47,6 +50,7 @@
                     android:id="@+id/merchantIdText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:hint="Merchant Number"
                     android:inputType="number"
                     android:text="1802100001" />
@@ -77,37 +81,38 @@
                     android:id="@+id/merchant_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{}" />
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textSize="30dp"/>
 
                 <TextView
                     android:id="@+id/merchant_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/merchant_owner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/merchant_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="" />
 
             </LinearLayout>
-
-
-
-
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/banksRecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="20dp" />
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/info_layout"
+
+                        android:layout_margin="20dp"
+                        android:paddingBottom="350dp"/>
 
 
 

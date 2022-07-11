@@ -24,7 +24,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/purchase_price"
+        android:id="@+id/purchase_count"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -34,7 +34,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/status"
+        android:id="@+id/purchase_price"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:gravity="center"

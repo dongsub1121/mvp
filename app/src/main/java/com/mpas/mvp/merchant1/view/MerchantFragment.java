@@ -3,9 +3,6 @@ package com.mpas.mvp.merchant1.view;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentMerchantBinding;
-import com.mpas.mvp.merchant.ManageActivity;
-import com.mpas.mvp.merchant.ManagementViewModel;
-import com.mpas.mvp.merchant.model.BanksModel;
-import com.mpas.mvp.merchant.view.ModelInfoFragment;
-import com.mpas.mvp.merchant.view.RecyclerViewAdapter;
-import com.mpas.mvp.merchant1.db.MerchantInfoData;
-import com.mpas.mvp.merchant1.db.MerchantInfoDataBase;
+import com.mpas.mvp.merchant1.Config;
+import com.mpas.mvp.merchant1.model.BanksModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +70,12 @@ public class MerchantFragment extends Fragment {
             recyclerView.setAdapter(mAdapter);
              });
 
+        mViewModel.getSharedPreferencesMutableLiveData().observe(requireActivity(),sharedPreferences -> {
+            binding.merchantOwner.setText(sharedPreferences.getString(Config.MERCHANT_OWNER,""));
+            binding.merchantAddress.setText(sharedPreferences.getString(Config.MERCHANT_ADDRESS,""));
+            binding.merchantPhone.setText(sharedPreferences.getString(Config.MERCHANT_PHONE,""));
+            binding.merchantName.setText(sharedPreferences.getString(Config.MERCHANT_NAME,""));
+        });
         return binding.getRoot();
     }
 

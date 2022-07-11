@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant.view;
+package com.mpas.mvp.merchant1.view;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

@@ -14,8 +14,6 @@ import android.util.Log;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ActivityMerchantBinding;
-import com.mpas.mvp.merchant1.db.MerchantInfoData;
-import com.mpas.mvp.merchant1.db.MerchantInfoDataBase;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant.view;
+package com.mpas.mvp.merchant1.view;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mpas.mvp.R;
-import com.mpas.mvp.merchant.model.BanksModel;
+import com.mpas.mvp.merchant1.model.BanksModel;
 
 import java.util.List;
 

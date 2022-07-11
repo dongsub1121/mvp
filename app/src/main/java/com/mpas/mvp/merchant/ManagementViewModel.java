@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.mpas.mvp.merchant.model.BanksModel;
+import com.mpas.mvp.merchant1.model.BanksModel;
 import com.mpas.mvp.merchant1.model.MerchantInfoModel;
 import com.mpas.mvp.merchant1.repository.ApiRepository;
 
@@ -23,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ManagementViewModel extends AndroidViewModel {
 
-    private final ApiRepository apiRepository = getInstance();
+    private final ApiRepository apiRepository = getInstance(getApplication());
     private final MutableLiveData<Result> merchantInfoMutableLiveData = new MutableLiveData<>();
     public final MutableLiveData<List<BanksModel>> banksMutableLiveData = new MutableLiveData<List<BanksModel>>();
 

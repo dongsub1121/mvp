@@ -25,7 +25,8 @@ import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ManagementFragmentBinding;
 import com.mpas.mvp.merchant.ManageActivity;
 import com.mpas.mvp.merchant.ManagementViewModel;
-import com.mpas.mvp.merchant.model.BanksModel;
+import com.mpas.mvp.merchant1.model.BanksModel;
+import com.mpas.mvp.merchant1.view.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

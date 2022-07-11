@@ -10,16 +10,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:theme="@style/MyApplication.payment"
         tools:context=".merchant1.view.MerchantActivity">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicatorColor="#000063"
+            app:tabTextColor="#000063">
+
         </com.google.android.material.tabs.TabLayout>
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

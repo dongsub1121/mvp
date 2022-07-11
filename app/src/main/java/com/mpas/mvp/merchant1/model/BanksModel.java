@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant.model;
+package com.mpas.mvp.merchant1.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

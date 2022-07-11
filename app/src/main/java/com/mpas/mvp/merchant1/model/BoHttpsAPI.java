@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant.api;
+package com.mpas.mvp.merchant1.model;
 
 import com.mpas.mvp.merchant1.model.MerchantInfoModel;
 
@@ -42,8 +42,17 @@ public interface BoHttpsAPI {
             @Query("token") String token
     );
 
-    @GET("payda/v1/trans/sum") // Merchant Sales Query
-    Call<Object> getSales(
+/*    @GET("payda/v1/trans/sum") // Merchant Sales Query
+    Single<SalesModel> getSales(
+            @Query("servicetype") String servicetype,
+            @Query("businessnumber") String businessnumber,
+            @Query("sdate") String sdate,
+            @Query("edate") String edate,
+            @Query("token") String token
+    );*/
+
+    @GET("pada/v1/trans/sum")
+    Call<SalesModel> getSalse(
             @Query("servicetype") String servicetype,
             @Query("businessnumber") String businessnumber,
             @Query("sdate") String sdate,
@@ -52,7 +61,7 @@ public interface BoHttpsAPI {
     );
 
     @GET("payda/v1/trans/sum/detail") // Merchant Sales Purchase Query
-    Call<Object> getISalesPurchase(
+    Single<SalseDetailModel> getISalesPurchase(
             @Query("servicetype") String servicetype,
             @Query("businessnumber") String businessnumber,
             @Query("transdate") String transdate,
