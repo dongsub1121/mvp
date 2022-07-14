@@ -5,22 +5,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.mpas.mvp.R;
-import com.mpas.mvp.merchant1.model.BanksModel;
-import com.mpas.mvp.merchant1.model.SalseDetailModel;
-
-import java.text.MessageFormat;
-import java.text.NumberFormat;
+import com.mpas.mvp.merchant1.util.TextConvert;
+import com.mpas.mvp.merchant1.model.SalesDetailModel;
 import java.util.List;
 
 public class SaleDetailRecyclerViewAdapter extends  RecyclerView.Adapter<SaleDetailRecyclerViewAdapter.ViewHoler>{
-    private final List<SalseDetailModel.SalesDetailDB> salesDetailDBList;
+    private final List<SalesDetailModel.SalesDetailDB> salesDetailDBList;
 
-    public SaleDetailRecyclerViewAdapter(List<SalseDetailModel.SalesDetailDB> list) {
+    public SaleDetailRecyclerViewAdapter(List<SalesDetailModel.SalesDetailDB> list) {
         this.salesDetailDBList = list;
     }
 
@@ -33,10 +28,10 @@ public class SaleDetailRecyclerViewAdapter extends  RecyclerView.Adapter<SaleDet
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
-        //TODO
-        SalseDetailModel.SalesDetailDB db  = salesDetailDBList.get(position);
-        holder.amount.setText(MessageFormat.format("{0}원", toPrice(db.getTramt())));
-        holder.count.setText(MessageFormat.format("{0}건", db.getTrcnt()));
+
+        SalesDetailModel.SalesDetailDB db  = salesDetailDBList.get(position);
+        holder.amount.setText(TextConvert.toPrice(db.getTramt()));
+        holder.count.setText(TextConvert.toCount(db.getTrcnt()));
         holder.bank.setText(db.getBankname());
 
     }
@@ -46,7 +41,7 @@ public class SaleDetailRecyclerViewAdapter extends  RecyclerView.Adapter<SaleDet
         return salesDetailDBList.size();
     }
 
-    public class ViewHoler extends RecyclerView.ViewHolder {
+    public static class ViewHoler extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView bank, amount, count;
 
@@ -60,8 +55,4 @@ public class SaleDetailRecyclerViewAdapter extends  RecyclerView.Adapter<SaleDet
         }
     }
 
-    public String toPrice(String num) {
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
-        return  numberFormat.format(Integer.valueOf(num));
-    }
 }

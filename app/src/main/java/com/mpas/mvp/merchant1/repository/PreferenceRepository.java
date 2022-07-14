@@ -1,6 +1,6 @@
 package com.mpas.mvp.merchant1.repository;
 
-import static com.mpas.mvp.merchant1.Config.*;
+import static com.mpas.mvp.merchant1.util.Config.*;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
-import com.mpas.mvp.merchant1.Config;
+import com.mpas.mvp.merchant1.util.Config;
 import com.mpas.mvp.merchant1.model.MerchantInfoModel;
 
 public class PreferenceRepository {

@@ -105,17 +105,13 @@
 
             </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/banksRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/info_layout"
-
-                        android:layout_margin="20dp"
-                        android:paddingBottom="350dp"/>
-
-
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/banksRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/info_layout"
+                app:layout_constraintVertical_bias="@integer/material_motion_duration_short_1"
+                android:layout_margin="20dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

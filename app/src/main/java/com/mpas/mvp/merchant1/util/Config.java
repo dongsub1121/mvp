@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant1;
+package com.mpas.mvp.merchant1.util;
 
 public class Config {
 

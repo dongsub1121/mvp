@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".merchant1.view.SalesSummaryFragment">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.mpas.mvp.merchant1.view.SalesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <org.eazegraph.lib.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            app:egBarWidth="20dp"
+            app:egEnableScroll="true"
+            app:egFixedBarWidth="true"
+            app:egLegendHeight="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+             />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

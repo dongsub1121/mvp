@@ -21,7 +21,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabIndicatorColor="#000063"
-            app:tabTextColor="#000063">
+            app:tabTextColor="#000063"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabBackground="@color/purple_700"
+
+            >
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -32,8 +36,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/tabLayout"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/tabLayout">
         </androidx.viewpager2.widget.ViewPager2>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

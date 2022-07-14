@@ -23,6 +23,7 @@ import com.mpas.mvp.R;
 import com.mpas.mvp.barcode;
 import com.mpas.mvp.databinding.MainFragmentBinding;
 import com.mpas.mvp.merchant1.view.MerchantActivity;
+import com.mpas.mvp.ui.main.cpm.CpmActivity;
 
 public class MainFragment extends Fragment implements OnBackPressedListener {
 
@@ -50,7 +51,10 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
         back = false;
         binding = bind(inflater.inflate(R.layout.main_fragment, container, false));
 
-        binding.btCpm.setOnClickListener(view -> mainActivity.fragmentChange(3,new Bundle()));
+        //binding.btCpm.setOnClickListener(view -> mainActivity.fragmentChange(3,new Bundle()));
+        binding.btCpm.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(),CpmActivity.class));
+        });
 
         binding.btMpm.setOnClickListener(view -> {
             IntentIntegrator qrScan = new IntentIntegrator(getActivity());

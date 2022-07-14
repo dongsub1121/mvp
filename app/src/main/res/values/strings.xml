@@ -19,10 +19,8 @@
     <string name="merchantName">NICE Shop</string>
     <string name="authDate">승인 일시</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="title_activity_manage_ment">ManageMentActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="business_id">Business num</string>
     <string name="business_id_default_value">1078155843</string>
     <string name="tid">TID</string>
@@ -144,6 +142,8 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

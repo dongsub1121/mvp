@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentMerchantBinding;
-import com.mpas.mvp.merchant1.Config;
+import com.mpas.mvp.merchant1.util.Config;
 import com.mpas.mvp.merchant1.model.BanksModel;
 
 import java.util.ArrayList;
@@ -30,7 +30,6 @@ public class MerchantFragment extends Fragment {
     private static final String TAG = MerchantFragment.class.getSimpleName();
     private  static FragmentMerchantBinding binding;
     private static MerchantViewModel mViewModel;
-    private static MerchantActivity merchantActivity;
 
     public static MerchantFragment newInstance() {
         return new MerchantFragment();
@@ -40,10 +39,6 @@ public class MerchantFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         Log.e(TAG,"onAttach");
         super.onAttach(context);
-
-        if ( context instanceof Activity){
-            merchantActivity = (MerchantActivity) context;
-        }
     }
 
     @Nullable
@@ -53,7 +48,7 @@ public class MerchantFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_merchant, container,false);
-        mViewModel = new ViewModelProvider(merchantActivity).get(MerchantViewModel.class);
+        mViewModel = new ViewModelProvider(requireActivity()).get(MerchantViewModel.class);
 
         binding.downButton.setOnClickListener(view -> {
             mViewModel.getMerchant(Objects.requireNonNull(binding.businessIdText.getText()).toString(),
@@ -65,7 +60,7 @@ public class MerchantFragment extends Fragment {
             RecyclerView recyclerView = binding.banksRecyclerView;
             List<BanksModel> list = new ArrayList<>();
             list.addAll(banks);
-            recyclerView.setLayoutManager(new LinearLayoutManager(merchantActivity));
+            recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
             RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(list);
             recyclerView.setAdapter(mAdapter);
              });

@@ -1,10 +1,10 @@
-package com.mpas.mvp.merchant.view;
+package com.mpas.mvp.merchant1.util;
 
 import android.content.Context;
 
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
-public class Util {
+public class ImageLode {
 
     // 이미지 로딩 중 보여줄 원형 프로그레스 바를 만들어 리턴하는 메서드
     public static CircularProgressDrawable getProgressDrawable(Context context) {

@@ -4,6 +4,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,12 +26,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.MessageFormat;
 
-public class PaymentFragment extends Fragment implements OnBackPressedListener {
+public class PaymentFragment extends Fragment {
 
     private static final String TAG = PaymentFragment.class.getSimpleName();
     private PaymentViewModel paymentViewModel;
     private PaymentFragmentBinding binding;
-    private MainActivity mainActivity;
 
     public static PaymentFragment newInstance() {
         return new PaymentFragment();
@@ -41,16 +41,8 @@ public class PaymentFragment extends Fragment implements OnBackPressedListener {
                              @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.payment_fragment,container,false);
-
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
         paymentViewModel = new ViewModelProvider(this).get(PaymentViewModel.class);
-        mainActivity.setOnBackPressedListener(this);
+
         layoutSetVisibility("READY");
 
         Log.e("payment _ uid / uid", MessageFormat.format("{0}[][][][][][][]{1}", String.valueOf(getArguments() != null ? getArguments().get("_uid") : null), String.valueOf(getArguments().get("uid"))));
@@ -92,28 +84,10 @@ public class PaymentFragment extends Fragment implements OnBackPressedListener {
             Toast.makeText(getContext(),errMessage,Toast.LENGTH_LONG).show();
         });
 
-        binding.cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainActivity.fragmentChange(1,new Bundle());
-            }
-        });
+        binding.cancelButton.setOnClickListener(view -> startActivity( new Intent(requireActivity(),MainActivity.class)));
 
-        binding.authButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                paymentViewModel.vanRequest();
-
-            }
-        });
-
-    }
-
-    @Override
-    public void onAttach(@NonNull @NotNull Context context) {
-        super.onAttach(context);
-
-        mainActivity = (MainActivity)getActivity();
+        binding.authButton.setOnClickListener(view -> paymentViewModel.vanRequest());
+        return binding.getRoot();
     }
 
 
@@ -140,8 +114,4 @@ public class PaymentFragment extends Fragment implements OnBackPressedListener {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        mainActivity.fragmentChange(1,new Bundle());
-    }
 }

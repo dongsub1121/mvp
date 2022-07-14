@@ -16,11 +16,6 @@
 
         >
 
-        <!-- The primary full-screen view. This can be replaced with whatever view
-             is needed to present your content, e.g. VideoView, SurfaceView,
-             TextureView, etc. -->
-
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +30,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/mpas_symbol02"
+                android:src="@drawable/payu"
                 android:contentDescription=""
                 tools:ignore="ContentDescription" />
 
@@ -44,7 +39,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/mpas_horizontal"
+                android:src="@drawable/nicepay"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
 

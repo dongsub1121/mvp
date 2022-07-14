@@ -50,6 +50,38 @@ public class SalesModel {
         @SerializedName("tramt")
         Integer tramt;
 
+        public String getTransdate() {
+            return transdate;
+        }
+
+        public String getTransdatelabel() {
+            return transdatelabel;
+        }
+
+        public Integer getUsncnt() {
+            return usncnt;
+        }
+
+        public Integer getUsnamt() {
+            return usnamt;
+        }
+
+        public Integer getUvncnt() {
+            return uvncnt;
+        }
+
+        public Integer getUvnamt() {
+            return uvnamt;
+        }
+
+        public Integer getTrcnt() {
+            return trcnt;
+        }
+
+        public Integer getTramt() {
+            return tramt;
+        }
+
         @NonNull
         @Override
         public String toString() {

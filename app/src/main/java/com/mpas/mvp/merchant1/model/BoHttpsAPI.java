@@ -1,7 +1,5 @@
 package com.mpas.mvp.merchant1.model;
 
-import com.mpas.mvp.merchant1.model.MerchantInfoModel;
-
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -42,17 +40,8 @@ public interface BoHttpsAPI {
             @Query("token") String token
     );
 
-/*    @GET("payda/v1/trans/sum") // Merchant Sales Query
+    @GET("payda/v1/trans/sum") // Merchant Sales Query
     Single<SalesModel> getSales(
-            @Query("servicetype") String servicetype,
-            @Query("businessnumber") String businessnumber,
-            @Query("sdate") String sdate,
-            @Query("edate") String edate,
-            @Query("token") String token
-    );*/
-
-    @GET("pada/v1/trans/sum")
-    Call<SalesModel> getSalse(
             @Query("servicetype") String servicetype,
             @Query("businessnumber") String businessnumber,
             @Query("sdate") String sdate,
@@ -61,7 +50,7 @@ public interface BoHttpsAPI {
     );
 
     @GET("payda/v1/trans/sum/detail") // Merchant Sales Purchase Query
-    Single<SalseDetailModel> getISalesPurchase(
+    Single<SalesDetailModel> getISalesPurchase(
             @Query("servicetype") String servicetype,
             @Query("businessnumber") String businessnumber,
             @Query("transdate") String transdate,

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SalseDetailModel {
+public class SalesDetailModel {
     @SerializedName("status")
     String status;
     @SerializedName("message")
@@ -44,13 +44,13 @@ public class SalseDetailModel {
         @SerializedName("bankname")
         String bankname;
         @SerializedName("usncnt")
-        String usncnt;
+        Integer usncnt;
         @SerializedName("uvnamt")
-        String uvnamt;
+        Integer uvnamt;
         @SerializedName("trcnt")
-        String trcnt;
+        Integer trcnt;
         @SerializedName("tramt")
-        String tramt;
+        Integer tramt;
 
         public String getTransdate() {
             return transdate;
@@ -68,19 +68,19 @@ public class SalseDetailModel {
             return bankname;
         }
 
-        public String getUsncnt() {
+        public Integer getUsncnt() {
             return usncnt;
         }
 
-        public String getUvnamt() {
+        public Integer getUvnamt() {
             return uvnamt;
         }
 
-        public String getTrcnt() {
+        public Integer getTrcnt() {
             return trcnt;
         }
 
-        public String getTramt() {
+        public Integer getTramt() {
             return tramt;
         }
 
@@ -103,7 +103,7 @@ public class SalseDetailModel {
         int tot = 0;
 
         for(SalesDetailDB db : salesDetailData) {
-            tot += Integer.parseInt(db.tramt);
+            tot += db.tramt;
         }
 
         return tot;
