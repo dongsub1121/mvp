@@ -36,12 +36,7 @@ public class SalesSummaryFragment extends Fragment {
     private SalesViewModel mViewModel;
     private FragmentSalesSummaryBinding binding;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public SalesSummaryFragment() {
 
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static SalesSummaryFragment newInstance() {
         return new SalesSummaryFragment();
     }
@@ -51,6 +46,7 @@ public class SalesSummaryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.e(TAG,"onCreateView");
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_summary,container,false);
         mViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
         mViewModel.getSales("","");

@@ -37,6 +37,8 @@ public class SalesFragment extends Fragment {
     private List<SalesDetailModel.SalesDetailDB> data;
     private Integer tPrice;
     private SalesFragmentBinding binding;
+    private  SalesViewModel viewModel;
+    private  Context context;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public SalesFragment(Activity activity){
@@ -44,14 +46,16 @@ public class SalesFragment extends Fragment {
 
         if(activity != null ) {
 
-            SalesViewModel mViewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(SalesViewModel.class);
-            mViewModel.getSale_purchase();
+            context = activity;
 
-            mViewModel.getSaleDetailDbMutableLiveData().observe((LifecycleOwner) activity, db->{
+            viewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(SalesViewModel.class);
+            viewModel.getSale_purchase();
+
+            viewModel.getSaleDetailDbMutableLiveData().observe((LifecycleOwner) activity, db->{
                 data = db;
             });
 
-            mViewModel.getSalesSumPriceMutableLiveData().observe((LifecycleOwner) activity, price ->{
+            viewModel.getSalesSumPriceMutableLiveData().observe((LifecycleOwner) activity, price ->{
                 tPrice = price;
             });
         }
@@ -62,20 +66,31 @@ public class SalesFragment extends Fragment {
         return new SalesFragment(activity);
     }
 
-
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        //com.mpas.mvp.databinding.SalesFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.sales_ffragment, container, false);
-        //mViewModel = new ViewModelProvider(requireActivity()).get(SalesViewModel.class);
         binding = DataBindingUtil.inflate(inflater,R.layout.sales_fragment,container,false);
 
         binding.salesDetailRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity()));
         binding.salesDetailRecyclerview.setAdapter( new SaleDetailRecyclerViewAdapter(data));
         binding.salesSumPrice.setText(toPrice(tPrice));
 
+        viewModel.getSaleDetailDbMutableLiveData().observe((LifecycleOwner) context, db->{
+            data = db;
+        });
+
+        viewModel.getSalesSumPriceMutableLiveData().observe((LifecycleOwner) context, price ->{
+            tPrice = price;
+        });
+
         return binding.getRoot();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.getSale_purchase();
     }
 }

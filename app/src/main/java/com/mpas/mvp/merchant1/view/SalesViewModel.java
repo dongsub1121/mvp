@@ -73,7 +73,6 @@ public class SalesViewModel extends AndroidViewModel {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void getSales(String startDate, String endDate) {
-
        disposable.add(apiRepository.getSales(startDate,endDate)
                .subscribeOn(Schedulers.io())
                .observeOn(AndroidSchedulers.mainThread())
@@ -87,8 +86,7 @@ public class SalesViewModel extends AndroidViewModel {
                        Log.e("getSalesonSuccess",db.toString());
                    }
                    salesDbMutableLiveData.setValue(salesModel.getSaleDBList());
-               }
-               else {
+               } else {
                    Log.e("Error",salesModel.getStatus()+":"+salesModel.getDetail()+":"+salesModel.getMessage());
                }
            }

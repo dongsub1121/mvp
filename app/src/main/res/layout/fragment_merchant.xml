@@ -63,6 +63,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:text="Get"
+                android:textSize="30dp"
+                android:textColorHighlight="@color/purple_700"
+
                 style="?android:attr/buttonBarButtonStyle"
                 app:layout_constraintBottom_toBottomOf="@+id/merchantId"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textStyle="bold"
-                    android:textSize="30dp"/>
+                    android:textSize="25dp"/>
 
                 <TextView
                     android:id="@+id/merchant_address"
@@ -110,8 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/info_layout"
-                app:layout_constraintVertical_bias="@integer/material_motion_duration_short_1"
-                android:layout_margin="20dp" />
-
+                android:layout_margin="20dp"
+                android:paddingBottom="300dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

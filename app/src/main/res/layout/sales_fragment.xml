@@ -15,8 +15,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/sales_cardView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             app:cardBackgroundColor="#F6F6F6"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="20dp"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -47,8 +49,7 @@
             android:id="@+id/sales_detail_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/sales_cardView"
-            android:layout_marginBottom="10dp"/>
+            android:layout_below="@+id/sales_cardView" />
     </android.widget.RelativeLayout>
 
 </layout>
