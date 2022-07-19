@@ -38,18 +38,15 @@ android {
 }
 
 
-
 dependencies {
 
-
-    implementation 'androidx.preference:preference:1.1.1'
     def lifecycleExtentionVersion = '1.1.1'
     def retrofitVersion = '2.3.0'
     def rxJavaVersion ='2.1.1'
     def room_version = "2.4.2"
 
     implementation 'com.android.support:multidex:1.0.3'
-
+    implementation 'androidx.preference:preference:1.1.1'
     //RxJava
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.7'
@@ -98,9 +95,12 @@ dependencies {
     implementation 'androidx.databinding:databinding-runtime:7.2.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    //
+    //eazegraph
     implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
+
+    // MPGraph
+    implementation "com.github.philjay:MPAndroidChart:v2.2.4"
 
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
