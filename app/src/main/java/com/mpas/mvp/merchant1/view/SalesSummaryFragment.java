@@ -105,54 +105,70 @@ public class SalesSummaryFragment extends Fragment {
         String description = null;
         int index = 0;
         Integer max = null;
+        float maxP;
         String desc = null;
 
         for(SalesModel.SaleDB data : db) {
-            Integer price = data.getTramt();
-            if ( price < 100000) {
+            float price = (float) (data.getTramt() / 10000);
+/*            if ( price < 100000) {
                 price = price/1000;
             } else if ( price < 1000000) {
                 price = price/10000;
             } else if ( price > 100000000) {
                 price = price/1000000;
-            }
-            String[] tagArray = data.getTransdatelabel().replace("0","").split(" ");
-            entries.add(new BarEntry((Integer) price,index));
+            }*/
+            String[] tagArray = data.getTransdatelabel().split(" ");
             tag.add(tagArray[0]);
-            if(max  == null){
+            //tag.add(data.getTransdatelabel().replace("0",""));
+            entries.add(new BarEntry(price,index));
+            //entries.add(new BarEntry((Integer) price,index));
+
+/*            if(max  == null){
                 max = data.getTramt();
             } else if (max < data.getTramt()) {
                 max = data.getTramt();
-            }
+            }*/
             index++;
+            Log.e("max", String.valueOf(max));
         }
 
-        if(index == 7) {
+        if(index >= 7) {
             description = "주간 매출 현황";
+
         } if(index >= 30) {
             description = "월간 매출 현황";
         }
 
-        if(max < 10000 ) {
+
+/*        if(max < 10000 ) {
             desc = "단위: 천원";
         } else if (max > 100000 && max < 1000000 ) {
             desc = "단위: 만원";
         } else if ( max > 1000000) {
             desc = "단위: 백만원";
-        }
+        }*/
 
-        binding.barChart.setDescription(desc);
-        binding.barChart.setDescriptionTextSize(10);
-        binding.barChart.setDescriptionTypeface(Typeface.DEFAULT);
-        binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        //binding.barChart.setDescription(desc);
+        binding.barChart.setDescription("단위 : 만원");
+        binding.barChart.setDescriptionTextSize(15);
+        binding.barChart.setDescriptionPosition(1400, 100);
         binding.barChart.getXAxis().setDrawGridLines(false);
+        binding.barChart.getXAxis().setSpaceBetweenLabels(1);
+        binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM); // Tag position
+
         binding.barChart.setClickable(true);
         binding.barChart.getAxisRight().setEnabled(false);
-
+        binding.barChart.setNoDataText("정보를 불러오는 중 입니다.");
+        //binding.barChart.setDescriptionPosition(500,0);
+        barDataSet = new BarDataSet(entries, description);
         barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         barDataSet.setValueTextSize(10);
-        barDataSet = new BarDataSet(entries, description);
+        barDataSet.setLabel(description);
+        barDataSet.setBarSpacePercent(30);
+
         barData = new BarData(tag,barDataSet);
+        //barData.setValueTextColors(); // 차트 컬러 리스트
+
         barDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
         binding.barChart.setData(barData);
         binding.barChart.animateXY(1000, 1000);
