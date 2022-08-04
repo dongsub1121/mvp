@@ -1,5 +1,7 @@
 package com.mpas.mvp.merchant1.repository;
 
+import static com.mpas.mvp.merchant1.util.TextConvert.*;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -25,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiRepository {
     private  static final  String BASE_URL = "https://api.jtnet.co.kr/";
-    private static final  String SERVICE_TYPE =  "P";
     private static final String TOKEN = "3O421T9V6hxb5dnGSuDVd27BFRsnQYYS";
     private static String biz;
     private static String mid;
@@ -59,44 +60,59 @@ public class ApiRepository {
     }
 
     public Single<MerchantInfoModel> getMerchantInfo() {
-        String value = SERVICE_TYPE+ biz + mid;
+        String value = biz + mid;
         String sha = sha256(sha256(value)+ TOKEN);
         Log.e("token",sha);
 
-        return api.getMerchantInfo(SERVICE_TYPE, biz, mid, sha);
+        return api.getMerchant(biz, mid, sha);
     }
 
     public Single<MerchantInfoModel> getMerchantInfo(String biz, String mid) {
-        String value = SERVICE_TYPE+ biz + mid;
+        String value = biz + mid;
         String sha = sha256(sha256(value)+ TOKEN);
         Log.e("token",sha);
 
-        return api.getMerchantInfo(SERVICE_TYPE, biz, mid, sha);
+        return api.getMerchant(biz, mid, sha);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Single<SalesModel> getSales(String startDate, String endDate) {
+    public Single<SalesModel> getSalesSummary(String startDate, String endDate) {
 
         String start , end;
 
         if(startDate == null || startDate.equals("")) {
-            start = TextConvert.toString(TextConvert.toDay().minusDays(7));
+            start = TextConvert.toString(toDay().minusDays(8));
         }else{
             start = startDate;
         }
 
         if(endDate ==null || endDate.equals("")) {
-            end = TextConvert.toString(TextConvert.toDay());
+            end = TextConvert.toString(toDay().minusDays(1));
         }else {
             end = endDate;
         }
 
-        String value = SERVICE_TYPE+ biz + start + end;
+        //109515144818141122882022072420220731
+        //String value = "1515125204" + "1481900115" + start + end; //422:'token'(query) 오류. 입력값: '98a43212309a464a43956ddbccaf2f392a540c8539119a809dd91160f87ef10a':요청 변수에 오류가 있습니다.
+        String value = biz+ mid+ start + end; // "1078155843" + "1802100001"  에러없이 가능
         Log.e("getSales_value",value);
         String sha = sha256(sha256(value)+ TOKEN);
         Log.e("token",sha);
 
-        return api.getSales(SERVICE_TYPE,biz,start,end,sha);
+        return api.getSales(biz,mid,start,end,sha);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Single<SalesDetailModel> getSale_purchase() {
+
+        String toDay = TextConvert.toString(toDay().minusDays(1));
+        //String value = "1095151448" + "1814112288" + toDay ; // 임시로 본죽 오목교점 사용
+        //String mid = "";
+        String value  = biz + mid + toDay;
+        String sha = sha256(sha256(value)+ TOKEN);
+        Log.e("value: sha",value+":"+sha);
+
+        return api.getISalesPurchase(biz,mid,toDay,sha);
     }
 
     public String sha256(String value) {
@@ -116,14 +132,5 @@ public class ApiRepository {
         return SHA;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Single<SalesDetailModel> getSale_purchase() {
-
-        String toDay = TextConvert.toString(TextConvert.toDay());
-        String value = SERVICE_TYPE+ biz +toDay ;
-        String sha = sha256(sha256(value)+ TOKEN);
-
-        return api.getISalesPurchase(SERVICE_TYPE,biz,toDay,sha);
-    }
 
 }

@@ -53,21 +53,20 @@ public class MainActivity extends AppCompatActivity {
                         Pattern pattern = Pattern.compile("^(.+)://(.+)=(.+)$");
                         Matcher matcher = pattern.matcher(qrData);
                         String uid = strings[1];
-                        Log.e("MID confirm", uid);
+
                         //ClientID parser
-                        String[] midParse = qrData.split(";");
+                        String[] midParse = uid.split(";");
                         String _uid = midParse[1];
                         Bundle bundle = new Bundle();
-                        //bundle.putString("_uid",midParse[0]);
-                        //Log.e("_UID confirm", midParse[0]);
+                        bundle.putString("_uid",midParse[0]);
                         bundle.putString("uid",uid);
-                        bundle.putString("_uid",_uid);
+                        //bundle.putString("_uid",_uid);
 
                         fragmentChange(2,bundle);
 
                     } catch (Exception exception) {
                         exception.printStackTrace();
-                        Toast.makeText(this, "PAYDA 바코드가 아닙니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "MPAS  바코드가 아닙니다.", Toast.LENGTH_SHORT).show();
 
                     }
                 }

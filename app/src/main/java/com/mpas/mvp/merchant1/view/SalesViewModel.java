@@ -50,6 +50,7 @@ public class SalesViewModel extends AndroidViewModel {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void getSale_purchase() {
         Log.e("viewmodel","getSale_purchase");
+
         disposable.add(apiRepository.getSale_purchase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -58,13 +59,17 @@ public class SalesViewModel extends AndroidViewModel {
                     @Override
                     public void onSuccess(SalesDetailModel salseDetailModel) {
                         Log.e("viewmodel","onSuccess");
-                        saleDetailDbMutableLiveData.setValue(salseDetailModel.getSalesDetailData());
-                        salesSumPriceMutableLiveData.setValue(salseDetailModel.getTotalPrice());
+                        if ( salseDetailModel.getStatus().equals("200")) {
+                            saleDetailDbMutableLiveData.setValue(salseDetailModel.getSalesDetailData());
+                            salesSumPriceMutableLiveData.setValue(salseDetailModel.getTotalPrice());
+                        } else {
+                            Log.e("ErrorMessage" , salseDetailModel.getStatus() + ": "+ salseDetailModel.getMessage());
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
                 }));
 
@@ -73,7 +78,7 @@ public class SalesViewModel extends AndroidViewModel {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void getSales(String startDate, String endDate) {
-       disposable.add(apiRepository.getSales(startDate,endDate)
+       disposable.add(apiRepository.getSalesSummary(startDate,endDate)
                .subscribeOn(Schedulers.io())
                .observeOn(AndroidSchedulers.mainThread())
                .subscribeWith(new DisposableSingleObserver<SalesModel>() {

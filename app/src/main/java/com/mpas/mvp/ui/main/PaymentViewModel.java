@@ -75,14 +75,19 @@ public class PaymentViewModel extends ViewModel {
 
 
         PaymentViewModel._uid = _uid;
+        //PaymentViewModel._uid = "MzQ4NTUwOTk5EUGB";
         PaymentViewModel.uid = uid;
+
+        Log.e("_uid : " , PaymentViewModel._uid);
+        Log.e("uid : ", PaymentViewModel.uid);
 
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://211.32.72.243:3000/")
+                //.baseUrl("http://211.32.72.243:3000/")
+                .baseUrl("http://61.33.183.227:3000/")    //http://61.33.183.227:3000/       "https://d-pay.mpas.co.kr/"
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -92,39 +97,54 @@ public class PaymentViewModel extends ViewModel {
         retrofitAPI.posGetInfoBody(_uid, uid).enqueue(new Callback<Object>() {
             @Override
             public void onResponse(@NotNull Call<Object> call, @NotNull Response<Object> response) {
-                try{
-                    String s = new Gson().toJson(response.body());
-                    String body = s.substring(1, s.length() - 1);
-                    Log.e("body",s);
-                    GetItem getItem = gson.fromJson(body, GetItem.class);
-                    String prevString = getItem.getPrev().substring(1, getItem.getPrev().length() - 1);
-                    GetItem.Prev prev = gson.fromJson(prevString, GetItem.Prev.class);
 
-                    Log.e("retrofitGetInfo",prev.getMenu()+":::"+prev.getCnt()+":::"+prev.getPrice());
-                    item.setAmount(prev.getPrice());
+                String s = new Gson().toJson(response.body());
+                String body = s.substring(1, s.length() - 1);
+                Log.e("body",s);
+                GetItem getItem = gson.fromJson(body, GetItem.class);
+                String prevString = getItem.getPrev().substring(1, getItem.getPrev().length() - 1);
+                GetItem.Prev prev = gson.fromJson(prevString, GetItem.Prev.class);
+
+                try{
+                    if(getItem.getRem().length() > 3) {
+                        errMessage.setValue(getItem.getRem()+":"+getItem.getRec());
+                    }else{
+                        item.setAmount(prev.getPrice());
+                        item.setType(getItem.getType());
+                        item.setJobCode(getItem.getType());
+                        item.setPay("ZeroPay");
+
+                        Log.e("retrofitGetInfo",prev.getMenu()+":::"+prev.getCnt()+":::"+prev.getPrice());
+                        menu.setValue(prev.getMenu());
+                        menu.postValue(prev.getMenu());
+                        price.setValue(String.valueOf(prev.getPrice()));
+                        price.postValue(String.valueOf(prev.getPrice()));
+
+                        if(getItem.getPack() != null){
+                            String pac = getItem.getPack().substring(1,getItem.getPack().length()-1);
+                            Log.e("pac",pac);
+                            GetItem.pack pack = gson.fromJson(pac,GetItem.pack.class);
+                            //Log.e("pack",pack);
+                            item.setAuthDate(pack.getAuthDate());
+                            item.setAuthNum(pack.getAuthNum());
+                        }
+
+                        Log.e(TAG,item.toString());
+                    }
+
+                } catch (NullPointerException e) {
+                    menu.setValue(getItem.getPnm());
+                    menu.postValue(getItem.getPnm());
+                    price.setValue(String.valueOf(getItem.getPtz()));
+                    price.postValue(String.valueOf(getItem.getPtz()));
+                    item.setAmount(getItem.getPtz());
                     item.setType(getItem.getType());
                     item.setJobCode(getItem.getType());
                     item.setPay("ZeroPay");
 
-                    menu.setValue(prev.getMenu());
-                    menu.postValue(prev.getMenu());
-                    price.setValue(String.valueOf(prev.getPrice()));
-                    price.postValue(String.valueOf(prev.getPrice()));
-
-                    if(getItem.getPack() != null){
-                        String pac = getItem.getPack().substring(1,getItem.getPack().length()-1);
-                        Log.e("pac",pac);
-                        GetItem.pack pack = gson.fromJson(pac,GetItem.pack.class);
-                        //Log.e("pack",pack);
-                        item.setAuthDate(pack.getAuthDate());
-                        item.setAuthNum(pack.getAuthNum());
-                    }
-
-                    Log.e(TAG,item.toString());
                 } catch (Exception e) {
-                    errMessage.setValue("정보 불러오기 실패");
+                    errMessage.setValue("정보 불러오기 실패"+'\n'+body);
                     e.printStackTrace();
-
                 }
             }
 
@@ -143,7 +163,7 @@ public class PaymentViewModel extends ViewModel {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://211.32.72.243:3000/")
+                .baseUrl("http://61.33.183.227:3000/")   //"http://61.33.183.227:3000/"   http://61.33.183.227:3000/       "https://d-pay.mpas.co.kr/"
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

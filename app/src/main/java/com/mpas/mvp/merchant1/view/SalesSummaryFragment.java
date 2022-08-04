@@ -82,10 +82,7 @@ public class SalesSummaryFragment extends Fragment {
             String tag = data.getTransdatelabel().replace("0","").split(" ")[0];
             Integer price = data.getTramt()/1000000;
 
-            //binding.barChart.setHorizontalScrollBarEnabled(false);
-
-
-
+            binding.barChart.setHorizontalScrollBarEnabled(false);
             //binding.barChart.addBar(new BarModel(tag, price, 0xFF56B7F1));
         }
         //binding.barChart.startAnimation();
@@ -97,39 +94,48 @@ public class SalesSummaryFragment extends Fragment {
      */
 
     private void BarChartGraph(List<SalesModel.SaleDB> db) {
+        ArrayList entry = new ArrayList();
+        ArrayList year = new ArrayList();
+        int i = 0;
 
-        BarData barData;
+        for(SalesModel.SaleDB data : db) {
+            entry.add(new BarEntry(data.getUsnamt(),i));
+            year.add(data.getTransdatelabel().split(" ")[0]);
+            i++;
+        }
+
+        BarDataSet bardataset = new BarDataSet(entry, "주간 매출 현황");
+        binding.barChart.animateY(5000);
+        BarData data = new BarData(year, bardataset);      // MPAndroidChart v3.X 오류 발생
+        binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        binding.barChart.getAxisRight().setEnabled(false);
+        binding.barChart.getAxisLeft().setEnabled(false);
+        binding.barChart.setDescriptionPosition(1400, 100);
+        binding.barChart.setDescription("단위 : 원");
+        bardataset.setColors(ColorTemplate.LIBERTY_COLORS);
+        //bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        binding.barChart.setData(data);
+    }
+
+/*        BarData barData;
         BarDataSet barDataSet = null;
         ArrayList<BarEntry> entries = new ArrayList<>();
         ArrayList<String> tag = new ArrayList<>();
         String description = null;
         int index = 0;
-        Integer max = null;
-        float maxP;
         String desc = null;
 
         for(SalesModel.SaleDB data : db) {
-            float price = (float) (data.getTramt() / 10000);
-/*            if ( price < 100000) {
-                price = price/1000;
-            } else if ( price < 1000000) {
-                price = price/10000;
-            } else if ( price > 100000000) {
-                price = price/1000000;
-            }*/
+
             String[] tagArray = data.getTransdatelabel().split(" ");
             tag.add(tagArray[0]);
-            //tag.add(data.getTransdatelabel().replace("0",""));
-            entries.add(new BarEntry(price,index));
-            //entries.add(new BarEntry((Integer) price,index));
+            Log.e("3333", String.valueOf(data.getUsnamt())); // test tid라서  usnamt로 진행 live시에는 tramt로 진행 해야함
+            tag.add(data.getTransdatelabel().replace("0",""));
+            entries.add(new BarEntry(data.getUsnamt(),index)); // test tid라서  usnamt로 진행 live시에는 tramt로 진행 해야함
 
-/*            if(max  == null){
-                max = data.getTramt();
-            } else if (max < data.getTramt()) {
-                max = data.getTramt();
-            }*/
+            Log.e("enterti",entries.toString());
+
             index++;
-            Log.e("max", String.valueOf(max));
         }
 
         if(index >= 7) {
@@ -140,24 +146,16 @@ public class SalesSummaryFragment extends Fragment {
         }
 
 
-/*        if(max < 10000 ) {
-            desc = "단위: 천원";
-        } else if (max > 100000 && max < 1000000 ) {
-            desc = "단위: 만원";
-        } else if ( max > 1000000) {
-            desc = "단위: 백만원";
-        }*/
-
-        //binding.barChart.setDescription(desc);
-        binding.barChart.setDescription("단위 : 만원");
+        binding.barChart.setDescription(desc);
         binding.barChart.setDescriptionTextSize(15);
         binding.barChart.setDescriptionPosition(1400, 100);
         binding.barChart.getXAxis().setDrawGridLines(false);
-        binding.barChart.getXAxis().setSpaceBetweenLabels(1);
+        //binding.barChart.getXAxis().setSpaceBetweenLabels(1);
         binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM); // Tag position
 
         binding.barChart.setClickable(true);
         binding.barChart.getAxisRight().setEnabled(false);
+        binding.barChart.getAxisLeft().setEnabled(false);
         binding.barChart.setNoDataText("정보를 불러오는 중 입니다.");
         //binding.barChart.setDescriptionPosition(500,0);
         barDataSet = new BarDataSet(entries, description);
@@ -173,5 +171,5 @@ public class SalesSummaryFragment extends Fragment {
         binding.barChart.setData(barData);
         binding.barChart.animateXY(1000, 1000);
         binding.barChart.invalidate();
-    }
+    }*/
 }

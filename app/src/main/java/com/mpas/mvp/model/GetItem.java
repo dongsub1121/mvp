@@ -10,18 +10,26 @@ public class GetItem {
     private String cid;
     private String did;
     private String ono;
-    private String ptz;
+    private Integer ptz;
     private String lev;
     private String hit;
     private String lke;
     private String pnm;
     private String prev;
-    private String rec;
+    private Integer rec;
     private String rem;
     private String type;
     private String pack;
 
-    public String getRec() {
+    public Integer getPtz() {
+        return ptz;
+    }
+
+    public String getPnm() {
+        return pnm;
+    }
+
+    public Integer getRec() {
         return rec;
     }
 

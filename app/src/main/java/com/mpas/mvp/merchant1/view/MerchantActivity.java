@@ -41,7 +41,7 @@ public class MerchantActivity extends AppCompatActivity {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         adapter.addFragment(MerchantFragment.newInstance(),"Setting");
-        adapter.addFragment(SalesFragment.newInstance(this),"Sales");
+        adapter.addFragment(SalesFragment.newInstance(),"Sales");
         adapter.addFragment(SalesSummaryFragment.newInstance(),"Summary");
         viewPager.setAdapter(adapter);
         viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
