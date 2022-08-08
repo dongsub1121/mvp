@@ -47,6 +47,13 @@ public class PaymentFragment extends Fragment {
 
         Log.e("payment _ uid / uid", MessageFormat.format("{0}[][][][][][][]{1}", String.valueOf(getArguments() != null ? getArguments().get("_uid") : null), String.valueOf(getArguments().get("uid"))));
 
+        binding.cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("버튼","클릭");
+            }
+        });
+
         paymentViewModel.retrofitGetInfo(String.valueOf(getArguments().get("_uid")), String.valueOf(getArguments().get("uid")));
 
         paymentViewModel.getMenu().observe(getViewLifecycleOwner(),menu->{
@@ -55,6 +62,10 @@ public class PaymentFragment extends Fragment {
 
         paymentViewModel.getPrice().observe(getViewLifecycleOwner(),price->{
             binding.price.setText(price);
+        });
+
+        paymentViewModel.getAuthMessage().observe(getViewLifecycleOwner(),msg->{
+            binding.tvReady.setText(msg);
         });
 
 
@@ -77,7 +88,6 @@ public class PaymentFragment extends Fragment {
         paymentViewModel.getSuccessMessage().observe(getViewLifecycleOwner(),successMessage->{
             binding.authOkResult.setText(successMessage);
             layoutSetVisibility("DONE");
-            // binding.imageView4.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.seoulpay));
         });
 
         paymentViewModel.getErrMessage().observe(getViewLifecycleOwner(),errMessage ->{
@@ -108,8 +118,6 @@ public class PaymentFragment extends Fragment {
                 break;
 
             default:
-                binding.layoutReady.setVisibility(View.INVISIBLE);
-                binding.layoutSuccess.setVisibility(View.INVISIBLE);
                 break;
         }
     }

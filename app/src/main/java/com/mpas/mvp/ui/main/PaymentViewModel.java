@@ -39,7 +39,9 @@ public class PaymentViewModel extends ViewModel {
     private final MutableLiveData<String> authDate = new MutableLiveData<>();
     private final MutableLiveData<String> errMessage = new MutableLiveData<>();
     private final MutableLiveData<String> successMessage = new MutableLiveData<>();
+    private final MutableLiveData<String> authMessage = new MutableLiveData<>();
 
+    public MutableLiveData<String> getAuthMessage() { return authMessage; }
     public MutableLiveData<String> getAuthNum() {
         return authNum;
     }
@@ -120,11 +122,20 @@ public class PaymentViewModel extends ViewModel {
                         price.setValue(String.valueOf(prev.getPrice()));
                         price.postValue(String.valueOf(prev.getPrice()));
 
+                        if ( getItem.getType().equals("A")) {
+                            authMessage.setValue("결제를 진행 하시겠어요?");
+                        } else if ( getItem.getType().equals("C")) {
+                            authMessage.setValue("결제 취소를 진행 하시겠어요?");
+                        } else {
+                            authMessage.setValue("승인 취소를 구분 할 수 없이 결제가 불가능 합니다");
+                        }
+
                         if(getItem.getPack() != null){
                             String pac = getItem.getPack().substring(1,getItem.getPack().length()-1);
                             Log.e("pac",pac);
                             GetItem.pack pack = gson.fromJson(pac,GetItem.pack.class);
-                            //Log.e("pack",pack);
+                            Log.e("pack.getAuthDate()",pack.getAuthDate());
+                            Log.e("pack.getAuthNum()",pack.getAuthNum());
                             item.setAuthDate(pack.getAuthDate());
                             item.setAuthNum(pack.getAuthNum());
                         }
@@ -141,6 +152,24 @@ public class PaymentViewModel extends ViewModel {
                     item.setType(getItem.getType());
                     item.setJobCode(getItem.getType());
                     item.setPay("ZeroPay");
+
+                    if ( getItem.getType().equals("A")) {
+                        authMessage.setValue("결제를 진행 하시겠어요?");
+                    } else if ( getItem.getType().equals("C")) {
+                        authMessage.setValue("결제 취소를 진행 하시겠어요?");
+                    } else {
+                        authMessage.setValue("승인 취소를 구분 할 수 없이 결제가 불가능 합니다");
+                    }
+
+                    if(getItem.getPack() != null){
+                        String pac = getItem.getPack().substring(1,getItem.getPack().length()-1);
+                        Log.e("pac",pac);
+                        GetItem.pack pack = gson.fromJson(pac,GetItem.pack.class);
+                        Log.e("pack.getAuthDate()",pack.getAuthDate());
+                        Log.e("pack.getAuthNum()",pack.getAuthNum());
+                        item.setAuthDate(pack.getAuthDate());
+                        item.setAuthNum(pack.getAuthNum());
+                    }
 
                 } catch (Exception e) {
                     errMessage.setValue("정보 불러오기 실패"+'\n'+body);
@@ -208,6 +237,7 @@ public class PaymentViewModel extends ViewModel {
                     clientData.setIssuerName(Objects.requireNonNull(responseMap.get("발급사명")).trim());
                     clientData.setPurchaseCode(Objects.requireNonNull(responseMap.get("매입사코드")).trim());
                     clientData.setPurchaseName(Objects.requireNonNull(responseMap.get("매입사명")).trim());
+
                     authNum.postValue(mpmCommit.getAuthNum());
                     authUniqueNum.postValue(mpmCommit.getAuthUniqueNum());
                     authDate.postValue((mpmCommit.getAuthDate())+" : "+mpmCommit.getAuthTime());
@@ -222,9 +252,7 @@ public class PaymentViewModel extends ViewModel {
                     mpmCommit.setRes_cd(responseMap.get("resultCode"));
                     mpmCommit.setRes_mg1(responseMap.get("result"));
 
-
                     mpmCommit.setPrice(item.getAmount());
-
 
                     String cld = gson1.toJson(clientData, PaydaPostMPMCommit.ClientData.class);
                     Log.e("clientData", cld);

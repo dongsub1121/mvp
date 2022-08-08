@@ -25,6 +25,7 @@ public class VanRequest {
 
     public void execute(PayUtil.AuthItem item, OnVanResponse vanResponse){
         Log.e("VanRequest","exe");
+        Log.e("exe",item.toString());
         try {
             this.onVanResponse = vanResponse;
             this.authMap = PayUtil.getMap(item.pay);
@@ -36,7 +37,9 @@ public class VanRequest {
 
             if (jobCode.equals("8051")) {
                 authMap.put("AUTH_DATE", item.getAuthDate().getBytes());
+                Log.e("취소날짜",item.getAuthDate() );
                 authMap.put("AUTH_NUM", item.getAuthNum().getBytes());
+                Log.e("취소승인번호",item.getAuthNum() );
             }
 
             byte[] auth = PayUtil.getMapToByte(authMap);
@@ -137,6 +140,7 @@ public class VanRequest {
 
             } catch (Exception e) {
                 // TODO : process exceptions.
+                e.printStackTrace();
             }
         }
     }
