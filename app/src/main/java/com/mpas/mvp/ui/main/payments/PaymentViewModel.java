@@ -1,4 +1,4 @@
-package com.mpas.mvp.ui.main;
+package com.mpas.mvp.ui.main.payments;
 
 import android.util.Log;
 
@@ -10,7 +10,6 @@ import com.google.gson.GsonBuilder;
 import com.mpas.mvp.model.GetItem;
 import com.mpas.mvp.PayUtil;
 import com.mpas.mvp.PaydaPostMPMCommit;
-import com.mpas.mvp.RetrofitAPI;
 import com.mpas.mvp.VanRequest;
 
 import org.jetbrains.annotations.NotNull;
@@ -85,6 +84,7 @@ public class PaymentViewModel extends ViewModel {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
+                .setPrettyPrinting()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -105,7 +105,7 @@ public class PaymentViewModel extends ViewModel {
                 Log.e("body",s);
                 GetItem getItem = gson.fromJson(body, GetItem.class);
                 String prevString = getItem.getPrev().substring(1, getItem.getPrev().length() - 1);
-                GetItem.Prev prev = gson.fromJson(prevString, GetItem.Prev.class);
+                GetItem.Prev prev =  gson.fromJson(prevString, GetItem.Prev.class);
 
                 try{
                     if(getItem.getRem().length() > 3) {
@@ -131,9 +131,10 @@ public class PaymentViewModel extends ViewModel {
                         }
 
                         if(getItem.getPack() != null){
+
                             String pac = getItem.getPack().substring(1,getItem.getPack().length()-1);
                             Log.e("pac",pac);
-                            GetItem.pack pack = gson.fromJson(pac,GetItem.pack.class);
+                            GetItem.Pack pack = gson.fromJson(pac, GetItem.Pack.class);
                             Log.e("pack.getAuthDate()",pack.getAuthDate());
                             Log.e("pack.getAuthNum()",pack.getAuthNum());
                             item.setAuthDate(pack.getAuthDate());
@@ -162,9 +163,10 @@ public class PaymentViewModel extends ViewModel {
                     }
 
                     if(getItem.getPack() != null){
+
                         String pac = getItem.getPack().substring(1,getItem.getPack().length()-1);
                         Log.e("pac",pac);
-                        GetItem.pack pack = gson.fromJson(pac,GetItem.pack.class);
+                        GetItem.Pack pack = gson.fromJson(pac, GetItem.Pack.class);
                         Log.e("pack.getAuthDate()",pack.getAuthDate());
                         Log.e("pack.getAuthNum()",pack.getAuthNum());
                         item.setAuthDate(pack.getAuthDate());
@@ -172,7 +174,7 @@ public class PaymentViewModel extends ViewModel {
                     }
 
                 } catch (Exception e) {
-                    errMessage.setValue("정보 불러오기 실패"+'\n'+body);
+                    errMessage.setValue("정보 불러오기 실패"+'\n'+response.body().toString());
                     e.printStackTrace();
                 }
             }

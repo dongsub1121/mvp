@@ -1,6 +1,5 @@
 package com.mpas.mvp.merchant1.view;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -29,7 +28,6 @@ import java.util.Objects;
 public class MerchantFragment extends Fragment {
 
     private static final String TAG = MerchantFragment.class.getSimpleName();
-    @SuppressLint("StaticFieldLeak")
     private  static FragmentMerchantBinding binding;
     private static MerchantViewModel mViewModel;
 
@@ -60,7 +58,8 @@ public class MerchantFragment extends Fragment {
 
         mViewModel.getBanksMutableLiveData().observe(requireActivity(),banks ->{
             RecyclerView recyclerView = binding.banksRecyclerView;
-            List<BanksModel> list = new ArrayList<>(banks);
+            List<BanksModel> list = new ArrayList<>();
+            list.addAll(banks);
             recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
             RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(list);
             recyclerView.setAdapter(mAdapter);

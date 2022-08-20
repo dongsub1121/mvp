@@ -1,11 +1,12 @@
-package com.mpas.mvp.model;
+package com.mpas.mvp.ui.main.payments;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class GetItem {
+public class MpasApiModel {
 
     @SerializedName("tdx") @Expose
     private String tdx;
@@ -33,8 +34,6 @@ public class GetItem {
     private String lke;
     @SerializedName("pnm") @Expose
     private String pnm;
-    @SerializedName("prev") @Expose
-    private String prev;
     @SerializedName("rec") @Expose
     private Integer rec;
     @SerializedName("rem") @Expose
@@ -42,10 +41,62 @@ public class GetItem {
     @SerializedName("type") @Expose
     private String type;
     @SerializedName("pack") @Expose
-    private String pack;
+    private List<Pack> pack;
+    @SerializedName("prev") @Expose
+    private List<Prev> prev;
+
+    public List<Prev> getPrev() {return prev;}
+
+    public List<Pack> getPack() {
+        return pack;
+    }
+
+    public String getTdx() {
+        return tdx;
+    }
+
+    public String getTkn() {
+        return tkn;
+    }
+
+    public String getMil() {
+        return mil;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public String getNid() {
+        return nid;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public String getDid() {
+        return did;
+    }
+
+    public String getOno() {
+        return ono;
+    }
 
     public Integer getPtz() {
         return ptz;
+    }
+
+    public String getLev() {
+        return lev;
+    }
+
+    public String getHit() {
+        return hit;
+    }
+
+    public String getLke() {
+        return lke;
     }
 
     public String getPnm() {
@@ -60,7 +111,13 @@ public class GetItem {
         return rem;
     }
 
+    public String getType() {
+        return type;
+    }
+
+
     public class Prev {
+
         @SerializedName("menu") @Expose
         private String menu;
         @SerializedName("cnt") @Expose
@@ -77,21 +134,13 @@ public class GetItem {
         }
 
         public int getPrice() {
-            System.out.println(price);
             return price;
         }
     }
 
     public class Pack {
 
-  /*      private String authDate;
-        private String authNum;
-        private String authTime;
-        private String authUniqueNum;
-        private int price;
-        private String result;
-        private String resultCode;*/
-  @SerializedName("app_tm") @Expose
+        @SerializedName("app_tm") @Expose
         private String app_tm;
         @SerializedName("app_no") @Expose
         private String app_no;
@@ -106,11 +155,11 @@ public class GetItem {
         @SerializedName("res_mg1") @Expose
         private String res_mg1;
 
-        public String getAuthDate() {
+        public String getApp_tm() {
             return app_tm;
         }
 
-        public String getAuthNum() {
+        public String getApp_no() {
             return app_no;
         }
 
@@ -133,21 +182,5 @@ public class GetItem {
         public String getRes_mg1() {
             return res_mg1;
         }
-    }
-
-    public String getPack() {
-        return pack;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getPrev() {
-        return prev;
     }
 }

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:theme="@style/MyApplication.payment"
         android:layout_margin="10dp"
-        tools:context=".ui.main.PaymentFragment">
+        tools:context=".ui.main.payments.PaymentFragment">
 
 
         <ImageView
