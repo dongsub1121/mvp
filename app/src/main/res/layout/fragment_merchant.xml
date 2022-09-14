@@ -33,7 +33,7 @@
                     android:hint="Business Number"
                     android:textColor="@color/black"
                     android:inputType="number"
-                    android:text="1078155843" />
+                    android:text="2970701029" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -53,7 +53,7 @@
                     android:textColor="@color/black"
                     android:hint="Merchant Number"
                     android:inputType="number"
-                    android:text="1802100001" />
+                    android:text="1814119625" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

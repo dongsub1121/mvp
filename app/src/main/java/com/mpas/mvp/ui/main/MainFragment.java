@@ -51,7 +51,6 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
         back = false;
         binding = bind(inflater.inflate(R.layout.main_fragment, container, false));
 
-        //binding.btCpm.setOnClickListener(view -> mainActivity.fragmentChange(3,new Bundle()));
         binding.btCpm.setOnClickListener(view -> {
             startActivity(new Intent(getActivity(),CpmActivity.class));
         });
@@ -67,7 +66,6 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
 
 
         binding.biLSymbol.setOnClickListener(view -> {
-            //Intent intent = new Intent(getActivity(), ManageActivity.class);
             Intent intent = new Intent(getActivity(), MerchantActivity.class);
             startActivity(intent);
         });
@@ -93,6 +91,6 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
 
     @Override
     public void onBackPressed() {
-
+        mainActivity.fragmentChange(1,new Bundle());
     }
 }

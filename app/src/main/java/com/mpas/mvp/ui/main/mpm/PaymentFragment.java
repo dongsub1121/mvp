@@ -1,9 +1,9 @@
-package com.mpas.mvp.ui.main;
+package com.mpas.mvp.ui.main.mpm;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,11 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.mpas.mvp.MainActivity;
-import com.mpas.mvp.OnBackPressedListener;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.PaymentFragmentBinding;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.text.MessageFormat;
 
@@ -36,6 +33,7 @@ public class PaymentFragment extends Fragment {
         return new PaymentFragment();
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -61,7 +59,7 @@ public class PaymentFragment extends Fragment {
         });
 
         paymentViewModel.getPrice().observe(getViewLifecycleOwner(),price->{
-            binding.price.setText(price);
+            binding.price.setText(price+" 원");
         });
 
         paymentViewModel.getAuthMessage().observe(getViewLifecycleOwner(),msg->{

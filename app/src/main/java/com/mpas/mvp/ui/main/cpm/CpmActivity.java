@@ -8,7 +8,11 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mpas.mvp.R;
@@ -23,11 +27,28 @@ public class CpmActivity extends AppCompatActivity {
 
     ActivityCpmBinding binding;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_cpm);
         setupViewPager(binding.viewPager);
+
+        binding.tabLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("tab", String.valueOf(binding.tabLayout.getSelectedTabPosition()));
+                binding.viewPager.setHorizontalScrollBarEnabled(false);
+            }
+        });
+
+        binding.viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.e("motionEvent",motionEvent.toString());
+                return false;
+            }
+        });
     }
 
     private void setupViewPager(ViewPager2 viewPager) {

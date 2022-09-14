@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.mpas.mvp.R;
-import com.mpas.mvp.ui.main.CpmFragment;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

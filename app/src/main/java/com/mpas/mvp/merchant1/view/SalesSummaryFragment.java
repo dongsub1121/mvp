@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -60,7 +61,7 @@ public class SalesSummaryFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
 
         mViewModel.getSalesDb().observe(requireActivity(), this::BarChartGraph);
-        binding.barChart.setTouchEnabled(false); //확대하지못하게 막아버림! 별로 안좋은 기능인 것 같아~
+        binding.barChart.setTouchEnabled(false);
         //binding.barChart.getAxisRight().setAxisMaxValue(80);
         //binding.barChart.getAxisLeft().setAxisMaxValue(80);
 
@@ -105,7 +106,12 @@ public class SalesSummaryFragment extends Fragment {
         }
 
         BarDataSet bardataset = new BarDataSet(entry, "주간 매출 현황");
-        binding.barChart.animateY(5000);
+        bardataset.setValueTextSize(10f);
+
+        Legend legend = binding.barChart.getLegend(); //범례 타이틀
+        legend.setTextSize(15f);
+
+        binding.barChart.animateY(1000);
         BarData data = new BarData(year, bardataset);      // MPAndroidChart v3.X 오류 발생
         binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         binding.barChart.getAxisRight().setEnabled(false);

@@ -1,5 +1,7 @@
 package com.mpas.mvp.ui.main.cpm;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +19,13 @@ import com.mpas.mvp.databinding.FragmentCreditPayBinding;
 public class CreditPayFragment extends Fragment {
 
     private FragmentCreditPayBinding binding;
+
     public static CreditPayFragment newInstance() { return new CreditPayFragment(); }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
