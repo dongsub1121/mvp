@@ -1,6 +1,5 @@
 package com.mpas.mvp.merchant1.view;
 
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -12,40 +11,33 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentSalesSummaryBinding;
-import com.mpas.mvp.databinding.SalesFragmentBinding;
 import com.mpas.mvp.merchant1.model.SalesModel;
 import com.mpas.mvp.merchant1.util.TextConvert;
 
-import org.eazegraph.lib.models.BarModel;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
 public class SalesSummaryFragment extends Fragment {
 
     private static final String TAG = SalesSummaryFragment.class.getSimpleName();
-    private SalesViewModel mViewModel;
+    private SalesViewModel salesViewModel;
+    private MerchantViewModel merchantViewModel;
     private FragmentSalesSummaryBinding binding;
+    private ArrayAdapter<String> stringArrayAdapter;
+    private int yesterday;
 
     public static SalesSummaryFragment newInstance() {
         return new SalesSummaryFragment();
@@ -58,12 +50,17 @@ public class SalesSummaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.e(TAG,"onCreateView");
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_summary,container,false);
-        mViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
+        salesViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
+        merchantViewModel = new ViewModelProvider(this).get(MerchantViewModel.class);
 
-        mViewModel.getSalesDb().observe(requireActivity(), this::BarChartGraph);
+        salesViewModel.getSalesDb().observe(requireActivity(), this::BarChartGraph);
         binding.barChart.setTouchEnabled(false);
-        //binding.barChart.getAxisRight().setAxisMaxValue(80);
-        //binding.barChart.getAxisLeft().setAxisMaxValue(80);
+
+        merchantViewModel.getFactoryLivedata().observe(requireActivity(),merchants->{
+            //TODO
+            //stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,merchants.);
+            binding.merchantList.setAdapter(stringArrayAdapter);
+        });
 
         return binding.getRoot();
     }
@@ -72,7 +69,7 @@ public class SalesSummaryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModel.getSales("","");
+        salesViewModel.getSales("","");
     }
 
     private void setBarChart(List<SalesModel.SaleDB> db) {
@@ -100,10 +97,14 @@ public class SalesSummaryFragment extends Fragment {
         int i = 0;
 
         for(SalesModel.SaleDB data : db) {
-            entry.add(new BarEntry(data.getUsnamt(),i));
+            entry.add(new BarEntry(data.getTramt(),i));
             year.add(data.getTransdatelabel().split(" ")[0]);
+            yesterday =  data.getTramt();
+            Log.e("yesterday", String.valueOf(yesterday));
             i++;
         }
+
+        binding.salesSumPrice.setText(TextConvert.toPrice(yesterday));
 
         BarDataSet bardataset = new BarDataSet(entry, "주간 매출 현황");
         bardataset.setValueTextSize(10f);
@@ -111,12 +112,12 @@ public class SalesSummaryFragment extends Fragment {
         Legend legend = binding.barChart.getLegend(); //범례 타이틀
         legend.setTextSize(15f);
 
-        binding.barChart.animateY(1000);
+        binding.barChart.animateY(2000);
         BarData data = new BarData(year, bardataset);      // MPAndroidChart v3.X 오류 발생
         binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         binding.barChart.getAxisRight().setEnabled(false);
         binding.barChart.getAxisLeft().setEnabled(false);
-        binding.barChart.setDescriptionPosition(1400, 100);
+        binding.barChart.setDescriptionPosition(1350, 100);
         binding.barChart.setDescription("단위 : 원");
         bardataset.setColors(ColorTemplate.LIBERTY_COLORS);
         //bardataset.setColors(ColorTemplate.COLORFUL_COLORS);

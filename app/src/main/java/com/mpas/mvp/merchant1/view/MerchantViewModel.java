@@ -14,9 +14,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.mpas.mvp.merchant1.model.BanksModel;
 import com.mpas.mvp.merchant1.model.MerchantInfoModel;
 import com.mpas.mvp.merchant1.repository.ApiRepository;
+import com.mpas.mvp.merchant1.repository.MerchantFactory;
 import com.mpas.mvp.merchant1.repository.PreferenceRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -24,17 +27,19 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class MerchantViewModel extends AndroidViewModel {
+    private final ApiRepository apiRepository = getInstance(getApplication());
+    private final PreferenceRepository preferenceRepository = new PreferenceRepository(getApplication());
+    private final CompositeDisposable disposable = new CompositeDisposable();
+    private final MerchantFactory merchantFactory = new MerchantFactory();
 
     public MerchantViewModel(@NonNull Application application) {
         super(application);
     }
 
-    private final ApiRepository apiRepository = getInstance(getApplication());
-    private final PreferenceRepository preferenceRepository = new PreferenceRepository(getApplication());
-    private final CompositeDisposable disposable = new CompositeDisposable();
-
     public MutableLiveData<List<BanksModel>> banksMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<List<SaleDB>> saleDbMutableLiveDate = new MutableLiveData<>();
+    public MutableLiveData<Set<String>> factoryLivedata = new MutableLiveData<>();
+
     public MutableLiveData<SharedPreferences> sharedPreferencesMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<SharedPreferences> getSharedPreferencesMutableLiveData() {
@@ -43,6 +48,10 @@ public class MerchantViewModel extends AndroidViewModel {
 
     public MutableLiveData<List<BanksModel>> getBanksMutableLiveData() {
         return banksMutableLiveData;
+    }
+
+    public MutableLiveData<Set<String>> getFactoryLivedata() {
+        return factoryLivedata;
     }
 
     public void getMerchant(String biz, String mid) {
@@ -57,6 +66,9 @@ public class MerchantViewModel extends AndroidViewModel {
 
                         Log.e("onSuccess",merchantInfoModel.toString());
 
+                        merchantFactory.add(merchantInfoModel.getResult());
+                        Log.e("factory",merchantFactory.getKeySet().toString());
+                        factoryLivedata.setValue(merchantFactory.getKeySet());
                         sharedPreferencesMutableLiveData.setValue(preferenceRepository.updateSharedPreference(merchantInfoModel));
                         banksMutableLiveData.setValue(merchantInfoModel.getResult().getBanks());
                     }
