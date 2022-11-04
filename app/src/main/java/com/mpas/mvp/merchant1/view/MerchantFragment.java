@@ -1,28 +1,26 @@
 package com.mpas.mvp.merchant1.view;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentMerchantBinding;
-import com.mpas.mvp.merchant1.util.Config;
-import com.mpas.mvp.merchant1.model.BanksModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,6 +30,7 @@ public class MerchantFragment extends Fragment {
     @SuppressLint("StaticFieldLeak")
     private  static FragmentMerchantBinding binding;
     private static MerchantViewModel mViewModel;
+    private ArrayAdapter<String> stringArrayAdapter;
 
     public static MerchantFragment newInstance() {
         return new MerchantFragment();
@@ -51,28 +50,47 @@ public class MerchantFragment extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_merchant, container,false);
         mViewModel = new ViewModelProvider(requireActivity()).get(MerchantViewModel.class);
+        binding.recyclerViewMerchantDetail.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         binding.downButton.setOnClickListener(view -> {
-            mViewModel.getMerchant(Objects.requireNonNull(binding.businessIdText.getText()).toString(),
+            mViewModel.getMerchantDownLoad(Objects.requireNonNull(binding.businessIdText.getText()).toString(),
                     Objects.requireNonNull(binding.merchantIdText.getText()).toString());
 
         });
 
-        mViewModel.getBanksMutableLiveData().observe(requireActivity(),banks ->{
-            RecyclerView recyclerView = binding.banksRecyclerView;
-            List<BanksModel> list = new ArrayList<>(banks);
-            recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
-            RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(list);
-            recyclerView.setAdapter(mAdapter);
-             });
-
-        mViewModel.getSharedPreferencesMutableLiveData().observe(requireActivity(),sharedPreferences -> {
-            binding.merchantOwner.setText(sharedPreferences.getString(Config.MERCHANT_OWNER,""));
-            binding.merchantAddress.setText(sharedPreferences.getString(Config.MERCHANT_ADDRESS,""));
-            binding.merchantPhone.setText(sharedPreferences.getString(Config.MERCHANT_PHONE,""));
-            binding.merchantName.setText(sharedPreferences.getString(Config.MERCHANT_NAME,""));
+        mViewModel.getMerchantDownLoad().observe(requireActivity(), merchants->{
+            List<String> strings = merchants.getKetSet();
+            stringArrayAdapter = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_expandable_list_item_1, strings);
+            stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+            binding.merchantList.setAdapter(stringArrayAdapter);
         });
+
+        binding.merchantList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e("성공","성공");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        mViewModel.getMerchantDownLoad().observe(requireActivity(), merchant ->{
+            binding.recyclerViewMerchantDetail.setAdapter(new MerchantRecyclerViewAdapter(merchant));
+        });
+
+
+
         return binding.getRoot();
     }
 
+
+    @Override
+    public void onResume() {
+        //mViewModel.DeleteAll();
+        //mViewModel.InitMerchantFactory();
+        super.onResume();
+    }
 }

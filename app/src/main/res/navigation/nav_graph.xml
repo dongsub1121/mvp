@@ -3,26 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/MerchantFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.mpas.mvp.merchant1.view.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/MerchantFragment"
+        android:name="com.mpas.mvp.merchant1.view.MerchantFragment"
+        android:label="@string/merchant_fragment_label"
+        tools:layout="@layout/fragment_merchant">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_MerchantFragment_to_SalesSummaryFragment"
+            app:destination="@id/SalesSummaryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.mpas.mvp.merchant1.view.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/SalesSummaryFragment"
+        android:name="com.mpas.mvp.merchant1.view.SalesSummaryFragment"
+        android:label="@string/summary_fragment_label"
+        tools:layout="@layout/fragment_sales_summary">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_SalesSummaryFragment_to_SalesFragment"
+            app:destination="@id/SalesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="siteNameArgs"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+    <fragment
+        android:id="@+id/SalesFragment"
+        android:name="com.mpas.mvp.merchant1.view.SalesFragment"
+        android:label="@string/sales_fragment_label"
+        tools:layout="@layout/sales_fragment">
+        <action
+            android:id="@+id/action_SalesFragment_to_SalesSummaryFragment"
+            app:destination="@id/SalesSummaryFragment" />
+        <argument
+            android:name="siteName"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -14,7 +14,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.mpas.mvp.merchant1.model.SalesModel;
 import com.mpas.mvp.merchant1.model.SalesDetailModel;
 import com.mpas.mvp.merchant1.repository.ApiRepository;
+import com.mpas.mvp.merchant1.repository.MerchantEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,10 +50,10 @@ public class SalesViewModel extends AndroidViewModel {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void getSale_purchase() {
+    public void getSale_purchase(String biz, String mid) {
         Log.e("viewmodel","getSale_purchase");
 
-        disposable.add(apiRepository.getSale_purchase()
+        disposable.add(apiRepository.getSale_purchase(biz, mid)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<SalesDetailModel>(){
@@ -77,8 +79,8 @@ public class SalesViewModel extends AndroidViewModel {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void getSales(String startDate, String endDate) {
-       disposable.add(apiRepository.getSalesSummary(startDate,endDate)
+    public void getSales(String startDate, String endDate, String biz, String mid) {
+       disposable.add(apiRepository.getSalesSummary(startDate,endDate,biz,mid)
                .subscribeOn(Schedulers.io())
                .observeOn(AndroidSchedulers.mainThread())
                .subscribeWith(new DisposableSingleObserver<SalesModel>() {
@@ -101,9 +103,12 @@ public class SalesViewModel extends AndroidViewModel {
 
            }
        }));
+    }
 
-
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void todaySet() {
+        LocalDate localDate = LocalDate.now();
+        String.format("%s년 %s월 %s일)", localDate.getYear(),localDate.getMonth(),localDate.getDayOfMonth());
     }
 
     @Override

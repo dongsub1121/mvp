@@ -22,7 +22,9 @@ import com.mpas.mvp.OnBackPressedListener;
 import com.mpas.mvp.R;
 import com.mpas.mvp.barcode;
 import com.mpas.mvp.databinding.MainFragmentBinding;
-import com.mpas.mvp.merchant1.view.MerchantActivity;
+import com.mpas.mvp.merchant1.view.ManagementActivity;
+import com.mpas.mvp.merchant1.view.SalesActivity;
+import com.mpas.mvp.merchant1.view.TestActivity;
 import com.mpas.mvp.ui.main.cpm.CpmActivity;
 
 public class MainFragment extends Fragment implements OnBackPressedListener {
@@ -66,7 +68,9 @@ public class MainFragment extends Fragment implements OnBackPressedListener {
 
 
         binding.biLSymbol.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), MerchantActivity.class);
+            //Intent intent = new Intent(getActivity(), MerchantActivity.class);
+            Intent intent = new Intent(getActivity(), ManagementActivity.class);
+            //Intent intent = new Intent(getActivity(), TestActivity.class);
             startActivity(intent);
         });
 

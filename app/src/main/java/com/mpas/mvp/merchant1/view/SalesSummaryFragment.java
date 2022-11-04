@@ -1,5 +1,7 @@
 package com.mpas.mvp.merchant1.view;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -8,11 +10,15 @@ import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.github.mikephil.charting.components.Legend;
@@ -20,12 +26,15 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentSalesSummaryBinding;
 import com.mpas.mvp.merchant1.model.SalesModel;
+import com.mpas.mvp.merchant1.repository.MerchantFactory;
 import com.mpas.mvp.merchant1.util.TextConvert;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,18 +57,53 @@ public class SalesSummaryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e(TAG,"onCreateView");
+
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_summary,container,false);
         salesViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
-        merchantViewModel = new ViewModelProvider(this).get(MerchantViewModel.class);
+        merchantViewModel = ManagementActivity.getViewModel();
 
         salesViewModel.getSalesDb().observe(requireActivity(), this::BarChartGraph);
         binding.barChart.setTouchEnabled(false);
 
-        merchantViewModel.getFactoryLivedata().observe(requireActivity(),merchants->{
-            //TODO
-            //stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,merchants.);
-            binding.merchantList.setAdapter(stringArrayAdapter);
+        merchantViewModel.getMerchant_list().observe(requireActivity(),arrays ->{
+            stringArrayAdapter = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_expandable_list_item_1, arrays);
+            stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+            binding.listMerchant.setAdapter(stringArrayAdapter);
+        });
+
+        merchantViewModel.getMerchant().observe(requireActivity(),entity->{
+            salesViewModel.getSales("","",entity.getBusinessNo(),entity.getMerchantNo());
+        });
+
+        //######################################
+        InfoAdapter infoAdapter = new InfoAdapter();
+        CalRecyclerAdapter calRecyclerAdapter = new CalRecyclerAdapter();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),1,GridLayoutManager.HORIZONTAL,false);
+        binding.calenderRecycler.setLayoutManager(gridLayoutManager);
+        binding.calenderRecycler.setAdapter(calRecyclerAdapter);
+        binding.calenderRecycler.scrollToPosition(infoAdapter.getItemCount()-1);
+        //######################################
+
+        LocalDate localDate = LocalDate.now();
+        String today = String.format("오늘은 %s년 %s월 %s일 이에요", localDate.getYear(),localDate.getMonthValue(),localDate.getDayOfMonth());
+        binding.salesToday.setText(today);
+
+        binding.listMerchant.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                merchantViewModel.SetMerchant(adapterView.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        binding.relativeLayout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ManagementActivity.goFragment(1);
+            }
         });
 
         return binding.getRoot();
@@ -69,7 +113,7 @@ public class SalesSummaryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        salesViewModel.getSales("","");
+        merchantViewModel.getMerchantList();
     }
 
     private void setBarChart(List<SalesModel.SaleDB> db) {
@@ -106,77 +150,48 @@ public class SalesSummaryFragment extends Fragment {
 
         binding.salesSumPrice.setText(TextConvert.toPrice(yesterday));
 
-        BarDataSet bardataset = new BarDataSet(entry, "주간 매출 현황");
+        //Color Create
+       int[] MPAS_COLORS =  {
+               Color.rgb(204, 204, 255),Color.rgb(204, 204, 255),Color.rgb(204, 204, 255),
+               Color.rgb(204, 204, 255),Color.rgb(204, 204, 255),Color.rgb(204, 204, 255),
+               Color.rgb(000, 000, 102)
+        };
+
+        int[] MPAS_COLORS2 =  {
+                Color.rgb(153, 153, 230),Color.rgb(153, 153, 230),Color.rgb(153, 153, 204),
+                Color.rgb(153, 153, 230),Color.rgb(153, 153, 230),Color.rgb(153, 153, 204),
+                Color.rgb(000, 000, 102)
+        };
+
+        int[] MY_COLORS =  {
+                Color.rgb(153, 153, 204), Color.rgb(153, 153, 204),Color.rgb(102, 102, 153),
+                Color.rgb(153, 153, 204), Color.rgb(153, 153, 204),Color.rgb(102, 102, 153),
+                Color.rgb(000, 000, 102)
+        };
+
+        BarDataSet bardataset = new BarDataSet(entry, "");
         bardataset.setValueTextSize(10f);
 
         Legend legend = binding.barChart.getLegend(); //범례 타이틀
         legend.setTextSize(15f);
 
-        binding.barChart.animateY(2000);
+        binding.barChart.animateY(1000);
         BarData data = new BarData(year, bardataset);      // MPAndroidChart v3.X 오류 발생
         binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        binding.barChart.getXAxis().setDrawGridLines(false);
+        binding.barChart.getXAxis().setDrawLabels(true); // 차트 라벨 설정
+        binding.barChart.setDrawBarShadow(false); // 차트 객체 백그라운드
+        binding.barChart.setClickable(true);
+        binding.barChart.setDrawHighlightArrow(true);
         binding.barChart.getAxisRight().setEnabled(false);
         binding.barChart.getAxisLeft().setEnabled(false);
+        binding.barChart.setDrawValueAboveBar(true);
+
         binding.barChart.setDescriptionPosition(1350, 100);
         binding.barChart.setDescription("단위 : 원");
-        bardataset.setColors(ColorTemplate.LIBERTY_COLORS);
-        //bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        bardataset.setBarSpacePercent(20);
+        bardataset.setColors(MY_COLORS);  //bardataset.setColors(ColorTemplate.PASTEL_COLORS);
         binding.barChart.setData(data);
-    }
-
-/*        BarData barData;
-        BarDataSet barDataSet = null;
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        ArrayList<String> tag = new ArrayList<>();
-        String description = null;
-        int index = 0;
-        String desc = null;
-
-        for(SalesModel.SaleDB data : db) {
-
-            String[] tagArray = data.getTransdatelabel().split(" ");
-            tag.add(tagArray[0]);
-            Log.e("3333", String.valueOf(data.getUsnamt())); // test tid라서  usnamt로 진행 live시에는 tramt로 진행 해야함
-            tag.add(data.getTransdatelabel().replace("0",""));
-            entries.add(new BarEntry(data.getUsnamt(),index)); // test tid라서  usnamt로 진행 live시에는 tramt로 진행 해야함
-
-            Log.e("enterti",entries.toString());
-
-            index++;
-        }
-
-        if(index >= 7) {
-            description = "주간 매출 현황";
-
-        } if(index >= 30) {
-            description = "월간 매출 현황";
-        }
-
-
-        binding.barChart.setDescription(desc);
-        binding.barChart.setDescriptionTextSize(15);
-        binding.barChart.setDescriptionPosition(1400, 100);
-        binding.barChart.getXAxis().setDrawGridLines(false);
-        //binding.barChart.getXAxis().setSpaceBetweenLabels(1);
-        binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM); // Tag position
-
-        binding.barChart.setClickable(true);
-        binding.barChart.getAxisRight().setEnabled(false);
-        binding.barChart.getAxisLeft().setEnabled(false);
-        binding.barChart.setNoDataText("정보를 불러오는 중 입니다.");
-        //binding.barChart.setDescriptionPosition(500,0);
-        barDataSet = new BarDataSet(entries, description);
-        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-        barDataSet.setValueTextSize(10);
-        barDataSet.setLabel(description);
-        barDataSet.setBarSpacePercent(30);
-
-        barData = new BarData(tag,barDataSet);
-        //barData.setValueTextColors(); // 차트 컬러 리스트
-
-        barDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
-        binding.barChart.setData(barData);
-        binding.barChart.animateXY(1000, 1000);
         binding.barChart.invalidate();
-    }*/
+    }
 }

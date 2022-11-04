@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -35,11 +36,10 @@ public class SalesFragment extends Fragment {
     private static final String TAG = SalesFragment.class.getSimpleName();
     private List<SalesDetailModel.SalesDetailDB> data;
     private  SalesViewModel viewModel;
+    private MerchantViewModel merchantViewModel;
     private SalesFragmentBinding binding;
 
     public SalesFragment(){
-        Log.e(TAG,"SalesFragment()");
-
     }
 
     public static SalesFragment newInstance() {
@@ -53,6 +53,8 @@ public class SalesFragment extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.sales_fragment, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(SalesViewModel.class);
+        //merchantViewModel = new ViewModelProvider(requireActivity()).get(MerchantViewModel.class);
+        merchantViewModel = ManagementActivity.getViewModel();
 
         binding.salesDetailRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
@@ -64,6 +66,20 @@ public class SalesFragment extends Fragment {
             binding.salesSumPrice.setText(toPrice(price));
         });
 
+        merchantViewModel.getMerchant().observe(requireActivity(),entity->{
+            Log.e("SalesFragment", "getMerchant()" +entity.getSitename());
+            viewModel.getSale_purchase(entity.getBusinessNo(), entity.getMerchantNo());
+        });
+
+        //######################################
+        CalRecyclerAdapter calRecyclerAdapter = new CalRecyclerAdapter();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),1,GridLayoutManager.HORIZONTAL,false);
+        binding.calenderView.setLayoutManager(layoutManager);
+        binding.calenderView.setAdapter(calRecyclerAdapter);
+        binding.calenderView.scrollToPosition(calRecyclerAdapter.getItemCount()-1);
+        //######################################
+
         return binding.getRoot();
     }
 
@@ -71,6 +87,5 @@ public class SalesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        viewModel.getSale_purchase();
     }
 }

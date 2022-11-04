@@ -30,20 +30,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".merchant1.view.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".merchant1.view.ManagementActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.cpm.CpmActivity"
             android:exported="false" />
         <activity
             android:name=".merchant1.view.MerchantActivity"
             android:exported="false" />
         <activity
-            android:name=".merchant.ManageActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

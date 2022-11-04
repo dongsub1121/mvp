@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MerchantInfoModel {
+public class Merchant {
 
     @SerializedName("status")
     String status;
@@ -123,11 +123,10 @@ public class MerchantInfoModel {
         @NonNull
         @Override
         public String toString() {
-            return businessnumber+"_"+
-                    siteid+"_"+
-                    siteid+"_"+
-                    banks
-                    ;
+            return
+                    siteaddress+'\n'+
+                    "businessnumber : " + businessnumber+'\n'+
+                    "siteid : " + siteid+'\n';
         }
 
     }

@@ -10,7 +10,7 @@ public interface BoHttpsAPI {
 
 
     @GET("/mpas/v1/site/info") // Merchant Download
-    Single<MerchantInfoModel> getMerchant(
+    Single<Merchant> getMerchant(
             @Header("authorization") String authorization,
             @Query("businessnumber") String businessnumber,
             @Query("siteid") String siteid

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 import com.mpas.mvp.merchant1.util.Config;
-import com.mpas.mvp.merchant1.model.MerchantInfoModel;
+import com.mpas.mvp.merchant1.model.Merchant;
 
 public class PreferenceRepository {
 
@@ -29,9 +29,9 @@ public class PreferenceRepository {
         return sharedPreferences;
     }
 
-    public SharedPreferences updateSharedPreference(MerchantInfoModel merchantInfoModel){
+    public SharedPreferences updateSharedPreference(Merchant merchantInfoModel){
 
-        MerchantInfoModel.Result result= merchantInfoModel.getResult();
+        Merchant.Result result= merchantInfoModel.getResult();
 
         editor.putString(BUSINESS_ID,result.getBusinessnumber());
         editor.putString(MERCHANT_ID,result.getSiteid());
