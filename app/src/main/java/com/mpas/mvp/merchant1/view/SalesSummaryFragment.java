@@ -1,6 +1,5 @@
 package com.mpas.mvp.merchant1.view;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,11 +10,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,17 +23,15 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.listener.ChartTouchListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentSalesSummaryBinding;
 import com.mpas.mvp.merchant1.model.SalesModel;
-import com.mpas.mvp.merchant1.repository.MerchantFactory;
 import com.mpas.mvp.merchant1.util.TextConvert;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class SalesSummaryFragment extends Fragment {
@@ -59,8 +54,8 @@ public class SalesSummaryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_summary,container,false);
-        salesViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
-        merchantViewModel = ManagementActivity.getViewModel();
+        salesViewModel = ManagementActivity.getSalesViewModel();
+        merchantViewModel = ManagementActivity.getMerchantViewModel();
 
         salesViewModel.getSalesDb().observe(requireActivity(), this::BarChartGraph);
         binding.barChart.setTouchEnabled(false);
@@ -76,12 +71,29 @@ public class SalesSummaryFragment extends Fragment {
         });
 
         //######################################
-        InfoAdapter infoAdapter = new InfoAdapter();
-        CalRecyclerAdapter calRecyclerAdapter = new CalRecyclerAdapter();
+
+        CalRecyclerAdapter calRecyclerAdapter = new CalRecyclerAdapter(new CalRecyclerAdapter.CalendarListener() {
+
+            @Override
+            public void onRefresh(LocalDate localDate, int pos) {
+                Log.e("onRefresh",localDate.toString());
+                salesViewModel.setSalesDate(localDate);
+
+                LocalDate end = localDate;
+                LocalDate start = localDate.minusDays(7);
+                String bizId = merchantViewModel.getMerchant().getValue().getBusinessNo();
+                String mid = merchantViewModel.getMerchant().getValue().getMerchantNo();
+
+                salesViewModel.getSales(TextConvert.localDateToString(start),TextConvert.localDateToString(end),bizId,mid);
+            }
+        });
+
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),1,GridLayoutManager.HORIZONTAL,false);
         binding.calenderRecycler.setLayoutManager(gridLayoutManager);
         binding.calenderRecycler.setAdapter(calRecyclerAdapter);
-        binding.calenderRecycler.scrollToPosition(infoAdapter.getItemCount()-1);
+        binding.calenderRecycler.scrollToPosition(calRecyclerAdapter.getItemCount()-1);
+        //binding.calenderRecycler.setItemViewCacheSize(365); // 설정하지 않으면 12개마다 동일한 동작이 설정됨
+
         //######################################
 
         LocalDate localDate = LocalDate.now();
@@ -114,6 +126,9 @@ public class SalesSummaryFragment extends Fragment {
     public void onResume() {
         super.onResume();
         merchantViewModel.getMerchantList();
+        salesViewModel.getSale_purchase(merchantViewModel.getMerchant().getValue().getBusinessNo(),
+                merchantViewModel.getMerchant().getValue().getMerchantNo(),
+                TextConvert.localDateToString(Objects.requireNonNull(salesViewModel.getSalesDate().getValue())));
     }
 
     private void setBarChart(List<SalesModel.SaleDB> db) {
@@ -194,4 +209,5 @@ public class SalesSummaryFragment extends Fragment {
         binding.barChart.setData(data);
         binding.barChart.invalidate();
     }
+
 }

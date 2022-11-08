@@ -90,14 +90,20 @@ public class ApiRepository {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Single<SalesDetailModel> getSale_purchase(String biz, String mid) {
+    public Single<SalesDetailModel> getSale_purchase(String biz, String mid, String date) {
+        String day;
+        if(date.equals("")) {
+            day = TextConvert.toString(toDay().minusDays(1));
+        } else {
+            day = date;
+        }
+        Log.e("date",day);
 
-        String toDay = TextConvert.toString(toDay().minusDays(1));
-        String value  = biz + mid + toDay;
+        String value  = biz + mid + day;
         String sha = sha256(sha256(value)+ TOKEN);
         Log.e("value: sha",value+":"+sha);
 
-        return api.getISalesPurchase(sha,biz,mid,toDay);
+        return api.getISalesPurchase(sha,biz,mid,day);
     }
 
     public String sha256(String value) {

@@ -13,6 +13,7 @@ public class ManagementActivity extends AppCompatActivity {
 
     private static NavController navController;
     private static MerchantViewModel merchantViewModel;
+    private static SalesViewModel salesViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +24,16 @@ public class ManagementActivity extends AppCompatActivity {
         navController = navHostFragment != null ? navHostFragment.getNavController() : null;
 
         merchantViewModel = new ViewModelProvider(this).get(MerchantViewModel.class);
+        salesViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
 
     }
 
-    public static MerchantViewModel getViewModel() {
+    public static MerchantViewModel getMerchantViewModel() {
         return merchantViewModel;
+    }
+
+    public static SalesViewModel getSalesViewModel() {
+        return salesViewModel;
     }
     public static void goFragment(int n){
 

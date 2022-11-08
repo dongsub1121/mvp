@@ -2,6 +2,7 @@ package com.mpas.mvp.merchant1.repository;
 
 import com.mpas.mvp.merchant1.model.Merchant;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,11 @@ import java.util.Objects;
 public class MerchantFactory {
 
     HashMap<String, Merchant.Result> factory = new HashMap<>();
+
+    LocalDate startDate;
+    LocalDate endDate;
+    String biz;
+    String mid;
 
     public MerchantFactory() {
     }

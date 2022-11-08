@@ -8,12 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Build;
 import android.os.Bundle;
-
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ActivityTestBinding;
-import com.mpas.mvp.merchant1.model.CalendarItem;
 
-import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
 

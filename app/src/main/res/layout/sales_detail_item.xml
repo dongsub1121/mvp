@@ -17,8 +17,9 @@
 
     <ImageView
         android:id="@+id/sales_detail_ci"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
         android:background="@color/white"
         android:src="@drawable/mpas_symbol02"
         app:ignore="ContentDescription" />

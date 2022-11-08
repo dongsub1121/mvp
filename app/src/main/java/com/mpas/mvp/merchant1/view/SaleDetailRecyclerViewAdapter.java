@@ -33,6 +33,7 @@ public class SaleDetailRecyclerViewAdapter extends  RecyclerView.Adapter<SaleDet
         holder.amount.setText(TextConvert.toPrice(db.getTramt()));
         holder.count.setText(TextConvert.toCount(db.getTrcnt()));
         holder.bank.setText(db.getBankname());
+        holder.imageView.setImageResource(setDrawable(db.getBankname()));
 
     }
 
@@ -53,6 +54,53 @@ public class SaleDetailRecyclerViewAdapter extends  RecyclerView.Adapter<SaleDet
             count = itemView.findViewById(R.id.sales_detail_count);
             amount = itemView.findViewById(R.id.sales_detail_amount);
         }
+    }
+
+    private int setDrawable(String purchase) {
+
+        int resId = 0;
+
+        switch (purchase) {
+            case "비씨":
+                resId = R.drawable.bc;
+                break;
+            case "KB국민":
+                resId = R.drawable.kb;
+                break;
+            case "NH농협":
+                resId = R.drawable.nh;
+                break;
+            case "외환":
+                resId = R.drawable.hana;
+                break;
+            case "삼성":
+                resId = R.drawable.samsung;
+                break;
+            case "신한":
+                resId = R.drawable.shinhan;
+                break;
+            case "현대":
+                resId = R.drawable.hyundai;
+                break;
+            case "롯데":
+                resId = R.drawable.lotte;
+                break;
+            case "제로페이":
+                resId = R.drawable.zero;
+                break;
+            case "카카오페이 머니":
+                resId = R.drawable.kakao;
+                break;
+            case "현금영수증":
+                resId = R.drawable.koreatax;
+                break;
+            case "L.PAY":
+                resId = R.drawable.mpas_symbol02;
+            case "SSG페이":
+                resId = R.drawable.mpas_symbol02;
+                break;
+        }
+        return resId;
     }
 
 }

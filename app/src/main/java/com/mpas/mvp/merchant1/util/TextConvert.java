@@ -43,4 +43,10 @@ public class TextConvert {
     public static String toString(LocalDate localDate) {
         return String.valueOf(localDate).replace("-","");
     }
+
+    @SuppressLint("DefaultLocale")
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String localDateToString(LocalDate localDate) {
+        return String.format("%d%02d%02d",localDate.getYear(),localDate.getMonthValue(),localDate.getDayOfMonth());
+    }
 }

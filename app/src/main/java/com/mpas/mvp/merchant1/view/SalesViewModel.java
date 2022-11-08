@@ -15,9 +15,11 @@ import com.mpas.mvp.merchant1.model.SalesModel;
 import com.mpas.mvp.merchant1.model.SalesDetailModel;
 import com.mpas.mvp.merchant1.repository.ApiRepository;
 import com.mpas.mvp.merchant1.repository.MerchantEntity;
+import com.mpas.mvp.merchant1.util.TextConvert;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -27,8 +29,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SalesViewModel extends AndroidViewModel {
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public SalesViewModel(@NonNull Application application) {
+
         super(application);
+        salesDate.setValue(LocalDate.now().minusDays(1));
     }
 
     private final ApiRepository apiRepository = getInstance(getApplication());
@@ -36,6 +41,11 @@ public class SalesViewModel extends AndroidViewModel {
     public MutableLiveData<List<SalesDetailModel.SalesDetailDB>> saleDetailDbMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<List<SalesModel.SaleDB>> salesDbMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<Integer> salesSumPriceMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<LocalDate> salesDate = new MutableLiveData<>();
+
+    public MutableLiveData<LocalDate> getSalesDate() {
+        return salesDate;
+    }
 
     public MutableLiveData<List<SalesModel.SaleDB>> getSalesDb() {
         return salesDbMutableLiveData;
@@ -49,11 +59,26 @@ public class SalesViewModel extends AndroidViewModel {
         return saleDetailDbMutableLiveData;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void getSale_purchase(String biz, String mid) {
-        Log.e("viewmodel","getSale_purchase");
+    public void setSalesDate(LocalDate localDate) {
+        salesDate.setValue(localDate);
+        Log.e("setSalesDate",localDate.toString());
+    }
 
-        disposable.add(apiRepository.getSale_purchase(biz, mid)
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void getSale_purchase(String biz, String mid, String date) {
+
+        String day;
+
+        Log.e("getSale_purchase",biz+"::"+mid+"::"+date);
+        if(date == null || date.equals("")) {
+            Log.e("getSale_purchase", "null or empty");
+            day = TextConvert.localDateToString(Objects.requireNonNull(salesDate.getValue()));
+        }else {
+            Log.e("getSale_purchase", date);
+            day = date;
+        }
+
+        disposable.add(apiRepository.getSale_purchase(biz, mid, day)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<SalesDetailModel>(){
