@@ -4,7 +4,6 @@ import static com.mpas.mvp.merchant1.util.TextConvert.toPrice;
 
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +20,7 @@ import android.view.ViewGroup;
 
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.SalesFragmentBinding;
+import com.mpas.mvp.management.ManagementActivity;
 import com.mpas.mvp.merchant1.model.SalesDetailModel;
 import com.mpas.mvp.merchant1.util.TextConvert;
 
@@ -49,8 +49,10 @@ public class SalesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.sales_fragment, container, false);
-        salesViewModel = ManagementActivity.getSalesViewModel();
+        //salesViewModel = ManamodiActivity.getSalesViewModel();
+        //merchantViewModel = ManamodiActivity.getMerchantViewModel();
         merchantViewModel = ManagementActivity.getMerchantViewModel();
+        salesViewModel = ManagementActivity.getSalesViewModel();
 
         binding.salesDetailRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity()));
 

@@ -30,10 +30,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".management.DrawActivity"
+            android:exported="false"
+            android:label="@string/title_activity_draw"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".management.ManagementActivity"
+            android:exported="false" />
+        <activity
             android:name=".merchant1.view.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".merchant1.view.ManagementActivity"
+            android:name=".merchant1.view.ManamodiActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.cpm.CpmActivity"
@@ -46,6 +54,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

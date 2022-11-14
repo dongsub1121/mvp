@@ -3,17 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/MerchantFragment">
+    app:startDestination="@id/SalesSummaryFragment">
 
-    <fragment
-        android:id="@+id/MerchantFragment"
-        android:name="com.mpas.mvp.merchant1.view.MerchantFragment"
-        android:label="@string/merchant_fragment_label"
-        tools:layout="@layout/fragment_merchant">
-        <action
-            android:id="@+id/action_MerchantFragment_to_SalesSummaryFragment"
-            app:destination="@id/SalesSummaryFragment" />
-    </fragment>
     <fragment
         android:id="@+id/SalesSummaryFragment"
         android:name="com.mpas.mvp.merchant1.view.SalesSummaryFragment"

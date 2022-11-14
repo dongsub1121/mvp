@@ -16,15 +16,20 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_sales.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_sales2.xml" value="0.2817028985507246" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_test.xml" value="0.1647940074906367" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/app_bar_draw.xml" value="0.3541666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/calender_cardview.xml" value="0.2391304347826087" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/content_draw.xml" value="0.18566362715298884" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/content_merchant.xml" value="0.21875" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/content_sales.xml" value="0.2817028985507246" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/cpm_fragment.xml" value="0.35280797101449274" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/cpmcardview.xml" value="0.35280797101449274" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_cpm_mvp.xml" value="0.18489583333333334" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_credit_pay.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_gallery.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_home.xml" value="0.3541666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_merchant.xml" value="0.178125" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_sales_summary.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_slideshow.xml" value="0.3541666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_zero_pay.xml" value="0.21666666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/info_cardview.xml" value="0.19739583333333333" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/info_list.xml" value="0.19202898550724637" />
@@ -35,13 +40,16 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/merchant_cardview.xml" value="0.2109375" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/merchant_info_fragment.xml" value="0.38697916666666665" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/merhchant_info_fragment.xml" value="0.38697916666666665" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/nav_header_draw.xml" value="0.3541666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/payment_fragment.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sale_list_item.xml" value="0.38697916666666665" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sales_cardview.xml" value="0.2851985559566787" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sales_detail_item.xml" value="0.23489583333333333" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sales_ffragment.xml" value="0.21666666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sales_fragment.xml" value="0.22" />
-        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/menu/activity_main_drawer.xml" value="0.19010416666666666" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/menu/activity_main_drawer.xml" value="0.67" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/menu/draw.xml" value="0.38177083333333334" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/menu/main_category.xml" value="0.38177083333333334" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/menu/sales.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/xml/root_preferences.xml" value="0.21875" />
         <entry key="..\:/Users/user/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_merchant.xml" value="0.1" />

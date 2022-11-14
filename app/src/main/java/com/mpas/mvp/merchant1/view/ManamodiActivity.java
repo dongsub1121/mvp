@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.mpas.mvp.R;
 
-public class ManagementActivity extends AppCompatActivity {
+public class ManamodiActivity extends AppCompatActivity {
 
     private static NavController navController;
     private static MerchantViewModel merchantViewModel;
@@ -18,7 +18,7 @@ public class ManagementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_management);
+        setContentView(R.layout.activity_manamodi);
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment != null ? navHostFragment.getNavController() : null;
@@ -35,16 +35,5 @@ public class ManagementActivity extends AppCompatActivity {
     public static SalesViewModel getSalesViewModel() {
         return salesViewModel;
     }
-    public static void goFragment(int n){
 
-        switch (n){
-            case 0:
-                navController.navigate(R.id.action_MerchantFragment_to_SalesSummaryFragment);
-                break;
-            case 1:
-                navController.navigate(R.id.action_SalesSummaryFragment_to_SalesFragment);
-                break;
-        }
-
-    }
 }

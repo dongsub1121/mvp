@@ -33,21 +33,12 @@ public class SalesActivity extends AppCompatActivity {
 
         switch (n){
             case 0:
-                navController.navigate(R.id.action_MerchantFragment_to_SalesSummaryFragment);
+                navController.navigate(R.id.action_SalesFragment_to_SalesSummaryFragment);
                 break;
             case 1:
                 navController.navigate(R.id.action_SalesSummaryFragment_to_SalesFragment);
                 break;
         }
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//        switch (n){
-//            case 0:
-//                fragmentTransaction.replace(R.id.nav_host_fragment,SalesSummaryFragment.newInstance()).commit();
-//            case 1:
-//                fragmentTransaction.replace(R.id.nav_host_fragment,SalesFragment.newInstance()).commit();
-//                break;
-//        }
+
     }
 }

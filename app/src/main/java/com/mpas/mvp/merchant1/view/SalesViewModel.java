@@ -5,6 +5,7 @@ import static com.mpas.mvp.merchant1.repository.ApiRepository.getInstance;
 import android.app.Application;
 import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -15,6 +16,7 @@ import com.mpas.mvp.merchant1.model.SalesModel;
 import com.mpas.mvp.merchant1.model.SalesDetailModel;
 import com.mpas.mvp.merchant1.repository.ApiRepository;
 import com.mpas.mvp.merchant1.repository.MerchantEntity;
+import com.mpas.mvp.merchant1.repository.RoomDB;
 import com.mpas.mvp.merchant1.util.TextConvert;
 
 import java.time.LocalDate;
@@ -28,6 +30,8 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class SalesViewModel extends AndroidViewModel {
+
+    private final RoomDB roomDB = RoomDB.getInstance(getApplication());
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public SalesViewModel(@NonNull Application application) {
@@ -134,6 +138,10 @@ public class SalesViewModel extends AndroidViewModel {
     private void todaySet() {
         LocalDate localDate = LocalDate.now();
         String.format("%s년 %s월 %s일)", localDate.getYear(),localDate.getMonth(),localDate.getDayOfMonth());
+    }
+
+    private void preMerchant() {
+
     }
 
     @Override

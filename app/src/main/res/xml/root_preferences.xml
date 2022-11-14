@@ -1,23 +1,68 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/Merchant">
-
-        <EditTextPreference
-            android:defaultValue="1078155843"
-            android:key="merchant_business_number"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:title="Business ID"
-            app:useSimpleSummaryProvider="true" />
-        <EditTextPreference
-            android:defaultValue="1802100001"
-            android:key="merchant_mid_number"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            app:useSimpleSummaryProvider="true"
-            android:title="Merchant ID" />
-
+    <PreferenceCategory
+        android:theme="@style/Theme.MPAS"
+        app:title="@string/Merchant">
+        <PreferenceScreen
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="merchant_management"
+            android:title="가맹점 관리" />
+        <PreferenceScreen
+            android:key="employee_management"
+            android:title="직원 관리" />
     </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/Devices">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="barcode_reader"
+            android:title="바코드 리더기 모드" />
+        <PreferenceScreen
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="reader_screen"
+            android:shouldDisableView="true"
+            android:title="리더기 화면설정" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/Payment">
+
+        <ListPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="tex"
+            android:title="세금 설정"
+            android:entryValues="@array/settings_tex_values"/>
+        <ListPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="tip"
+            android:title="봉사료 설정"
+            android:entryValues="@array/settings_tip_values"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/My">
+        <PreferenceScreen
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="pin"
+            android:title="비밀번호" />
+        <PreferenceScreen
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="생체 인식 설정" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/Notification">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notification"
+            android:title="PUSH 메시지 설정" />
+    </PreferenceCategory>
+    <PreferenceScreen
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="버전정보" />
 
 </PreferenceScreen>

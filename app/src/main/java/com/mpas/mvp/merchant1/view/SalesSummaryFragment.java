@@ -1,5 +1,6 @@
 package com.mpas.mvp.merchant1.view;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,8 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.transition.FragmentTransitionSupport;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentSalesSummaryBinding;
+import com.mpas.mvp.management.ManagementActivity;
 import com.mpas.mvp.merchant1.model.SalesModel;
 import com.mpas.mvp.merchant1.util.TextConvert;
 
@@ -37,6 +40,7 @@ import java.util.Objects;
 public class SalesSummaryFragment extends Fragment {
 
     private static final String TAG = SalesSummaryFragment.class.getSimpleName();
+    private ManagementActivity managementActivity;
     private SalesViewModel salesViewModel;
     private MerchantViewModel merchantViewModel;
     private FragmentSalesSummaryBinding binding;
@@ -47,6 +51,11 @@ public class SalesSummaryFragment extends Fragment {
         return new SalesSummaryFragment();
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        managementActivity = (ManagementActivity)getActivity();
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -54,8 +63,10 @@ public class SalesSummaryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_summary,container,false);
-        salesViewModel = ManagementActivity.getSalesViewModel();
+        //salesViewModel = ManamodiActivity.getSalesViewModel();
+        //merchantViewModel = ManamodiActivity.getMerchantViewModel();
         merchantViewModel = ManagementActivity.getMerchantViewModel();
+        salesViewModel = ManagementActivity.getSalesViewModel();
 
         salesViewModel.getSalesDb().observe(requireActivity(), this::BarChartGraph);
         binding.barChart.setTouchEnabled(false);
@@ -114,7 +125,9 @@ public class SalesSummaryFragment extends Fragment {
         binding.relativeLayout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ManagementActivity.goFragment(1);
+                //ManamodiActivity.goFragment(1);
+                //ManagementActivity.goFragment(1);
+                managementActivity.goSales();
             }
         });
 
@@ -126,6 +139,7 @@ public class SalesSummaryFragment extends Fragment {
     public void onResume() {
         super.onResume();
         merchantViewModel.getMerchantList();
+
         salesViewModel.getSale_purchase(merchantViewModel.getMerchant().getValue().getBusinessNo(),
                 merchantViewModel.getMerchant().getValue().getMerchantNo(),
                 TextConvert.localDateToString(Objects.requireNonNull(salesViewModel.getSalesDate().getValue())));

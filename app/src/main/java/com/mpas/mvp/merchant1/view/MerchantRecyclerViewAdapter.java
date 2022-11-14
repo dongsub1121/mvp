@@ -45,7 +45,7 @@ public class MerchantRecyclerViewAdapter extends RecyclerView.Adapter<MerchantRe
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ManagementActivity.goFragment(0);
+
             }
         });
     }
