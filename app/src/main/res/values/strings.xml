@@ -160,6 +160,7 @@
 
     <string name="menu_sales">결제 모드</string>
     <string name="menu_settings">설정</string>
+    <string name="menu_manager">관리 모드</string>
     <string name="menu_barcode_reader">Push Scanner</string>
     <string name="menu_pos">POS</string>
     <string name="menu_kiosk">KIOSK</string>

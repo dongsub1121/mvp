@@ -17,8 +17,6 @@ import android.view.View;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ActivityCpmBinding;
-import com.mpas.mvp.merchant1.view.SalesFragment;
-import com.mpas.mvp.merchant1.view.SalesSummaryFragment;
 
 import java.util.ArrayList;
 import java.util.List;

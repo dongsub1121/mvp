@@ -1,14 +1,11 @@
 package com.mpas.mvp.merchant1.view;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -20,6 +17,8 @@ import android.util.Log;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ActivityMerchantBinding;
+import com.mpas.mvp.management.ui.sales.SalesFragment;
+import com.mpas.mvp.management.ui.sales.SalesSummaryFragment;
 
 import java.util.ArrayList;
 import java.util.List;

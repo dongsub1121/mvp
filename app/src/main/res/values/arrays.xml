@@ -11,6 +11,7 @@
     </string-array>
 
     <string-array name="settings_tex_values">
+        <item>비과세</item>
         <item>10</item>
         <item>15</item>
         <item>20</item>
@@ -19,6 +20,7 @@
     </string-array>
 
     <string-array name="settings_tip_values">
+        <item>사용안함</item>
         <item>10</item>
         <item>15</item>
         <item>20</item>

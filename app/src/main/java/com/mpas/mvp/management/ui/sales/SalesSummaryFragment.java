@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant1.view;
+package com.mpas.mvp.management.ui.sales;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,9 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.transition.FragmentTransitionSupport;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +28,7 @@ import com.mpas.mvp.databinding.FragmentSalesSummaryBinding;
 import com.mpas.mvp.management.ManagementActivity;
 import com.mpas.mvp.merchant1.model.SalesModel;
 import com.mpas.mvp.merchant1.util.TextConvert;
+import com.mpas.mvp.merchant1.view.CalRecyclerAdapter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

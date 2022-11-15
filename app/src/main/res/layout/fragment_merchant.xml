@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="model"
-                type="com.mpas.mvp.merchant1.view.MerchantViewModel" />
+                type="com.mpas.mvp.management.ui.sales.MerchantViewModel" />
     </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout

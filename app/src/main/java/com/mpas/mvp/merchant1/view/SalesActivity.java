@@ -8,6 +8,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.mpas.mvp.R;
+import com.mpas.mvp.management.ui.sales.MerchantViewModel;
 
 public class SalesActivity extends AppCompatActivity {
 

@@ -15,11 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.FragmentMerchantBinding;
+import com.mpas.mvp.management.ui.sales.MerchantViewModel;
 
 import java.util.List;
 import java.util.Objects;

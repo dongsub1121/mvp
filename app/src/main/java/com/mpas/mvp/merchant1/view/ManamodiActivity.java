@@ -8,6 +8,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.os.Bundle;
 
 import com.mpas.mvp.R;
+import com.mpas.mvp.management.ui.sales.MerchantViewModel;
+import com.mpas.mvp.management.ui.sales.SalesViewModel;
 
 public class ManamodiActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant1.view;
+package com.mpas.mvp.management.ui.sales;
 
 import static com.mpas.mvp.merchant1.util.TextConvert.toPrice;
 
@@ -23,6 +23,8 @@ import com.mpas.mvp.databinding.SalesFragmentBinding;
 import com.mpas.mvp.management.ManagementActivity;
 import com.mpas.mvp.merchant1.model.SalesDetailModel;
 import com.mpas.mvp.merchant1.util.TextConvert;
+import com.mpas.mvp.merchant1.view.CalRecyclerAdapter;
+import com.mpas.mvp.merchant1.view.SaleDetailRecyclerViewAdapter;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/SalesSummaryFragment"
-        android:name="com.mpas.mvp.merchant1.view.SalesSummaryFragment"
+        android:name="com.mpas.mvp.management.ui.sales.SalesSummaryFragment"
         android:label="@string/summary_fragment_label"
         tools:layout="@layout/fragment_sales_summary">
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/SalesFragment"
-        android:name="com.mpas.mvp.merchant1.view.SalesFragment"
+        android:name="com.mpas.mvp.management.ui.sales.SalesFragment"
         android:label="@string/sales_fragment_label"
         tools:layout="@layout/sales_fragment">
         <action

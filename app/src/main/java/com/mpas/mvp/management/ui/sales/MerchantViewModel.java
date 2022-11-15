@@ -1,4 +1,4 @@
-package com.mpas.mvp.merchant1.view;
+package com.mpas.mvp.management.ui.sales;
 
 import static com.mpas.mvp.merchant1.repository.ApiRepository.getInstance;
 

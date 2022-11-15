@@ -5,18 +5,18 @@
         android:id="@+id/manage_category"
         android:title="매출관리"
         android:enabled="true"
-        android:icon="@drawable/biple"/>
+        android:icon="@drawable/ic_analyst_24"/>
 
     <item
         android:id="@+id/payment_category"
-        android:title="매출관리"
+        android:title="결제"
         android:enabled="true"
-        android:icon="@drawable/biple"/>
+        android:icon="@drawable/ic_analyst_24"/>
 
     <item
         android:id="@+id/sales_category"
-        android:title="매출관리"
+        android:title="판매관리"
         android:enabled="true"
-        android:icon="@drawable/biple"/>
+        android:icon="@drawable/ic_analyst_24"/>
 
 </menu>
