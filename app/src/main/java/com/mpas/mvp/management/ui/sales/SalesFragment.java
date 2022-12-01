@@ -77,8 +77,8 @@ public class SalesFragment extends Fragment {
             public void onRefresh(LocalDate localDate, int pos) {
                 Log.e(TAG,"호출");
                 salesViewModel.setSalesDate(localDate);
-                salesViewModel.getSale_purchase(merchantViewModel.getMerchant().getValue().getBusinessNo(),
-                        merchantViewModel.getMerchant().getValue().getMerchantNo(),localDate.toString().replace("-",""));
+                salesViewModel.getSale_purchase(merchantViewModel.getMainMerchant().getValue().getBusinessNo(),
+                        merchantViewModel.getMainMerchant().getValue().getMerchantNo(),localDate.toString().replace("-",""));
             }
         });
 
@@ -96,8 +96,8 @@ public class SalesFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        salesViewModel.getSale_purchase(merchantViewModel.getMerchant().getValue().getBusinessNo(),
-                merchantViewModel.getMerchant().getValue().getMerchantNo(),
+        salesViewModel.getSale_purchase(merchantViewModel.getMainMerchant().getValue().getBusinessNo(),
+                merchantViewModel.getMainMerchant().getValue().getMerchantNo(),
                 TextConvert.localDateToString(Objects.requireNonNull(salesViewModel.getSalesDate().getValue())));
     }
 }

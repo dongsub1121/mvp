@@ -62,8 +62,6 @@ public class SalesSummaryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_summary,container,false);
-        //salesViewModel = ManamodiActivity.getSalesViewModel();
-        //merchantViewModel = ManamodiActivity.getMerchantViewModel();
         merchantViewModel = ManagementActivity.getMerchantViewModel();
         salesViewModel = ManagementActivity.getSalesViewModel();
 
@@ -76,7 +74,7 @@ public class SalesSummaryFragment extends Fragment {
             binding.listMerchant.setAdapter(stringArrayAdapter);
         });
 
-        merchantViewModel.getMerchant().observe(requireActivity(),entity->{
+        merchantViewModel.getMainMerchant().observe(requireActivity(), entity->{
             salesViewModel.getSales("","",entity.getBusinessNo(),entity.getMerchantNo());
         });
 
@@ -91,8 +89,8 @@ public class SalesSummaryFragment extends Fragment {
 
                 LocalDate end = localDate;
                 LocalDate start = localDate.minusDays(7);
-                String bizId = merchantViewModel.getMerchant().getValue().getBusinessNo();
-                String mid = merchantViewModel.getMerchant().getValue().getMerchantNo();
+                String bizId = merchantViewModel.getMainMerchant().getValue().getBusinessNo();
+                String mid = merchantViewModel.getMainMerchant().getValue().getMerchantNo();
 
                 salesViewModel.getSales(TextConvert.localDateToString(start),TextConvert.localDateToString(end),bizId,mid);
             }
@@ -139,8 +137,8 @@ public class SalesSummaryFragment extends Fragment {
         super.onResume();
         merchantViewModel.getMerchantList();
 
-        salesViewModel.getSale_purchase(merchantViewModel.getMerchant().getValue().getBusinessNo(),
-                merchantViewModel.getMerchant().getValue().getMerchantNo(),
+        salesViewModel.getSale_purchase(merchantViewModel.getMainMerchant().getValue().getBusinessNo(),
+                merchantViewModel.getMainMerchant().getValue().getMerchantNo(),
                 TextConvert.localDateToString(Objects.requireNonNull(salesViewModel.getSalesDate().getValue())));
     }
 

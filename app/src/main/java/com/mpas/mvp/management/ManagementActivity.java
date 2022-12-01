@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -23,7 +23,7 @@ import com.mpas.mvp.management.ui.settings.SettingsFragment;
 import com.mpas.mvp.management.ui.sales.MerchantViewModel;
 import com.mpas.mvp.merchant1.view.PaymentsFragment;
 import com.mpas.mvp.management.ui.sales.SalesFragment;
-import com.mpas.mvp.merchant1.view.SalesLIstFragment;
+import com.mpas.mvp.management.ui.sales.SalesLIstFragment;
 import com.mpas.mvp.management.ui.sales.SalesSummaryFragment;
 import com.mpas.mvp.management.ui.sales.SalesViewModel;
 
@@ -45,16 +45,11 @@ public class ManagementActivity extends AppCompatActivity {
         salesViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
 
         //##################################
-            setSupportActionBar(binding.mainToolbar);
-            binding.mainToolbar.setTitle("가맹점");
+           /* setSupportActionBar(binding.mainToolbar);
+            binding.mainToolbar.setTitle("가맹점");*/
         //##################################
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(SalesFragment.newInstance(),"summary");
-        fragmentTransaction.add(SalesFragment.newInstance(),"sales");
-
-
-        getSupportFragmentManager().beginTransaction().show(SalesSummaryFragment.newInstance()).commit();
+        goHome();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -64,6 +59,12 @@ public class ManagementActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        binding.fab.setOnClickListener(view -> {
+            //TODO 모든 백스택을 지우기
+            goHome();
+        });
+
     }
 
     @Override
@@ -107,6 +108,19 @@ public class ManagementActivity extends AppCompatActivity {
 
     public void goSales() {
         getSupportFragmentManager().beginTransaction().addToBackStack("summary").replace(R.id.manage_frame,SalesFragment.newInstance()).commit();
+    }
+
+    public void goHome() {
+        getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.manage_frame,PayHomeFragment.newInstance()).commit();
+    }
+
+    public void setBottomNavigation(boolean b) {
+
+        if(b) {
+            binding.layoutBottom.setVisibility(View.VISIBLE);
+        } else {
+            binding.layoutBottom.setVisibility(View.INVISIBLE);
+        }
     }
 
 }

@@ -39,10 +39,23 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="20dp"
             app:layout_constraintTop_toBottomOf="@+id/salesTitle"
-            app:layout_constraintBottom_toTopOf="@+id/merchant_cardview"
             android:text=""
             android:textColor="@color/black"
             android:textSize="20sp"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/list_merchant"
+            app:layout_constraintTop_toBottomOf="@+id/salesToday"
+            android:background="@drawable/spinner_sales"
+            android:theme="@style/SalesSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:textSize="30sp"
+            android:spinnerMode="dropdown"
+            android:prompt="@string/sales_spinner_prompt"
+            android:backgroundTintMode="multiply" />
+<!--
 
         <androidx.cardview.widget.CardView
             android:id="@+id/merchant_cardview"
@@ -61,14 +74,17 @@
                 android:layout_height="match_parent">
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/list_merchant"
+                    android:background="@drawable/spinner_sales"
                     android:theme="@style/Theme.mpas.cardView.spinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="20dp"
                     android:textSize="30sp"
-                    />
+                    android:backgroundTintMode="multiply"
+                    android:backgroundTint="@color/black"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>
+-->
 
 
         <androidx.cardview.widget.CardView
@@ -79,7 +95,7 @@
             android:layout_marginBottom="10dp"
             android:layout_margin="20dp"
             app:cardCornerRadius="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/merchant_cardview">
+            app:layout_constraintTop_toBottomOf="@+id/list_merchant">
 
             <RelativeLayout
                 android:id="@+id/relativeLayout1"

@@ -53,12 +53,12 @@ public class MerchantFragment extends Fragment {
         binding.recyclerViewMerchantDetail.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         binding.downButton.setOnClickListener(view -> {
-            mViewModel.getMerchantDownLoad(Objects.requireNonNull(binding.businessIdText.getText()).toString(),
+            mViewModel.MerchantDownLoad(Objects.requireNonNull(binding.businessIdText.getText()).toString(),
                     Objects.requireNonNull(binding.merchantIdText.getText()).toString());
 
         });
 
-        mViewModel.getMerchantDownLoad().observe(requireActivity(), merchants->{
+        mViewModel.MerchantDownLoad().observe(requireActivity(), merchants->{
             List<String> strings = merchants.getKetSet();
             stringArrayAdapter = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_expandable_list_item_1, strings);
             stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
@@ -77,8 +77,8 @@ public class MerchantFragment extends Fragment {
             }
         });
 
-        mViewModel.getMerchantDownLoad().observe(requireActivity(), merchant ->{
-            binding.recyclerViewMerchantDetail.setAdapter(new MerchantRecyclerViewAdapter(merchant));
+        mViewModel.MerchantDownLoad().observe(requireActivity(), merchant ->{
+            //binding.recyclerViewMerchantDetail.setAdapter(new MerchantRecyclerViewAdapter(merchant));
         });
 
 

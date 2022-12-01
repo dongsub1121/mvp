@@ -5,6 +5,11 @@
     <color name="maps_3">#333366</color>
     <color name="maps_4">#666699</color>
     <color name="maps_5">#9999CC</color>
+    <color name="maps_accent">#FF007F</color>
+    <color name="maps_icon">#160F42</color>
+    <color name="maps_fink">#FFEFEF</color>
+    <color name="maps_gray">#E7E7E7</color>
+    <color name="maps_red">#DB0000</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

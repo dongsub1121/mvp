@@ -20,6 +20,9 @@ public interface MerchantDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     Completable insert(MerchantEntity... merchants);
 
+    @Query("DELETE FROM MerchantEntity WHERE sitename =:sitename")
+    Completable delete(String... sitename);
+
     @Query("DELETE FROM MerchantEntity")
     Completable deleteAll();
 

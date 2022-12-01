@@ -17,4 +17,27 @@
         <item name="android:background">@color/white</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+
+    <style name="Preference.Theme.Category" parent="Preference.Category">
+        <item name="android:background">@color/white</item>
+        <item name="android:colorAccent">@color/maps_2</item>
+        <item name="android:textColor">@color/maps_4</item>
+    </style>
+
+    <style name="SalesSpinner" parent="">
+        <item name="android:textColor">@color/maps_fink</item>
+        <item name="android:background">@color/maps_1</item>
+    </style>
+
+    <style name="PreferenceList">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/maps_1</item>
+    </style>
+
+
+    <style name="PreferenceSwitch" >
+        <item name="android:colorAccent">@color/maps_2</item>
+
+    </style>
 </resources>

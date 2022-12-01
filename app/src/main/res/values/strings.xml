@@ -149,6 +149,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="sales_spinner_prompt">가맹점을 선택해 주세요</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_sales">SalesActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -169,6 +170,8 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="title_activity_draw">DrawActivity</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
 
 
 </resources>

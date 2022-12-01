@@ -13,7 +13,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.mpas.mvp.merchant1.model.Merchant;
 import com.mpas.mvp.merchant1.repository.ApiRepository;
-import com.mpas.mvp.merchant1.repository.DatabaseRepository;
 import com.mpas.mvp.merchant1.repository.MerchantEntity;
 import com.mpas.mvp.merchant1.repository.MerchantFactory;
 import com.mpas.mvp.merchant1.repository.RoomDB;
@@ -27,35 +26,45 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class MerchantViewModel extends AndroidViewModel {
+
     private final ApiRepository apiRepository = getInstance(getApplication());
     private final CompositeDisposable disposable = new CompositeDisposable();
     private final MerchantFactory merchantFactory = new MerchantFactory();
     private final RoomDB roomDB = RoomDB.getInstance(getApplication());
 
     public MutableLiveData<MerchantFactory> merchant_factory = new MutableLiveData<>();
-    public MutableLiveData<MerchantEntity> merchant =  new MutableLiveData<>();
+    public MutableLiveData<MerchantEntity> mainMerchant =  new MutableLiveData<>();
+    public MutableLiveData<List<MerchantEntity>> merchantEntities = new MutableLiveData<>();
     public MutableLiveData<ArrayList<String>> merchants= new MutableLiveData<>();
+    public MutableLiveData<String> message = new MutableLiveData<>();
 
     public MerchantViewModel(@NonNull Application application) {
         super(application);
         setMerchant();
         getMerchantList();
+        message.setValue("");
     }
 
-    public MutableLiveData<MerchantFactory> getMerchantDownLoad() {
+
+    public MutableLiveData<String> getMessage() {
+        return message;
+    }
+
+    public MutableLiveData<MerchantFactory> MerchantDownLoad() {
         return merchant_factory;
     }
 
-    public MutableLiveData<MerchantEntity> getMerchant() {
-        return merchant;
+    public MutableLiveData<MerchantEntity> getMainMerchant() {
+        return mainMerchant;
     }
 
     public MutableLiveData<ArrayList<String>> getMerchant_list() {
         return merchants;
     }
 
+    public MutableLiveData<List<MerchantEntity>> getMerchantAll() { return merchantEntities;}
 
-    public void getMerchantDownLoad(String biz, String mid) {
+    public void MerchantDownLoad(String biz, String mid) {
 
         disposable.add(apiRepository.getMerchantInfo(biz, mid)
                 .subscribeOn(Schedulers.io())
@@ -67,10 +76,16 @@ public class MerchantViewModel extends AndroidViewModel {
                         Log.e("getMerchantDownLoad","#############");
                         Log.e("onSuccess",merchantInfoModel.toString());
 
-                        merchantFactory.add(merchantInfoModel.getResult());
-                        merchant_factory.setValue(merchantFactory);
-                        AddMerchant(merchantInfoModel.getResult()); // db저장
-                        SetMerchant(merchantInfoModel.getResult().getSitename());
+                        if (merchantInfoModel.getResult().getSitename() == null) {
+                            message.setValue("가맹점 정보 오류");
+                        } else {
+                            merchantFactory.add(merchantInfoModel.getResult());
+                            merchant_factory.setValue(merchantFactory);
+                            AddMerchant(merchantInfoModel.getResult()); // db저장
+                            if (mainMerchant.getValue() == null) {
+                                SetMerchant(merchantInfoModel.getResult().getSitename());
+                            }
+                        }
                     }
 
                     @Override
@@ -93,10 +108,21 @@ public class MerchantViewModel extends AndroidViewModel {
         mer.setSitename(merchant.getSitename());
         mer.setSiteaddress(merchant.getSiteaddress());
 
-        roomDB.merchantDao().insert(mer).subscribeOn(Schedulers.io())
+
+        roomDB.merchantDao().loadById(merchant.getSitename()).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(()->{
-                    Toast.makeText(getApplication(), "저장", Toast.LENGTH_SHORT).show();
+                .subscribe(merchant_item->{
+                    if(merchant_item.size() == 0){
+                        Log.e("checkDao","추가 가능");
+                        roomDB.merchantDao().insert(mer).subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(()->{
+                                    message.setValue("가맹점이 추가 되었습니다.");
+                                });
+                    } else {
+                        message.setValue("이미 추가된 가맹점 입니다");
+                        Log.e("checkDao",merchant_item.size() +"이미 존재하는 가맹점 입니다.");
+                    }
                 });
     }
 
@@ -106,10 +132,9 @@ public class MerchantViewModel extends AndroidViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(merchant_item->{
                     if(merchant_item.size() > 0){
-                        merchant.setValue(merchant_item.get(0));
+                        mainMerchant.setValue(merchant_item.get(0));
                         Log.e("SetMerchant",merchant_item.get(0).getSitename());
                     } else {
-                        Toast.makeText(getApplication(), "가맹점 없음", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -120,6 +145,24 @@ public class MerchantViewModel extends AndroidViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(()->{
                     Toast.makeText(getApplication(), "DB 전체 삭제", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    public void deleteSingle(String siteName) {
+
+        roomDB.merchantDao().delete(siteName).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(()->{
+                    getMerchantEntities();
+
+                    if (mainMerchant.getValue() != null) {
+                        if(siteName.equals(mainMerchant.getValue().getSitename())) {
+                            mainMerchant.setValue(null);
+                        }
+                    } else {
+                        Toast.makeText(getApplication(), "가맹점 삭제", Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 
@@ -137,8 +180,20 @@ public class MerchantViewModel extends AndroidViewModel {
                         }
                         merchants.setValue(arrayList);
                     } else {
-                        Toast.makeText(getApplication(), "가맹점 없음", Toast.LENGTH_SHORT).show();
                     }
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    public void getMerchantEntities(){
+        roomDB.merchantDao().getAll().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(merchant_list->{
+                    Log.e("getMerchantEntities count", String.valueOf(merchant_list.size()));
+                    if( merchant_list.size() == 0) {
+                        mainMerchant.setValue(null);
+                    }
+                    merchantEntities.setValue(merchant_list);
                 });
     }
 
@@ -146,16 +201,12 @@ public class MerchantViewModel extends AndroidViewModel {
         boolean pass = false;
         ArrayList<String> arrayList = getMerchant_list().getValue();
 
-        if(arrayList.size() < 0 ) {
+        if(arrayList.size() > 0 ) {
             pass = true;
-        } else {
-            for ( String s : arrayList) {
-
-            }
         }
-
         return pass;
     }
+
     @SuppressLint("CheckResult")
     private void setMerchant(){
         ArrayList<String> arrayList = new ArrayList<>();
@@ -166,7 +217,7 @@ public class MerchantViewModel extends AndroidViewModel {
                     for( MerchantEntity merchantEntity : merchant_list) {
                         Log.e("getMerchantList",merchantEntity.getSitename());
                         arrayList.add(merchantEntity.getSitename());
-                        merchant.setValue(merchantEntity);
+                        mainMerchant.setValue(merchantEntity);
                     }
                     merchants.setValue(arrayList);
                 });

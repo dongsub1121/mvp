@@ -30,15 +30,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".management.SettingActivity"
+            android:exported="false"
+            android:label="SettingsActivity"
+            android:theme="@style/Theme.Mpas.Preference.style"
+            />
+        <activity
             android:name=".management.DrawActivity"
             android:exported="false"
-            android:label="@string/title_activity_draw"
-            android:theme="@style/NoActionBar" />
+            android:label="@string/title_activity_draw" />
         <activity
             android:name=".management.ManagementActivity"
-            android:exported="false" />
-        <activity
-            android:name=".merchant1.view.TestActivity"
             android:exported="false" />
         <activity
             android:name=".merchant1.view.ManamodiActivity"
