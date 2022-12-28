@@ -10,12 +10,12 @@
             android:layout_height="wrap_content"
             android:key="merchant_management"
             android:title="가맹점 관리"
-            android:fragment="com.mpas.mvp.management.SettingMerchantHomeFragment"/>
+            android:fragment="com.mpas.mvp.management.ui.settings.SettingMerchantHomeFragment"/>
         <Preference
             android:key="employee_management"
             android:title="직원 관리"
             android:summary="직원을 등록, 권한부여, 삭제 할 수 있습니다"
-            android:fragment="com.mpas.mvp.management.SettingEmployeeFragment"/>
+            android:fragment="com.mpas.mvp.management.ui.settings.SettingEmployeeFragment"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -33,7 +33,7 @@
             android:key="reader_screen"
             android:shouldDisableView="true"
             android:enabled="true"
-            android:fragment="com.mpas.mvp.management.SettingsReaderScreenEditFragment"
+            android:fragment="com.mpas.mvp.management.ui.settings.SettingsReaderScreenEditFragment"
             android:title="리더기 화면설정" />
     </PreferenceCategory>
 
@@ -63,12 +63,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:key="pin"
-            android:fragment="com.mpas.mvp.management.SettingsPasswordFragment"
+            android:fragment="com.mpas.mvp.management.ui.settings.SettingsPasswordFragment"
             android:title="비밀번호" />
         <Preference
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fragment="com.mpas.mvp.management.SettingsFingerPrintFragment"
+            android:fragment="com.mpas.mvp.management.ui.settings.SettingsFingerPrintFragment"
             android:title="생체 인식 설정" />
     </PreferenceCategory>
 

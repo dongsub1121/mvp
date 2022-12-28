@@ -22,6 +22,18 @@ public class DatabaseRepository {
         this.roomDB = RoomDB.getInstance(mContext);
     }
 
+    public void toMerchantEntity(Merchant.Result merchant) {
+        MerchantEntity mer = new MerchantEntity();
+        mer.setBusinessNo(merchant.getBusinessnumber());
+        mer.setMerchantNo(merchant.getSiteid());
+        mer.setSitename(merchant.getSitename());
+        mer.setSiteaddress(merchant.getSiteaddress());
+    }
+
+    public void setMainMerchant(MerchantEntity entity) {
+        entity.setMaster(true);
+    }
+
     @SuppressLint("CheckResult")
     public void AddMerchant(Merchant.Result merchant){
         MerchantEntity mer = new MerchantEntity();
@@ -73,4 +85,5 @@ public class DatabaseRepository {
                 });
         return arrayList;
     }
+
 }

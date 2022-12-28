@@ -17,7 +17,6 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-
         <TextView
             android:id="@+id/salesTitle"
             android:layout_margin="20dp"
@@ -55,37 +54,6 @@
             android:spinnerMode="dropdown"
             android:prompt="@string/sales_spinner_prompt"
             android:backgroundTintMode="multiply" />
-<!--
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/merchant_cardview"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:theme="@style/Theme.mpas.cardView.spinner"
-            app:layout_constraintTop_toBottomOf="@+id/salesToday"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:cardCornerRadius="20dp"
-            tools:layout_editor_absoluteX="0dp">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/list_merchant"
-                    android:background="@drawable/spinner_sales"
-                    android:theme="@style/Theme.mpas.cardView.spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:textSize="30sp"
-                    android:backgroundTintMode="multiply"
-                    android:backgroundTint="@color/black"/>
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.cardview.widget.CardView>
--->
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/sales_cardView"

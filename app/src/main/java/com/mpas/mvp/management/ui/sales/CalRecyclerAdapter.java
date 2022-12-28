@@ -1,8 +1,7 @@
-package com.mpas.mvp.merchant1.view;
+package com.mpas.mvp.management.ui.sales;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
@@ -23,6 +22,8 @@ import java.util.ArrayList;
 
 
 public class CalRecyclerAdapter extends RecyclerView.Adapter<CalRecyclerAdapter.ViewHolder>{
+
+    //TODO 캘린더 recyclerView를 네이버처럼 개선
 
     private ArrayList<LocalDate> days = new ArrayList<>();
     private final SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();

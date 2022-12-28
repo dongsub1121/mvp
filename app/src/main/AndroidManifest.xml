@@ -30,11 +30,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".management.SettingActivity"
+            android:name=".management.ui.payments.PayFactoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".management.ui.scanner.ScanActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_scan"
+            android:theme="@style/Theme.Mpas.Fullscreen" />
+        <activity
+            android:name=".management.ui.settings.SettingActivity"
             android:exported="false"
             android:label="SettingsActivity"
-            android:theme="@style/Theme.Mpas.Preference.style"
-            />
+            android:theme="@style/Theme.Mpas.Preference.style" />
         <activity
             android:name=".management.DrawActivity"
             android:exported="false"

@@ -21,7 +21,7 @@
 
     </style>
 
-    <style name="salesSummary" parent="" >
+    <style name="salesSummary" parent="">
         <item name="android:textColor">@color/maps_fink</item>
         <item name="android:background">@color/maps_2</item>
     </style>
@@ -41,7 +41,6 @@
     </style>
 
 
-
     <!--..........................-->
 
     <style name="SettingsCategory" parent="Preference.Category">
@@ -49,8 +48,6 @@
         <item name="android:colorAccent">@color/purple_200</item>
 
     </style>
-
-
 
 
     <style name="Theme.mpas.cardView.spinner" parent="Theme.Mpas">
@@ -70,7 +67,6 @@
         <item name="fullscreenBackgroundColor">@color/maps_1</item>
         <item name="fullscreenTextColor">@color/maps_2</item>
     </style>
-
 
 
     <style name="MyApplication.payment" parent="">
@@ -115,5 +111,87 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Theme.Mpas.Fullscreen" parent="Theme.Mpas">
+        <item name="android:actionBarStyle">@style/Widget.Theme.Mpas.ActionBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
 
+
+    <style name="Custom" parent="Theme.Material3.Dark.NoActionBar">
+
+        <!-- Original AppCompat attributes. -->
+<!--        <item name="colorPrimary">@color/maps_1</item>
+        <item name="colorPrimaryDark">@color/maps_2</item>
+        <item name="colorSecondary">@color/maps_3</item>
+        <item name="android:colorBackground">@color/maps_4</item>
+        <item name="colorError">@color/maps_accent</item>
+        <item name="android:background">@color/maps_2</item>-->
+
+        <!-- MaterialComponents attributes (needed if parent="Theme.AppCompat"). -->
+        <item name="colorPrimaryVariant">@color/blue_100</item>
+        <item name="colorSecondaryVariant">@color/blue_200</item>
+        <item name="colorSurface">@color/blue_300</item>
+        <item name="colorOnPrimary">@color/blue_400</item>
+        <item name="colorOnSecondary">@color/blue_500</item>
+        <item name="colorOnBackground">@color/blue_600</item>
+        <item name="colorOnError">@color/blue_700</item>
+        <item name="colorOnSurface">@color/blue_800</item>
+        <item name="scrimBackground">@color/blue_900</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+
+        <!-- Material3 attributes (needed if parent="Theme.MaterialComponents"). -->
+        <item name="colorPrimaryInverse">@color/fink_50</item>  <!--이벤트 발생 후-->
+        <item name="colorPrimaryContainer">@color/fink_200</item>
+        <item name="colorOnPrimaryContainer">@color/fink_300</item>
+        <item name="colorSecondaryContainer">@color/fink_400</item>
+        <item name="colorOnSecondaryContainer">@color/fink_500</item>
+        <item name="colorTertiary">@color/fink_600</item>
+        <item name="colorOnTertiary">@color/fink_700</item>
+        <item name="colorTertiaryContainer">@color/fink_800</item>
+        <item name="colorOnTertiaryContainer">@color/fink_900</item>
+        <item name="colorSurfaceVariant">@color/purple_900</item> hint // suffix // prefix
+        <item name="colorOnSurfaceVariant">@color/blue_300</item> 커서 잃을때
+        <item name="colorSurfaceInverse">@color/blue_500</item>
+        <item name="colorOnSurfaceInverse">@color/purple_200</item> 커서 왔을때
+        <item name="colorOutline">@color/maps_red</item> 아웃라인
+        <item name="colorErrorContainer">@color/maps_red</item>
+        <item name="colorOnErrorContainer">@color/maps_red</item>
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.Material3.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.Material3.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.Material3.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Material3.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.Material3.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Material3.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Material3.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Material3.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.Material3.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Material3.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Material3.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Material3.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.Material3.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.Material3.LabelSmall</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
+    </style>
+
+    <style name="MyTextInput" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="prefixText">"￦"</item>
+        <item name="prefixTextAppearance">@style/TextAppearance.Material3.BodySmall</item>
+        <item name="prefixTextColor">@color/blue_300</item>
+    </style>
 </resources>

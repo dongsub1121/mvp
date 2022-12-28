@@ -22,8 +22,8 @@ import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.SalesFragmentBinding;
 import com.mpas.mvp.management.ManagementActivity;
 import com.mpas.mvp.merchant1.model.SalesDetailModel;
+import com.mpas.mvp.merchant1.repository.MerchantEntity;
 import com.mpas.mvp.merchant1.util.TextConvert;
-import com.mpas.mvp.merchant1.view.CalRecyclerAdapter;
 import com.mpas.mvp.merchant1.view.SaleDetailRecyclerViewAdapter;
 
 import java.time.LocalDate;
@@ -51,8 +51,6 @@ public class SalesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.sales_fragment, container, false);
-        //salesViewModel = ManamodiActivity.getSalesViewModel();
-        //merchantViewModel = ManamodiActivity.getMerchantViewModel();
         merchantViewModel = ManagementActivity.getMerchantViewModel();
         salesViewModel = ManagementActivity.getSalesViewModel();
 
@@ -77,8 +75,8 @@ public class SalesFragment extends Fragment {
             public void onRefresh(LocalDate localDate, int pos) {
                 Log.e(TAG,"호출");
                 salesViewModel.setSalesDate(localDate);
-                salesViewModel.getSale_purchase(merchantViewModel.getMainMerchant().getValue().getBusinessNo(),
-                        merchantViewModel.getMainMerchant().getValue().getMerchantNo(),localDate.toString().replace("-",""));
+                salesViewModel.getSale_purchase(merchantViewModel.getMasterMerchant().getValue().getBusinessNo(),
+                        merchantViewModel.getMasterMerchant().getValue().getMerchantNo(),localDate.toString().replace("-",""));
             }
         });
 
@@ -96,8 +94,10 @@ public class SalesFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        salesViewModel.getSale_purchase(merchantViewModel.getMainMerchant().getValue().getBusinessNo(),
-                merchantViewModel.getMainMerchant().getValue().getMerchantNo(),
+        MerchantEntity merchantEntity = merchantViewModel.getTargetMerchant().getValue();
+
+        salesViewModel.getSale_purchase(merchantEntity != null ? merchantEntity.getBusinessNo() : null,
+                merchantEntity != null ? merchantEntity.getMerchantNo() : null,
                 TextConvert.localDateToString(Objects.requireNonNull(salesViewModel.getSalesDate().getValue())));
     }
 }

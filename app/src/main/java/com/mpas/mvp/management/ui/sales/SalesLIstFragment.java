@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mpas.mvp.R;
-import com.mpas.mvp.management.SalesListAdapter;
 
 import java.util.ArrayList;
 

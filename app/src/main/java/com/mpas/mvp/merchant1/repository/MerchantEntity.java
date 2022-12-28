@@ -12,9 +12,20 @@ public class MerchantEntity {
     private String sitename;
     @ColumnInfo
     private String businessNo;
-    private String MerchantNo;
+    @ColumnInfo
+    private String merchantNo;
+    @ColumnInfo
     private String siteaddress;
+    @ColumnInfo
+    private Boolean master;
 
+    public Boolean getMaster() {
+        return master;
+    }
+
+    public void setMaster(Boolean master) {
+        this.master = master;
+    }
 
     @NonNull
     public String getSitename() {
@@ -34,11 +45,11 @@ public class MerchantEntity {
     }
 
     public String getMerchantNo() {
-        return MerchantNo;
+        return merchantNo;
     }
 
     public void setMerchantNo(String merchantNo) {
-        MerchantNo = merchantNo;
+        this.merchantNo = merchantNo;
     }
 
     public String getSiteaddress() {
@@ -47,6 +58,16 @@ public class MerchantEntity {
 
     public void setSiteaddress(String siteaddress) {
         this.siteaddress = siteaddress;
+    }
+
+    @NonNull
+    public String toString() {
+
+        return '\n'+"sitename : " + sitename + '\n'+
+                "businessNo : " + businessNo + '\n'+
+                "merchantNo : " + merchantNo + '\n'+
+                "siteaddress : " + siteaddress +'\n'+
+                "master : " + master;
     }
 
 }

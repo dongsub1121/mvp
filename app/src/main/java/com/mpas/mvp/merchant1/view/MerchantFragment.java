@@ -53,7 +53,7 @@ public class MerchantFragment extends Fragment {
         binding.recyclerViewMerchantDetail.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         binding.downButton.setOnClickListener(view -> {
-            mViewModel.MerchantDownLoad(Objects.requireNonNull(binding.businessIdText.getText()).toString(),
+            mViewModel.checkMerchant(Objects.requireNonNull(binding.businessIdText.getText()).toString(),
                     Objects.requireNonNull(binding.merchantIdText.getText()).toString());
 
         });

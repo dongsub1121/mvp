@@ -19,6 +19,7 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/ic_to_right_24.xml" value="0.1985" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/ic_toleft_24.xml" value="0.1985" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/ic_twotone_settings_24.xml" value="0.1985" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/round_shape.xml" value="0.2045" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/side_nav_bar.xml" value="0.253" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/spinner_sales.xml" value="0.275" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/tab_selector.xml" value="0.363" />
@@ -29,8 +30,10 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_management.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_manamodi.xml" value="0.19895833333333332" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_merchant.xml" value="0.21875" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_pay_factory.xml" value="0.196875" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_sales.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_sales2.xml" value="0.2817028985507246" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_scan.xml" value="0.196875" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_setting.xml" value="0.3845108695652174" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_test.xml" value="0.1647940074906367" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/app_bar_draw.xml" value="0.3541666666666667" />
@@ -40,6 +43,8 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/content_sales.xml" value="0.2817028985507246" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/cpm_fragment.xml" value="0.35280797101449274" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/cpmcardview.xml" value="0.35280797101449274" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_auth_transaction_wait.xml" value="0.264945652173913" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_auth_transection_wait.xml" value="0.196875" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_cpm_mvp.xml" value="0.18489583333333334" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_credit_pay.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_gallery.xml" value="0.3541666666666667" />
@@ -78,6 +83,7 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sales_detail_item.xml" value="0.23489583333333333" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sales_ffragment.xml" value="0.21666666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/sales_fragment.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/scan_layout.xml" value="0.3120471014492754" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/switch_item.xml" value="0.1921875" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/menu/activity_main_drawer.xml" value="0.67" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/menu/draw.xml" value="0.38177083333333334" />

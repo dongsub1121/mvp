@@ -1,6 +1,7 @@
 package com.mpas.mvp.management;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,6 +19,8 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ActivityManagementBinding;
 import com.mpas.mvp.management.ui.settings.SettingsFragment;
@@ -120,6 +124,37 @@ public class ManagementActivity extends AppCompatActivity {
             binding.layoutBottom.setVisibility(View.VISIBLE);
         } else {
             binding.layoutBottom.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.e("zxing","333");
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,
+                resultCode,
+                data);
+
+
+        if (result != null) {
+
+            if (result.getContents() == null) { //스캔 취소시
+
+                Log.e("zxing", "Canceled scan");
+
+            } else { //스캔 완료시
+
+                Log.e("zxing", result.getContents().toString());
+
+            }
+
+        } else {
+
+// This is important, otherwise the result will not be passed to the fragment
+
+            super.onActivityResult(requestCode, resultCode, data);
+
         }
     }
 

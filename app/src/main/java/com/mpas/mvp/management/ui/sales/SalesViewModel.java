@@ -31,8 +31,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SalesViewModel extends AndroidViewModel {
 
-    private final RoomDB roomDB = RoomDB.getInstance(getApplication());
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public SalesViewModel(@NonNull Application application) {
 
@@ -109,6 +107,7 @@ public class SalesViewModel extends AndroidViewModel {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void getSales(String startDate, String endDate, String biz, String mid) {
+        Log.e("getSales",startDate+endDate+":::"+biz+mid);
        disposable.add(apiRepository.getSalesSummary(startDate,endDate,biz,mid)
                .subscribeOn(Schedulers.io())
                .observeOn(AndroidSchedulers.mainThread())

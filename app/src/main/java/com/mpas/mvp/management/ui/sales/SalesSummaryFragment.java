@@ -28,7 +28,6 @@ import com.mpas.mvp.databinding.FragmentSalesSummaryBinding;
 import com.mpas.mvp.management.ManagementActivity;
 import com.mpas.mvp.merchant1.model.SalesModel;
 import com.mpas.mvp.merchant1.util.TextConvert;
-import com.mpas.mvp.merchant1.view.CalRecyclerAdapter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -61,6 +60,8 @@ public class SalesSummaryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //TODO 캘린더 recyclerView를 네이버처럼 개선
+
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_summary,container,false);
         merchantViewModel = ManagementActivity.getMerchantViewModel();
         salesViewModel = ManagementActivity.getSalesViewModel();
@@ -69,12 +70,22 @@ public class SalesSummaryFragment extends Fragment {
         binding.barChart.setTouchEnabled(false);
 
         merchantViewModel.getMerchant_list().observe(requireActivity(),arrays ->{
+            Log.e("merchant List :" ,arrays.toString());
+
+            if(arrays == null || arrays.size() <= 0) {
+                //TODO 데이터 없을때 화면 표시
+                binding.relativeLayout1.setVisibility(View.GONE);
+                binding.barChart.setVisibility(View.GONE);
+                binding.calenderRecycler.setVisibility(View.GONE);
+            }
+
             stringArrayAdapter = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_expandable_list_item_1, arrays);
             stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
             binding.listMerchant.setAdapter(stringArrayAdapter);
         });
 
-        merchantViewModel.getMainMerchant().observe(requireActivity(), entity->{
+        merchantViewModel.getTargetMerchant().observe(requireActivity(), entity->{
+            Log.e("targetIn :" ,entity.toString());
             salesViewModel.getSales("","",entity.getBusinessNo(),entity.getMerchantNo());
         });
 
@@ -89,8 +100,8 @@ public class SalesSummaryFragment extends Fragment {
 
                 LocalDate end = localDate;
                 LocalDate start = localDate.minusDays(7);
-                String bizId = merchantViewModel.getMainMerchant().getValue().getBusinessNo();
-                String mid = merchantViewModel.getMainMerchant().getValue().getMerchantNo();
+                String bizId = merchantViewModel.getMasterMerchant().getValue().getBusinessNo();
+                String mid = merchantViewModel.getMasterMerchant().getValue().getMerchantNo();
 
                 salesViewModel.getSales(TextConvert.localDateToString(start),TextConvert.localDateToString(end),bizId,mid);
             }
@@ -111,7 +122,8 @@ public class SalesSummaryFragment extends Fragment {
         binding.listMerchant.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                merchantViewModel.SetMerchant(adapterView.getSelectedItem().toString());
+                Log.e("list set :" ,adapterView.getSelectedItem().toString());
+                merchantViewModel.changeMerchant(adapterView.getSelectedItem().toString());
             }
 
             @Override
@@ -122,39 +134,11 @@ public class SalesSummaryFragment extends Fragment {
         binding.relativeLayout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ManamodiActivity.goFragment(1);
-                //ManagementActivity.goFragment(1);
                 managementActivity.goSales();
             }
         });
 
         return binding.getRoot();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    public void onResume() {
-        super.onResume();
-        merchantViewModel.getMerchantList();
-
-        salesViewModel.getSale_purchase(merchantViewModel.getMainMerchant().getValue().getBusinessNo(),
-                merchantViewModel.getMainMerchant().getValue().getMerchantNo(),
-                TextConvert.localDateToString(Objects.requireNonNull(salesViewModel.getSalesDate().getValue())));
-    }
-
-    private void setBarChart(List<SalesModel.SaleDB> db) {
-
-        for(SalesModel.SaleDB data : db) {
-            //String tag = data.getTransdatelabel().replace("0","").replace("","\n");
-
-            String tag = data.getTransdatelabel().replace("0","").split(" ")[0];
-            Integer price = data.getTramt()/1000000;
-
-            binding.barChart.setHorizontalScrollBarEnabled(false);
-            //binding.barChart.addBar(new BarModel(tag, price, 0xFF56B7F1));
-        }
-        //binding.barChart.startAnimation();
-
     }
 
     /**
@@ -212,12 +196,14 @@ public class SalesSummaryFragment extends Fragment {
         binding.barChart.getAxisRight().setEnabled(false);
         binding.barChart.getAxisLeft().setEnabled(false);
         binding.barChart.setDrawValueAboveBar(true);
-
+        binding.barChart.setNoDataText("가맹점이 없어요");
         binding.barChart.setDescriptionPosition(1350, 100);
         binding.barChart.setDescription("단위 : 원");
         bardataset.setBarSpacePercent(20);
         bardataset.setColors(MY_COLORS);  //bardataset.setColors(ColorTemplate.PASTEL_COLORS);
         binding.barChart.setData(data);
+        binding.barChart.setNoDataText("가맹점이 없어요");
+        binding.barChart.setDescriptionColor(Color.GREEN);
         binding.barChart.invalidate();
     }
 
