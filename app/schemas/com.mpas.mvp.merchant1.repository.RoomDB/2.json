@@ -1,0 +1,58 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "02a91ad869e2d2d8cccf51397951aca0",
+    "entities": [
+      {
+        "tableName": "MerchantEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sitename` TEXT NOT NULL, `businessNo` TEXT, `MerchantNo` TEXT, `siteaddress` TEXT, `master` INTEGER NOT NULL, PRIMARY KEY(`sitename`))",
+        "fields": [
+          {
+            "fieldPath": "sitename",
+            "columnName": "sitename",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessNo",
+            "columnName": "businessNo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "MerchantNo",
+            "columnName": "MerchantNo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "siteaddress",
+            "columnName": "siteaddress",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "master",
+            "columnName": "master",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "sitename"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '02a91ad869e2d2d8cccf51397951aca0')"
+    ]
+  }
+}

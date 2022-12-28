@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="10dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/maps_icon">
+            <LinearLayout
+                android:id="@+id/neonSign_container"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/maps_icon"
+                android:gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/neonSign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/maps_icon"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/edit"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/maps_icon"
+                    android:layout_marginStart="20dp"
+                    android:text="EDIT"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/light_blue_600"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/infoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/maps_fink"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/neonSign_container" >
+
+                <TextView
+                    android:id="@+id/neonSign_biz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/maps_fink"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/maps_1"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/neonSign_mid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/neonSign_biz"
+                    android:gravity="center_vertical"
+                    android:background="@color/maps_fink"
+                    android:text=""
+                    android:textColor="@color/maps_1" />
+                <TextView
+                    android:id="@+id/neonSign_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/neonSign_mid"
+                    android:gravity="center_vertical"
+                    android:background="@color/maps_fink"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/maps_1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/editLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/maps_icon"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/infoLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    android:id="@+id/setMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/maps_icon"
+                    android:tooltipText="결제 및 매출정보가 제공되요"
+                    android:text="결제 가맹점 설정"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="@color/light_blue_600"/>
+
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/setMain"
+                    android:background="@color/maps_icon"
+                    android:layout_marginStart="70dp"
+                    android:text="삭제"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="@color/maps_red"/>
+
+
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

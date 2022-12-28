@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/draw_navigation"
+    app:startDestination="@+id/nav_sales">
+
+    <fragment
+        android:id="@+id/nav_sales"
+        android:name="com.mpas.mvp.management.ui.sales.HomeFragment"
+        android:label="@string/menu_sales"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_scanner"
+        android:name="com.mpas.mvp.management.ui.payments.PaymentsFragment"
+        android:label="@string/menu_barcode_reader"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_pos"
+        android:name="com.mpas.mvp.management.ui.pos.SlideshowFragment"
+        android:label="@string/menu_pos"
+        tools:layout="@layout/fragment_slideshow" />
+</navigation>

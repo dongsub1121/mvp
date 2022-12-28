@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".management.ui.scanner.ScanActivity"
+    >
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/scanView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
+        android:background="@drawable/round_shape"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_shape"
+            app:layout_constraintTop_toTopOf="parent">
+            <Button
+                android:id="@+id/bt_flash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="주위가 어둡다면 여기를  Click !!"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/maps_accent"
+                android:background="@color/maps_0"
+                android:layout_marginTop="10dp"/>
+
+            <com.journeyapps.barcodescanner.DecoratedBarcodeView
+                android:id="@+id/db_qr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_shape"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:zxing_preview_scaling_strategy="fitXY"
+                app:zxing_scanner_layout="@layout/scan_layout" />
+
+            <TextView
+                android:id="@+id/textGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/db_qr"
+                android:layout_marginBottom="10dp"
+                android:background="@color/maps_0"
+                android:gravity="center_horizontal"
+                android:text="금액 입력 후 바코드를 읽어 주세요"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scanView">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/priceInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="결제 금액을 입력해 주세요"
+            android:theme="@style/Custom"
+            android:gravity="center_vertical"
+            app:prefixText="￦"
+            app:prefixTextAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:prefixTextColor="@color/blue_300"
+            android:textStyle="italic|bold">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:layout_margin="10dp"
+                android:textSize="30sp"
+                android:textStyle="italic|bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tipInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/priceInput"
+            android:layout_marginTop="10dp"
+            android:hint="봉사료를 입력해 주세요"
+            app:helperText="봉사료가 설정되어 있어요">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

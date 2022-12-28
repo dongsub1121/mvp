@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_navigation"
+    app:startDestination="@id/settingMainFragment">
+
+    <fragment
+        android:id="@+id/settingMainFragment"
+        android:name="com.mpas.mvp.management.ui.settings.SettingMainFragment"
+        android:label="SettingMainFragment" >
+        <action
+            android:id="@+id/action_settingMainFragment_to_settingMerchantHomeFragment"
+            app:destination="@id/settingMerchantHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingMerchantHomeFragment"
+        android:name="com.mpas.mvp.management.ui.settings.SettingMerchantHomeFragment"
+        android:label="SettingMerchantHomeFragment" >
+        <action
+            android:id="@+id/action_settingMerchantHomeFragment_to_settingMerchantFragment"
+            app:destination="@id/settingMerchantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingMerchantFragment"
+        android:name="com.mpas.mvp.management.ui.settings.SettingMerchantFragment"
+        android:label="SettingMerchantFragment" >
+        <action
+            android:id="@+id/action_settingMerchantFragment_to_settingMerchantHomeFragment"
+            app:destination="@id/settingMerchantHomeFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sales"
+            android:icon="@drawable/ic_sale_24"
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="always"
+            android:enabled="true"
+            android:title="@string/menu_sales" />
+        <item
+            android:id="@+id/nav_scanner"
+            android:icon="@drawable/ic_saccer_24"
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="always"
+            android:enabled="false"
+            android:title="@string/menu_barcode_reader" />
+        <item
+            android:id="@+id/nav_pos"
+            android:icon="@drawable/ic_pos_24"
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="collapseActionView"
+            android:enabled="false"
+            android:title="@string/menu_pos" />
+        <item
+            android:id="@+id/nav_manager"
+            android:icon="@drawable/ic_baseline_widgets_24"
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="collapseActionView"
+            android:enabled="false"
+            android:title="@string/menu_manager"/>
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_24"
+            android:title="@string/menu_settings" />
+    </group>
+</menu>

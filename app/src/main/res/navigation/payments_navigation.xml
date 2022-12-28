@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payments_navigation"
+    app:startDestination="@id/authTransactionWaitFragment">
+
+    <fragment
+        android:id="@+id/authTransactionWaitFragment"
+        android:name="com.mpas.mvp.management.AuthTransactionWaitFragment"
+        android:label="fragment_auth_transaction_wait"
+        tools:layout="@layout/fragment_auth_transaction_wait" >
+        <action
+            android:id="@+id/action_authTransactionWaitFragment_to_payBillFragment"
+            app:destination="@id/payBillFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payBillFragment"
+        android:name="com.mpas.mvp.management.PayBillFragment"
+        android:label="fragment_pay_bill"
+        tools:layout="@layout/fragment_pay_bill" >
+        <action
+            android:id="@+id/action_payBillFragment_to_payShareFragment"
+            app:destination="@id/payShareFragment" />
+        <action
+            android:id="@+id/action_payBillFragment_to_payHomeFragment"
+            app:destination="@id/payHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payShareFragment"
+        android:name="com.mpas.mvp.management.PayShareFragment"
+        android:label="fragment_pay_share"
+        tools:layout="@layout/fragment_pay_share" >
+        <action
+            android:id="@+id/action_payShareFragment_to_payHomeFragment"
+            app:destination="@id/payHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payHomeFragment"
+        android:name="com.mpas.mvp.management.PayHomeFragment"
+        android:label="fragment_pay_home"
+        tools:layout="@layout/fragment_pay_home"/>
+</navigation>
