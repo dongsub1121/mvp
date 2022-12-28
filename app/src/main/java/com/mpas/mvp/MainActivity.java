@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.zxing.client.android.Intents;
+import com.mpas.mvp.ui.main.CpmFragment;
+import com.mpas.mvp.ui.main.CpmMvpFragment;
 import com.mpas.mvp.ui.main.MainFragment;
-import com.mpas.mvp.ui.main.mpm.PaymentFragment;
+import com.mpas.mvp.ui.main.PaymentFragment;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -89,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 fragment = PaymentFragment.newInstance();
                 break;
             case 3:
+                //fragment = CpmFragment.newInstance(); Default
+                fragment = CpmMvpFragment.newInstance();
                 break;
             case 4:
             case 5:

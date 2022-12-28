@@ -23,8 +23,6 @@ public class PaydaPostMPMCommit {
     private Integer taxPrice;
     @SerializedName("tipPrice") @Expose
     private Integer tipPrice;
-
-
     @SerializedName("app_tm") @Expose
     private String app_tm;
     @SerializedName("app_no") @Expose

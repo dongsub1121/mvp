@@ -1,9 +1,16 @@
+<<<<<<<< HEAD:app/src/main/java/com/mpas/mvp/ui/main/mpm/PaymentFragment.java
 package com.mpas.mvp.ui.main.mpm;
+========
+package com.mpas.mvp.ui.main.payments;
+>>>>>>>> origin/1005:app/src/main/java/com/mpas/mvp/ui/main/payments/PaymentFragment.java
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+<<<<<<<< HEAD:app/src/main/java/com/mpas/mvp/ui/main/mpm/PaymentFragment.java
 import android.annotation.SuppressLint;
+========
+>>>>>>>> origin/1005:app/src/main/java/com/mpas/mvp/ui/main/payments/PaymentFragment.java
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,7 +33,8 @@ import java.text.MessageFormat;
 public class PaymentFragment extends Fragment {
 
     private static final String TAG = PaymentFragment.class.getSimpleName();
-    private PaymentViewModel paymentViewModel;
+    //private PaymentViewModel paymentViewModel;
+    private PaymentsViewModel paymentViewModel;
     private PaymentFragmentBinding binding;
 
     public static PaymentFragment newInstance() {
@@ -39,20 +47,13 @@ public class PaymentFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.payment_fragment,container,false);
-        paymentViewModel = new ViewModelProvider(this).get(PaymentViewModel.class);
+        //paymentViewModel = new ViewModelProvider(this).get(PaymentViewModel.class);
+        paymentViewModel = new ViewModelProvider(this).get(PaymentsViewModel.class);
 
         layoutSetVisibility("READY");
 
-        Log.e("payment _ uid / uid", MessageFormat.format("{0}[][][][][][][]{1}", String.valueOf(getArguments() != null ? getArguments().get("_uid") : null), String.valueOf(getArguments().get("uid"))));
-
-        binding.cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e("버튼","클릭");
-            }
-        });
-
-        paymentViewModel.retrofitGetInfo(String.valueOf(getArguments().get("_uid")), String.valueOf(getArguments().get("uid")));
+        paymentViewModel.retrofitGetInfo(String.valueOf(getArguments().get("_uid")),String.valueOf(getArguments().get("uid")));
+        //paymentViewModel.retrofitGetInfo(String.valueOf(getArguments().get("_uid")), String.valueOf(getArguments().get("uid")));
 
         paymentViewModel.getMenu().observe(getViewLifecycleOwner(),menu->{
             binding.menu.setText(menu);
