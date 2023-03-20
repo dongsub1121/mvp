@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -38,7 +39,8 @@ public class PayHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentPayHomeBinding.inflate(inflater,container,false);
-        viewModel = ManagementActivity.getMerchantViewModel();
+        //viewModel = ManagementActivity.getMerchantViewModel();
+        viewModel = new ViewModelProvider(requireActivity()).get(MerchantViewModel.class);
 
         RecyclerView firstRecycler = binding.firstPaysRecyclerView;
         RecyclerView secondRecycler = binding.secondPaysRecyclerView;
@@ -65,4 +67,10 @@ public class PayHomeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e("onResume", "onResume");
+        viewModel.refreshMerchant();
+    }
 }

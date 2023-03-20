@@ -48,6 +48,7 @@ public class SalesListAdapter extends RecyclerView.Adapter<SalesListAdapter.List
             holder.authNum.setText("KAKAO TALK");
             holder.paymentMenu.setText("크리스마스 커플 세트");
             holder.price.setText(TextConvert.toPrice(price));
+            holder.orderNo.setText("L230130PK013");
             holder.status.setText("진행중");
             holder.main.setBackgroundColor(Color.parseColor("#FFEFEF"));
         } else if (price.charAt(0) == '6') {
@@ -72,7 +73,7 @@ public class SalesListAdapter extends RecyclerView.Adapter<SalesListAdapter.List
 
     public static class ListHolder extends RecyclerView.ViewHolder {
 
-        TextView price, oderPrice, address, menu, request, issuer, authNum, paymentMenu;
+        TextView price, oderPrice, address, menu, request, issuer, authNum, paymentMenu,orderNo,tableNo;
         RelativeLayout payments, order, main ;
         TextView status;
         ImageView statusImage;
@@ -89,6 +90,8 @@ public class SalesListAdapter extends RecyclerView.Adapter<SalesListAdapter.List
             issuer = itemView.findViewById(R.id.issuer);
             authNum = itemView.findViewById(R.id.authNum);
             paymentMenu = itemView.findViewById(R.id.paymentMenu);
+            orderNo = itemView.findViewById(R.id.orderNo);
+            tableNo = itemView.findViewById(R.id.tableNo);
 
             payments = itemView.findViewById(R.id.paymentLayout);
             order = itemView.findViewById(R.id.orderLayout);

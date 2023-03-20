@@ -100,7 +100,7 @@ public class PaymentsViewModel extends ViewModel {
 
         Retrofit retrofit = new Retrofit.Builder()
                 //.baseUrl("http://211.32.72.243:3000/")
-                .baseUrl("http://61.33.183.227:3000/")    //http://61.33.183.227:3000/       "https://d-pay.mpas.co.kr/"
+                .baseUrl("https://d-pay.mpas.co.kr/")    //http://61.33.183.227:3000/       "https://d-pay.mpas.co.kr/"
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -207,7 +207,7 @@ public class PaymentsViewModel extends ViewModel {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://61.33.183.227:3000/")   //"http://61.33.183.227:3000/"   http://61.33.183.227:3000/       "https://d-pay.mpas.co.kr/"
+                .baseUrl("https://d-pay.mpas.co.kr/")   //"http://61.33.183.227:3000/"   http://61.33.183.227:3000/       "https://d-pay.mpas.co.kr/"
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

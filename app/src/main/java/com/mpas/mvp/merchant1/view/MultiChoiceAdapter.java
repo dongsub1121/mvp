@@ -65,7 +65,7 @@ public class MultiChoiceAdapter extends RecyclerView.Adapter<MultiChoiceAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView day , month, week;
-        CardView cardView;
+
         RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
@@ -74,7 +74,7 @@ public class MultiChoiceAdapter extends RecyclerView.Adapter<MultiChoiceAdapter.
             day = itemView.findViewById(R.id.calDay);
             month = itemView.findViewById(R.id.calMonth);
             week = itemView.findViewById(R.id.calWeek);
-            cardView = itemView.findViewById(R.id.card);
+
             relativeLayout = itemView.findViewById(R.id.card_relative);
 
             relativeLayout.setOnClickListener(view -> {

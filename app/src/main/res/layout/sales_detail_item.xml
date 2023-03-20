@@ -15,51 +15,64 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/sales_detail_ci"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:background="@color/white"
-        android:src="@drawable/mpas_symbol02"
-        app:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/sales_detail_ci"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:src="@drawable/mpas_symbol02"
+            app:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/sales_detail_bank"
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:gravity="center_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/sales_detail_ci"
-        android:text=""
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/sales_detail_amount"
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:gravity="right"
-        android:text=""
-        android:textColor="@color/black"
-        app:ignore="RelativeOverlap,RtlHardcoded" />
+        <TextView
+            android:id="@+id/sales_detail_bank"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/sales_detail_ci"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/sales_detail_count"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_toEndOf="@+id/sales_detail_bank"
+            android:layout_toStartOf="@+id/sales_detail_amount"
             android:layout_centerVertical="true"
+            android:gravity="right"
             android:text=""
+            android:textSize="16sp"
             android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/sales_detail_amount"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/nextButton"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:ignore="RelativeOverlap,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/nextButton"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/next"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

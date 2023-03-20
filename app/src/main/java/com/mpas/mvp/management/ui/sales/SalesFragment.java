@@ -5,6 +5,7 @@ import static com.mpas.mvp.merchant1.util.TextConvert.toPrice;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -33,7 +34,6 @@ import java.util.Objects;
 public class SalesFragment extends Fragment {
 
     private static final String TAG = SalesFragment.class.getSimpleName();
-    private List<SalesDetailModel.SalesDetailDB> data;
     private  SalesViewModel salesViewModel;
     private MerchantViewModel merchantViewModel;
     private SalesFragmentBinding binding;
@@ -45,6 +45,7 @@ public class SalesFragment extends Fragment {
         return new SalesFragment();
     }
 
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

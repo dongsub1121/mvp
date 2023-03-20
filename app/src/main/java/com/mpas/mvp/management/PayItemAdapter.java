@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mpas.mvp.R;
+import com.mpas.mvp.management.ui.liquid.LiquidViewModel;
 import com.mpas.mvp.management.ui.payments.PayFactoryActivity;
 import com.mpas.mvp.management.ui.scanner.ScanActivity;
 
@@ -83,6 +85,10 @@ public class PayItemAdapter extends RecyclerView.Adapter<PayItemAdapter.ViewHold
                             Intent intent = new Intent(mContext, PayFactoryActivity.class);
                             mContext.startActivity(intent);
                             break;
+                        case "계좌결제":
+                            LiquidViewModel vm =  ManagementActivity.getLiquidViewModel();
+                            vm.getPayLoads();
+                            Toast.makeText(mContext, "계좌결제", Toast.LENGTH_SHORT).show();
                         default:
                             Toast.makeText(mContext, "미지원 기능 입니다", Toast.LENGTH_SHORT).show();
                     }

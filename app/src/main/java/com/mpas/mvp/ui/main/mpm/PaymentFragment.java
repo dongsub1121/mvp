@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/main/java/com/mpas/mvp/ui/main/mpm/PaymentFragment.java
 package com.mpas.mvp.ui.main.mpm;
-========
-package com.mpas.mvp.ui.main.payments;
->>>>>>>> origin/1005:app/src/main/java/com/mpas/mvp/ui/main/payments/PaymentFragment.java
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-
-<<<<<<<< HEAD:app/src/main/java/com/mpas/mvp/ui/main/mpm/PaymentFragment.java
 import android.annotation.SuppressLint;
-========
->>>>>>>> origin/1005:app/src/main/java/com/mpas/mvp/ui/main/payments/PaymentFragment.java
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -27,6 +19,7 @@ import android.widget.Toast;
 import com.mpas.mvp.MainActivity;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.PaymentFragmentBinding;
+import com.mpas.mvp.ui.main.payments.PaymentsViewModel;
 
 import java.text.MessageFormat;
 

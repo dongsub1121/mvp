@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="완료" />
+                android:text="status" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <RelativeLayout
@@ -87,7 +87,20 @@
                     android:id="@+id/authNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="승인번호 : 1234 5678" />
+                <TextView
+                    android:id="@+id/tableNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <TextView
+                    android:id="@+id/orderNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
             </LinearLayout>
 
 

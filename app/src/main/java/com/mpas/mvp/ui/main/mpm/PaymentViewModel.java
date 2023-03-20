@@ -1,9 +1,10 @@
-<<<<<<<< HEAD:app/src/main/java/com/mpas/mvp/ui/main/mpm/PaymentViewModel.java
+/*<<<<<<<< HEAD:app/src/main/java/com/mpas/mvp/ui/main/mpm/PaymentViewModel.java
 package com.mpas.mvp.ui.main.mpm;
 ========
 package com.mpas.mvp.ui.main.payments;
->>>>>>>> origin/1005:app/src/main/java/com/mpas/mvp/ui/main/payments/PaymentViewModel.java
+>>>>>>>> origin/1005:app/src/main/java/com/mpas/mvp/ui/main/payments/PaymentViewModel.java*/
 
+package com.mpas.mvp.ui.main.mpm;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -15,6 +16,7 @@ import com.mpas.mvp.model.GetItem;
 import com.mpas.mvp.PayUtil;
 import com.mpas.mvp.PaydaPostMPMCommit;
 import com.mpas.mvp.VanRequest;
+import com.mpas.mvp.ui.main.payments.RetrofitAPI;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -32,8 +34,6 @@ public class PaymentViewModel extends ViewModel {
     private static String uid = "";
     private static String _uid = "";
     private final PayUtil.AuthItem item ;
-
-    // TODO: Implement the ViewModel
 
     private final MutableLiveData<String> menu = new MutableLiveData<>();
     private final MutableLiveData<String> price = new MutableLiveData<>();

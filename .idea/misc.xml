@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/calendar.xml" value="0.197" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/ic__notification_24.xml" value="0.1985" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/ic_analyst_24.xml" value="0.1985" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1985" />
@@ -37,7 +38,10 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_setting.xml" value="0.3845108695652174" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/activity_test.xml" value="0.1647940074906367" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/app_bar_draw.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/cakculator_fragment.xml" value="0.203125" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/calculator_fragment.xml" value="0.18854166666666666" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/calender_cardview.xml" value="0.2391304347826087" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/chart_custom_maker.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/content_draw.xml" value="0.18566362715298884" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/content_merchant.xml" value="0.21875" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/content_sales.xml" value="0.2817028985507246" />
@@ -63,7 +67,8 @@
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/fragment_zero_pay.xml" value="0.21666666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/info_cardview.xml" value="0.19739583333333333" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/info_list.xml" value="0.19202898550724637" />
-        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/item_pay_list_apdapter.xml" value="0.19895833333333332" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/item_pay_list_apdapter.xml" value="0.67" />
+        <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/item_payment_list_dup.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/kakao_fragment.xml" value="0.21666666666666667" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/layout_bottom_nav.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/mvp/app/src/main/res/layout/main_activity.xml" value="0.38697916666666665" />

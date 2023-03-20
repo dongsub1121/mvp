@@ -3,17 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".management.ui.settings.SettingsReaderScreenEditFragment">
+    tools:context=".management.ui.liquid.LiquidFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Reader" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inputType="textEmailAddress"></EditText>
+        android:text="Hello" />
 
 </FrameLayout>

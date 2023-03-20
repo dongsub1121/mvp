@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroRepository {
 
-    private  static final  String BASE_URL = "http://61.33.183.227:3000/";
+    private  static final  String BASE_URL = "https://d-pay.mpas.co.kr/"; //http://61.33.183.227:3000/";
     private static final String _uid = "MzQ4NTUwOTk5EUGB";
     private static RetroRepository instance;
 

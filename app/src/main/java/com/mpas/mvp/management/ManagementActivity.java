@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,6 +24,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.mpas.mvp.R;
 import com.mpas.mvp.databinding.ActivityManagementBinding;
+import com.mpas.mvp.management.ui.liquid.LiquidViewModel;
 import com.mpas.mvp.management.ui.settings.SettingsFragment;
 import com.mpas.mvp.management.ui.sales.MerchantViewModel;
 import com.mpas.mvp.merchant1.view.PaymentsFragment;
@@ -35,6 +37,7 @@ public class ManagementActivity extends AppCompatActivity {
 
     private static MerchantViewModel merchantViewModel;
     private static SalesViewModel salesViewModel;
+    private static LiquidViewModel liquidViewModel;
     private  NavController navController;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityManagementBinding binding;
@@ -47,6 +50,7 @@ public class ManagementActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_management);
         merchantViewModel = new ViewModelProvider(this).get(MerchantViewModel.class);
         salesViewModel = new ViewModelProvider(this).get(SalesViewModel.class);
+        liquidViewModel = new ViewModelProvider(this).get(LiquidViewModel.class);
 
         //##################################
            /* setSupportActionBar(binding.mainToolbar);
@@ -83,6 +87,9 @@ public class ManagementActivity extends AppCompatActivity {
     }
     public static SalesViewModel getSalesViewModel() {
         return salesViewModel;
+    }
+    public static LiquidViewModel getLiquidViewModel() {
+        return liquidViewModel;
     }
 
     @SuppressLint("NonConstantResourceId")

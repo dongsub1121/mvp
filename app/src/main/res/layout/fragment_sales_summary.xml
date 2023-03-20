@@ -30,13 +30,39 @@
             android:textColor="@color/black"
             android:textSize="30sp"/>
 
+        <RelativeLayout
+            android:id="@+id/errorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/salesTitle"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:id="@+id/errorImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/none" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="등록된 가맹점이 없어요"
+                android:textColor="@color/maps_1"
+                android:textSize="20sp"
+                android:textStyle="italic|bold"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/errorImage"/>
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/salesToday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginStart="30dp"
+            android:gravity="left"
             app:layout_constraintTop_toBottomOf="@+id/salesTitle"
             android:text=""
             android:textColor="@color/black"
@@ -44,29 +70,34 @@
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/list_merchant"
-            app:layout_constraintTop_toBottomOf="@+id/salesToday"
-            android:background="@drawable/spinner_sales"
-            android:theme="@style/SalesSpinner"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_margin="20dp"
-            android:textSize="30sp"
-            android:spinnerMode="dropdown"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/spinner_sales"
+            android:backgroundTintMode="multiply"
             android:prompt="@string/sales_spinner_prompt"
-            android:backgroundTintMode="multiply" />
+            android:spinnerMode="dialog"
+            android:textSize="30sp"
+            android:theme="@style/SalesSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/salesToday"
+            tools:layout_editor_absoluteX="20dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/sales_cardView"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             app:cardBackgroundColor="#F6F6F6"
-            android:layout_marginBottom="10dp"
-            android:layout_margin="20dp"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintTop_toBottomOf="@+id/list_merchant">
 
             <RelativeLayout
-                android:id="@+id/relativeLayout1"
+                android:id="@+id/SalesView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -74,8 +105,8 @@
                     android:id="@+id/sales_sumTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
                     android:text=" 어제의 매출"
                     android:textColor="@color/black"
                     android:textSize="25sp"
@@ -87,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/imageNext"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginEnd="20dp"
                     android:text=""
                     android:textColor="#050099"
                     android:textSize="30sp"
@@ -99,59 +130,72 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="15dp"
                     android:src="@drawable/next" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/sales_guide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="*어제부터 일주일간 매출을 보여드려요"
+            android:textColor="@color/maps_1"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@+id/sales_cardView">
+        </TextView>
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:layout_constraintTop_toBottomOf="@+id/sales_cardView"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/calendarContainer"/>
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/sales_guide"
+            app:layout_constraintBottom_toTopOf="@+id/calendarView"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/calendarContainer"
+        <RelativeLayout
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@color/white"
-            android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <RelativeLayout
+            <ImageView
+                android:id="@+id/previousButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_left_24" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/calenderRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/nextButton"
+                android:layout_toEndOf="@+id/previousButton"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-                <ImageView
-                    android:id="@+id/previousButton"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/next" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/calenderRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <ImageView
-                    android:id="@+id/nextButton"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/next" />
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/nextButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_right_24" />
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

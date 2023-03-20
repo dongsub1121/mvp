@@ -17,6 +17,8 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mpas.mvp.R;
+import com.mpas.mvp.merchant1.util.TextConvert;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -69,8 +71,7 @@ public class CalRecyclerAdapter extends RecyclerView.Adapter<CalRecyclerAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView day , month, week;
-        CardView cardView;
+        TextView day , month, week, yesterday;
         RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
@@ -79,7 +80,7 @@ public class CalRecyclerAdapter extends RecyclerView.Adapter<CalRecyclerAdapter.
             day = itemView.findViewById(R.id.calDay);
             month = itemView.findViewById(R.id.calMonth);
             week = itemView.findViewById(R.id.calWeek);
-            cardView = itemView.findViewById(R.id.card);
+            yesterday = itemView.findViewById(R.id.yesterday);
             relativeLayout = itemView.findViewById(R.id.card_relative);
 
         }
@@ -95,21 +96,21 @@ public class CalRecyclerAdapter extends RecyclerView.Adapter<CalRecyclerAdapter.
 
             day.setText(d);
             month.setText(m);
-            week.setText(w.substring(0,3));
+            week.setText(w.substring(0, 3));
 
-            if(w.equals("SATURDAY")){
+            if (w.equals("SATURDAY")) {
                 day.setTextColor(Color.parseColor("#000099"));
                 week.setTextColor(Color.parseColor("#000099"));
-            }else if(w.equals("SUNDAY")){
+            } else if (w.equals("SUNDAY")) {
                 day.setTextColor(Color.parseColor("#CC0000"));
                 week.setTextColor(Color.parseColor("#CC0000"));
-            }else{
+            } else {
                 day.setTextColor(Color.parseColor("#000000"));
                 week.setTextColor(Color.parseColor("#000000"));
             }
 
-            if(isItemSelected(position)){
-                relativeLayout.setBackgroundColor(Color.parseColor("#6666CC"));
+            if (isItemSelected(position)) {
+                relativeLayout.setBackgroundColor(Color.parseColor("#7986CB"));
             } else {
                 relativeLayout.setBackgroundColor(Color.WHITE);
             }
@@ -118,12 +119,13 @@ public class CalRecyclerAdapter extends RecyclerView.Adapter<CalRecyclerAdapter.
                 clearSelectedItem();
                 toggleItemSelected(position);
                 checkPosition = position;
-                sparseBooleanArray.put(position,true);
+                sparseBooleanArray.put(position, true);
                 notifyDataSetChanged();
 
-                if(calendarListener != null) {
-                    Log.e("onRefresh_localDate",localDate.toString());
-                    calendarListener.onRefresh(localDate,position);}
+                if (calendarListener != null) {
+                    Log.e("onRefresh_localDate", localDate.toString());
+                    calendarListener.onRefresh(localDate, position);
+                }
             });
         }
     }
